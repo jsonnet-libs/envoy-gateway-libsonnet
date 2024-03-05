@@ -2,4 +2,4 @@
 
 This library is generated with [`k8s`](https://github.com/jsonnet-libs/k8s).
 
-[Docs](https://jsonnet-libs.github.io/envoy-gateway-libsonnet)
+- [v0.6.0](v0.6.0/README.md)
