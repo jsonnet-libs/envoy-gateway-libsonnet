@@ -1,0 +1,574 @@
+---
+permalink: /v1.6.0/gateway/v1alpha1/backend/
+---
+
+# gateway.v1alpha1.backend
+
+"Backend allows the user to configure the endpoints of a backend and\nthe behavior of the connection from Envoy Proxy to the backend."
+
+## Index
+
+* [`fn new(name)`](#fn-new)
+* [`obj metadata`](#obj-metadata)
+  * [`fn withAnnotations(annotations)`](#fn-metadatawithannotations)
+  * [`fn withAnnotationsMixin(annotations)`](#fn-metadatawithannotationsmixin)
+  * [`fn withClusterName(clusterName)`](#fn-metadatawithclustername)
+  * [`fn withCreationTimestamp(creationTimestamp)`](#fn-metadatawithcreationtimestamp)
+  * [`fn withDeletionGracePeriodSeconds(deletionGracePeriodSeconds)`](#fn-metadatawithdeletiongraceperiodseconds)
+  * [`fn withDeletionTimestamp(deletionTimestamp)`](#fn-metadatawithdeletiontimestamp)
+  * [`fn withFinalizers(finalizers)`](#fn-metadatawithfinalizers)
+  * [`fn withFinalizersMixin(finalizers)`](#fn-metadatawithfinalizersmixin)
+  * [`fn withGenerateName(generateName)`](#fn-metadatawithgeneratename)
+  * [`fn withGeneration(generation)`](#fn-metadatawithgeneration)
+  * [`fn withLabels(labels)`](#fn-metadatawithlabels)
+  * [`fn withLabelsMixin(labels)`](#fn-metadatawithlabelsmixin)
+  * [`fn withName(name)`](#fn-metadatawithname)
+  * [`fn withNamespace(namespace)`](#fn-metadatawithnamespace)
+  * [`fn withOwnerReferences(ownerReferences)`](#fn-metadatawithownerreferences)
+  * [`fn withOwnerReferencesMixin(ownerReferences)`](#fn-metadatawithownerreferencesmixin)
+  * [`fn withResourceVersion(resourceVersion)`](#fn-metadatawithresourceversion)
+  * [`fn withSelfLink(selfLink)`](#fn-metadatawithselflink)
+  * [`fn withUid(uid)`](#fn-metadatawithuid)
+* [`obj spec`](#obj-spec)
+  * [`fn withAppProtocols(appProtocols)`](#fn-specwithappprotocols)
+  * [`fn withAppProtocolsMixin(appProtocols)`](#fn-specwithappprotocolsmixin)
+  * [`fn withEndpoints(endpoints)`](#fn-specwithendpoints)
+  * [`fn withEndpointsMixin(endpoints)`](#fn-specwithendpointsmixin)
+  * [`fn withFallback(fallback)`](#fn-specwithfallback)
+  * [`fn withType(type)`](#fn-specwithtype)
+  * [`obj spec.endpoints`](#obj-specendpoints)
+    * [`fn withHostname(hostname)`](#fn-specendpointswithhostname)
+    * [`fn withZone(zone)`](#fn-specendpointswithzone)
+    * [`obj spec.endpoints.fqdn`](#obj-specendpointsfqdn)
+      * [`fn withHostname(hostname)`](#fn-specendpointsfqdnwithhostname)
+      * [`fn withPort(port)`](#fn-specendpointsfqdnwithport)
+    * [`obj spec.endpoints.ip`](#obj-specendpointsip)
+      * [`fn withAddress(address)`](#fn-specendpointsipwithaddress)
+      * [`fn withPort(port)`](#fn-specendpointsipwithport)
+    * [`obj spec.endpoints.unix`](#obj-specendpointsunix)
+      * [`fn withPath(path)`](#fn-specendpointsunixwithpath)
+  * [`obj spec.tls`](#obj-spectls)
+    * [`fn withAlpnProtocols(alpnProtocols)`](#fn-spectlswithalpnprotocols)
+    * [`fn withAlpnProtocolsMixin(alpnProtocols)`](#fn-spectlswithalpnprotocolsmixin)
+    * [`fn withCaCertificateRefs(caCertificateRefs)`](#fn-spectlswithcacertificaterefs)
+    * [`fn withCaCertificateRefsMixin(caCertificateRefs)`](#fn-spectlswithcacertificaterefsmixin)
+    * [`fn withCiphers(ciphers)`](#fn-spectlswithciphers)
+    * [`fn withCiphersMixin(ciphers)`](#fn-spectlswithciphersmixin)
+    * [`fn withEcdhCurves(ecdhCurves)`](#fn-spectlswithecdhcurves)
+    * [`fn withEcdhCurvesMixin(ecdhCurves)`](#fn-spectlswithecdhcurvesmixin)
+    * [`fn withInsecureSkipVerify(insecureSkipVerify)`](#fn-spectlswithinsecureskipverify)
+    * [`fn withMaxVersion(maxVersion)`](#fn-spectlswithmaxversion)
+    * [`fn withMinVersion(minVersion)`](#fn-spectlswithminversion)
+    * [`fn withSignatureAlgorithms(signatureAlgorithms)`](#fn-spectlswithsignaturealgorithms)
+    * [`fn withSignatureAlgorithmsMixin(signatureAlgorithms)`](#fn-spectlswithsignaturealgorithmsmixin)
+    * [`fn withSni(sni)`](#fn-spectlswithsni)
+    * [`fn withWellKnownCACertificates(wellKnownCACertificates)`](#fn-spectlswithwellknowncacertificates)
+    * [`obj spec.tls.caCertificateRefs`](#obj-spectlscacertificaterefs)
+      * [`fn withGroup(group)`](#fn-spectlscacertificaterefswithgroup)
+      * [`fn withKind(kind)`](#fn-spectlscacertificaterefswithkind)
+      * [`fn withName(name)`](#fn-spectlscacertificaterefswithname)
+    * [`obj spec.tls.clientCertificateRef`](#obj-spectlsclientcertificateref)
+      * [`fn withGroup(group)`](#fn-spectlsclientcertificaterefwithgroup)
+      * [`fn withKind(kind)`](#fn-spectlsclientcertificaterefwithkind)
+      * [`fn withName(name)`](#fn-spectlsclientcertificaterefwithname)
+      * [`fn withNamespace(namespace)`](#fn-spectlsclientcertificaterefwithnamespace)
+
+## Fields
+
+### fn new
+
+```ts
+new(name)
+```
+
+new returns an instance of Backend
+
+## obj metadata
+
+"ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create."
+
+### fn metadata.withAnnotations
+
+```ts
+withAnnotations(annotations)
+```
+
+"Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations"
+
+### fn metadata.withAnnotationsMixin
+
+```ts
+withAnnotationsMixin(annotations)
+```
+
+"Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations"
+
+**Note:** This function appends passed data to existing values
+
+### fn metadata.withClusterName
+
+```ts
+withClusterName(clusterName)
+```
+
+"The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request."
+
+### fn metadata.withCreationTimestamp
+
+```ts
+withCreationTimestamp(creationTimestamp)
+```
+
+"Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers."
+
+### fn metadata.withDeletionGracePeriodSeconds
+
+```ts
+withDeletionGracePeriodSeconds(deletionGracePeriodSeconds)
+```
+
+"Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only."
+
+### fn metadata.withDeletionTimestamp
+
+```ts
+withDeletionTimestamp(deletionTimestamp)
+```
+
+"Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers."
+
+### fn metadata.withFinalizers
+
+```ts
+withFinalizers(finalizers)
+```
+
+"Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list."
+
+### fn metadata.withFinalizersMixin
+
+```ts
+withFinalizersMixin(finalizers)
+```
+
+"Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list."
+
+**Note:** This function appends passed data to existing values
+
+### fn metadata.withGenerateName
+
+```ts
+withGenerateName(generateName)
+```
+
+"GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency"
+
+### fn metadata.withGeneration
+
+```ts
+withGeneration(generation)
+```
+
+"A sequence number representing a specific generation of the desired state. Populated by the system. Read-only."
+
+### fn metadata.withLabels
+
+```ts
+withLabels(labels)
+```
+
+"Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels"
+
+### fn metadata.withLabelsMixin
+
+```ts
+withLabelsMixin(labels)
+```
+
+"Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels"
+
+**Note:** This function appends passed data to existing values
+
+### fn metadata.withName
+
+```ts
+withName(name)
+```
+
+"Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names"
+
+### fn metadata.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.\n\nMust be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces"
+
+### fn metadata.withOwnerReferences
+
+```ts
+withOwnerReferences(ownerReferences)
+```
+
+"List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller."
+
+### fn metadata.withOwnerReferencesMixin
+
+```ts
+withOwnerReferencesMixin(ownerReferences)
+```
+
+"List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller."
+
+**Note:** This function appends passed data to existing values
+
+### fn metadata.withResourceVersion
+
+```ts
+withResourceVersion(resourceVersion)
+```
+
+"An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.\n\nPopulated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency"
+
+### fn metadata.withSelfLink
+
+```ts
+withSelfLink(selfLink)
+```
+
+"SelfLink is a URL representing this object. Populated by the system. Read-only.\n\nDEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release."
+
+### fn metadata.withUid
+
+```ts
+withUid(uid)
+```
+
+"UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.\n\nPopulated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids"
+
+## obj spec
+
+"Spec defines the desired state of Backend."
+
+### fn spec.withAppProtocols
+
+```ts
+withAppProtocols(appProtocols)
+```
+
+"AppProtocols defines the application protocols to be supported when connecting to the backend."
+
+### fn spec.withAppProtocolsMixin
+
+```ts
+withAppProtocolsMixin(appProtocols)
+```
+
+"AppProtocols defines the application protocols to be supported when connecting to the backend."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.withEndpoints
+
+```ts
+withEndpoints(endpoints)
+```
+
+"Endpoints defines the endpoints to be used when connecting to the backend."
+
+### fn spec.withEndpointsMixin
+
+```ts
+withEndpointsMixin(endpoints)
+```
+
+"Endpoints defines the endpoints to be used when connecting to the backend."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.withFallback
+
+```ts
+withFallback(fallback)
+```
+
+"Fallback indicates whether the backend is designated as a fallback.\nIt is highly recommended to configure active or passive health checks to ensure that failover can be detected\nwhen the active backends become unhealthy and to automatically readjust once the primary backends are healthy again.\nThe overprovisioning factor is set to 1.4, meaning the fallback backends will only start receiving traffic when\nthe health of the active backends falls below 72%."
+
+### fn spec.withType
+
+```ts
+withType(type)
+```
+
+"Type defines the type of the backend. Defaults to \"Endpoints\
+
+## obj spec.endpoints
+
+"Endpoints defines the endpoints to be used when connecting to the backend."
+
+### fn spec.endpoints.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines an optional hostname for the backend endpoint."
+
+### fn spec.endpoints.withZone
+
+```ts
+withZone(zone)
+```
+
+"Zone defines the service zone of the backend endpoint."
+
+## obj spec.endpoints.fqdn
+
+"FQDN defines a FQDN endpoint"
+
+### fn spec.endpoints.fqdn.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the FQDN hostname of the backend endpoint."
+
+### fn spec.endpoints.fqdn.withPort
+
+```ts
+withPort(port)
+```
+
+"Port defines the port of the backend endpoint."
+
+## obj spec.endpoints.ip
+
+"IP defines an IP endpoint. Supports both IPv4 and IPv6 addresses."
+
+### fn spec.endpoints.ip.withAddress
+
+```ts
+withAddress(address)
+```
+
+"Address defines the IP address of the backend endpoint.\nSupports both IPv4 and IPv6 addresses."
+
+### fn spec.endpoints.ip.withPort
+
+```ts
+withPort(port)
+```
+
+"Port defines the port of the backend endpoint."
+
+## obj spec.endpoints.unix
+
+"Unix defines the unix domain socket endpoint"
+
+### fn spec.endpoints.unix.withPath
+
+```ts
+withPath(path)
+```
+
+"Path defines the unix domain socket path of the backend endpoint.\nThe path length must not exceed 108 characters."
+
+## obj spec.tls
+
+"TLS defines the TLS settings for the backend.\nIf TLS is specified here and a BackendTLSPolicy is also configured for the backend, the final TLS settings will\nbe a merge of both configurations. In case of overlapping fields, the values defined in the BackendTLSPolicy will\ntake precedence."
+
+### fn spec.tls.withAlpnProtocols
+
+```ts
+withAlpnProtocols(alpnProtocols)
+```
+
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
+
+### fn spec.tls.withAlpnProtocolsMixin
+
+```ts
+withAlpnProtocolsMixin(alpnProtocols)
+```
+
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withCaCertificateRefs
+
+```ts
+withCaCertificateRefs(caCertificateRefs)
+```
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+### fn spec.tls.withCaCertificateRefsMixin
+
+```ts
+withCaCertificateRefsMixin(caCertificateRefs)
+```
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withCiphers
+
+```ts
+withCiphers(ciphers)
+```
+
+"Ciphers specifies the set of cipher suites supported when\nnegotiating TLS 1.0 - 1.2. This setting has no effect for TLS 1.3.\nIn non-FIPS Envoy Proxy builds the default cipher list is:\n- [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]\n- [ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384\nIn builds using BoringSSL FIPS the default cipher list is:\n- ECDHE-ECDSA-AES128-GCM-SHA256\n- ECDHE-RSA-AES128-GCM-SHA256\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384"
+
+### fn spec.tls.withCiphersMixin
+
+```ts
+withCiphersMixin(ciphers)
+```
+
+"Ciphers specifies the set of cipher suites supported when\nnegotiating TLS 1.0 - 1.2. This setting has no effect for TLS 1.3.\nIn non-FIPS Envoy Proxy builds the default cipher list is:\n- [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]\n- [ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384\nIn builds using BoringSSL FIPS the default cipher list is:\n- ECDHE-ECDSA-AES128-GCM-SHA256\n- ECDHE-RSA-AES128-GCM-SHA256\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withEcdhCurves
+
+```ts
+withEcdhCurves(ecdhCurves)
+```
+
+"ECDHCurves specifies the set of supported ECDH curves.\nIn non-FIPS Envoy Proxy builds the default curves are:\n- X25519\n- P-256\nIn builds using BoringSSL FIPS the default curve is:\n- P-256"
+
+### fn spec.tls.withEcdhCurvesMixin
+
+```ts
+withEcdhCurvesMixin(ecdhCurves)
+```
+
+"ECDHCurves specifies the set of supported ECDH curves.\nIn non-FIPS Envoy Proxy builds the default curves are:\n- X25519\n- P-256\nIn builds using BoringSSL FIPS the default curve is:\n- P-256"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withInsecureSkipVerify
+
+```ts
+withInsecureSkipVerify(insecureSkipVerify)
+```
+
+"InsecureSkipVerify indicates whether the upstream's certificate verification\nshould be skipped. Defaults to \"false\"."
+
+### fn spec.tls.withMaxVersion
+
+```ts
+withMaxVersion(maxVersion)
+```
+
+"Max specifies the maximal TLS protocol version to allow\nThe default is TLS 1.3 if this is not specified."
+
+### fn spec.tls.withMinVersion
+
+```ts
+withMinVersion(minVersion)
+```
+
+"Min specifies the minimal TLS protocol version to allow.\nThe default is TLS 1.2 if this is not specified."
+
+### fn spec.tls.withSignatureAlgorithms
+
+```ts
+withSignatureAlgorithms(signatureAlgorithms)
+```
+
+"SignatureAlgorithms specifies which signature algorithms the listener should\nsupport."
+
+### fn spec.tls.withSignatureAlgorithmsMixin
+
+```ts
+withSignatureAlgorithmsMixin(signatureAlgorithms)
+```
+
+"SignatureAlgorithms specifies which signature algorithms the listener should\nsupport."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withSni
+
+```ts
+withSni(sni)
+```
+
+"SNI is specifies the SNI value used when establishing an upstream TLS connection to the backend.\n\nEnvoy Gateway will use the HTTP host header value for SNI, when all resources referenced in BackendRefs are:\n1. Backend resources that do not set SNI, or\n2. Service/ServiceImport resources that do not have a BackendTLSPolicy attached to them\n\nWhen a BackendTLSPolicy attaches to a Backend resource, the BackendTLSPolicy's Hostname value takes precedence\nover this value."
+
+### fn spec.tls.withWellKnownCACertificates
+
+```ts
+withWellKnownCACertificates(wellKnownCACertificates)
+```
+
+"WellKnownCACertificates specifies whether system CA certificates may be used in\nthe TLS handshake between the gateway and backend pod.\n\nIf WellKnownCACertificates is unspecified or empty (\"\"), then CACertificateRefs\nmust be specified with at least one entry for a valid configuration. Only one of\nCACertificateRefs or WellKnownCACertificates may be specified, not both."
+
+## obj spec.tls.caCertificateRefs
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+### fn spec.tls.caCertificateRefs.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.tls.caCertificateRefs.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\"."
+
+### fn spec.tls.caCertificateRefs.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+## obj spec.tls.clientCertificateRef
+
+"ClientCertificateRef defines the reference to a Kubernetes Secret that contains\nthe client certificate and private key for Envoy to use when connecting to\nbackend services and external services, such as ExtAuth, ALS, OpenTelemetry, etc.\nThis secret should be located within the same namespace as the Envoy proxy resource that references it."
+
+### fn spec.tls.clientCertificateRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.tls.clientCertificateRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.tls.clientCertificateRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.tls.clientCertificateRef.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
