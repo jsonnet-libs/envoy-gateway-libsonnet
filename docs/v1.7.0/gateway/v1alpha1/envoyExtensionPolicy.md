@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
+permalink: /v1.7.0/gateway/v1alpha1/envoyExtensionPolicy/
 ---
 
 # gateway.v1alpha1.envoyExtensionPolicy
@@ -58,6 +58,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
       * [`fn withName(name)`](#fn-specextprocbackendrefswithname)
       * [`fn withNamespace(namespace)`](#fn-specextprocbackendrefswithnamespace)
       * [`fn withPort(port)`](#fn-specextprocbackendrefswithport)
+      * [`fn withWeight(weight)`](#fn-specextprocbackendrefswithweight)
     * [`obj spec.extProc.backendSettings`](#obj-specextprocbackendsettings)
       * [`obj spec.extProc.backendSettings.circuitBreaker`](#obj-specextprocbackendsettingscircuitbreaker)
         * [`fn withMaxConnections(maxConnections)`](#fn-specextprocbackendsettingscircuitbreakerwithmaxconnections)
@@ -65,15 +66,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
         * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-specextprocbackendsettingscircuitbreakerwithmaxparallelretries)
         * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-specextprocbackendsettingscircuitbreakerwithmaxpendingrequests)
         * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specextprocbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+        * [`obj spec.extProc.backendSettings.circuitBreaker.perEndpoint`](#obj-specextprocbackendsettingscircuitbreakerperendpoint)
+          * [`fn withMaxConnections(maxConnections)`](#fn-specextprocbackendsettingscircuitbreakerperendpointwithmaxconnections)
       * [`obj spec.extProc.backendSettings.connection`](#obj-specextprocbackendsettingsconnection)
         * [`fn withBufferLimit(bufferLimit)`](#fn-specextprocbackendsettingsconnectionwithbufferlimit)
         * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specextprocbackendsettingsconnectionwithsocketbufferlimit)
+        * [`obj spec.extProc.backendSettings.connection.preconnect`](#obj-specextprocbackendsettingsconnectionpreconnect)
+          * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specextprocbackendsettingsconnectionpreconnectwithperendpointpercent)
+          * [`fn withPredictivePercent(predictivePercent)`](#fn-specextprocbackendsettingsconnectionpreconnectwithpredictivepercent)
       * [`obj spec.extProc.backendSettings.dns`](#obj-specextprocbackendsettingsdns)
         * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specextprocbackendsettingsdnswithdnsrefreshrate)
+        * [`fn withLookupFamily(lookupFamily)`](#fn-specextprocbackendsettingsdnswithlookupfamily)
         * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specextprocbackendsettingsdnswithrespectdnsttl)
       * [`obj spec.extProc.backendSettings.healthCheck`](#obj-specextprocbackendsettingshealthcheck)
+        * [`fn withPanicThreshold(panicThreshold)`](#fn-specextprocbackendsettingshealthcheckwithpanicthreshold)
         * [`obj spec.extProc.backendSettings.healthCheck.active`](#obj-specextprocbackendsettingshealthcheckactive)
           * [`fn withHealthyThreshold(healthyThreshold)`](#fn-specextprocbackendsettingshealthcheckactivewithhealthythreshold)
+          * [`fn withInitialJitter(initialJitter)`](#fn-specextprocbackendsettingshealthcheckactivewithinitialjitter)
           * [`fn withInterval(interval)`](#fn-specextprocbackendsettingshealthcheckactivewithinterval)
           * [`fn withTimeout(timeout)`](#fn-specextprocbackendsettingshealthcheckactivewithtimeout)
           * [`fn withType(type)`](#fn-specextprocbackendsettingshealthcheckactivewithtype)
@@ -83,6 +92,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
           * [`obj spec.extProc.backendSettings.healthCheck.active.http`](#obj-specextprocbackendsettingshealthcheckactivehttp)
             * [`fn withExpectedStatuses(expectedStatuses)`](#fn-specextprocbackendsettingshealthcheckactivehttpwithexpectedstatuses)
             * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-specextprocbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+            * [`fn withHostname(hostname)`](#fn-specextprocbackendsettingshealthcheckactivehttpwithhostname)
             * [`fn withMethod(method)`](#fn-specextprocbackendsettingshealthcheckactivehttpwithmethod)
             * [`fn withPath(path)`](#fn-specextprocbackendsettingshealthcheckactivehttpwithpath)
             * [`obj spec.extProc.backendSettings.healthCheck.active.http.expectedResponse`](#obj-specextprocbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -103,6 +113,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
           * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-specextprocbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
           * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-specextprocbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
           * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-specextprocbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+          * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-specextprocbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
           * [`fn withInterval(interval)`](#fn-specextprocbackendsettingshealthcheckpassivewithinterval)
           * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-specextprocbackendsettingshealthcheckpassivewithmaxejectionpercent)
           * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-specextprocbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -114,6 +125,10 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
       * [`obj spec.extProc.backendSettings.loadBalancer`](#obj-specextprocbackendsettingsloadbalancer)
         * [`fn withType(type)`](#fn-specextprocbackendsettingsloadbalancerwithtype)
         * [`obj spec.extProc.backendSettings.loadBalancer.consistentHash`](#obj-specextprocbackendsettingsloadbalancerconsistenthash)
+          * [`fn withHeaders(headers)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithheaders)
+          * [`fn withHeadersMixin(headers)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+          * [`fn withQueryParams(queryParams)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithqueryparams)
+          * [`fn withQueryParamsMixin(queryParams)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
           * [`fn withTableSize(tableSize)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithtablesize)
           * [`fn withType(type)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashwithtype)
           * [`obj spec.extProc.backendSettings.loadBalancer.consistentHash.cookie`](#obj-specextprocbackendsettingsloadbalancerconsistenthashcookie)
@@ -123,11 +138,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
             * [`fn withTtl(ttl)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashcookiewithttl)
           * [`obj spec.extProc.backendSettings.loadBalancer.consistentHash.header`](#obj-specextprocbackendsettingsloadbalancerconsistenthashheader)
             * [`fn withName(name)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashheaderwithname)
+          * [`obj spec.extProc.backendSettings.loadBalancer.consistentHash.headers`](#obj-specextprocbackendsettingsloadbalancerconsistenthashheaders)
+            * [`fn withName(name)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashheaderswithname)
+          * [`obj spec.extProc.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-specextprocbackendsettingsloadbalancerconsistenthashqueryparams)
+            * [`fn withName(name)`](#fn-specextprocbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+        * [`obj spec.extProc.backendSettings.loadBalancer.endpointOverride`](#obj-specextprocbackendsettingsloadbalancerendpointoverride)
+          * [`fn withExtractFrom(extractFrom)`](#fn-specextprocbackendsettingsloadbalancerendpointoverridewithextractfrom)
+          * [`fn withExtractFromMixin(extractFrom)`](#fn-specextprocbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+          * [`obj spec.extProc.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-specextprocbackendsettingsloadbalancerendpointoverrideextractfrom)
+            * [`fn withHeader(header)`](#fn-specextprocbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
         * [`obj spec.extProc.backendSettings.loadBalancer.slowStart`](#obj-specextprocbackendsettingsloadbalancerslowstart)
           * [`fn withWindow(window)`](#fn-specextprocbackendsettingsloadbalancerslowstartwithwindow)
+        * [`obj spec.extProc.backendSettings.loadBalancer.zoneAware`](#obj-specextprocbackendsettingsloadbalancerzoneaware)
+          * [`obj spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-specextprocbackendsettingsloadbalancerzoneawarepreferlocal)
+            * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specextprocbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+            * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specextprocbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+            * [`obj spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-specextprocbackendsettingsloadbalancerzoneawarepreferlocalforce)
+              * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specextprocbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
       * [`obj spec.extProc.backendSettings.proxyProtocol`](#obj-specextprocbackendsettingsproxyprotocol)
         * [`fn withVersion(version)`](#fn-specextprocbackendsettingsproxyprotocolwithversion)
       * [`obj spec.extProc.backendSettings.retry`](#obj-specextprocbackendsettingsretry)
+        * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specextprocbackendsettingsretrywithnumattemptsperpriority)
         * [`fn withNumRetries(numRetries)`](#fn-specextprocbackendsettingsretrywithnumretries)
         * [`obj spec.extProc.backendSettings.retry.perRetry`](#obj-specextprocbackendsettingsretryperretry)
           * [`fn withTimeout(timeout)`](#fn-specextprocbackendsettingsretryperretrywithtimeout)
@@ -147,6 +178,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
         * [`obj spec.extProc.backendSettings.timeout.http`](#obj-specextprocbackendsettingstimeouthttp)
           * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-specextprocbackendsettingstimeouthttpwithconnectionidletimeout)
           * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specextprocbackendsettingstimeouthttpwithmaxconnectionduration)
+          * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specextprocbackendsettingstimeouthttpwithmaxstreamduration)
           * [`fn withRequestTimeout(requestTimeout)`](#fn-specextprocbackendsettingstimeouthttpwithrequesttimeout)
         * [`obj spec.extProc.backendSettings.timeout.tcp`](#obj-specextprocbackendsettingstimeouttcp)
           * [`fn withConnectTimeout(connectTimeout)`](#fn-specextprocbackendsettingstimeouttcpwithconnecttimeout)
@@ -185,8 +217,15 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
   * [`obj spec.targetSelectors`](#obj-spectargetselectors)
     * [`fn withGroup(group)`](#fn-spectargetselectorswithgroup)
     * [`fn withKind(kind)`](#fn-spectargetselectorswithkind)
+    * [`fn withMatchExpressions(matchExpressions)`](#fn-spectargetselectorswithmatchexpressions)
+    * [`fn withMatchExpressionsMixin(matchExpressions)`](#fn-spectargetselectorswithmatchexpressionsmixin)
     * [`fn withMatchLabels(matchLabels)`](#fn-spectargetselectorswithmatchlabels)
     * [`fn withMatchLabelsMixin(matchLabels)`](#fn-spectargetselectorswithmatchlabelsmixin)
+    * [`obj spec.targetSelectors.matchExpressions`](#obj-spectargetselectorsmatchexpressions)
+      * [`fn withKey(key)`](#fn-spectargetselectorsmatchexpressionswithkey)
+      * [`fn withOperator(operator)`](#fn-spectargetselectorsmatchexpressionswithoperator)
+      * [`fn withValues(values)`](#fn-spectargetselectorsmatchexpressionswithvalues)
+      * [`fn withValuesMixin(values)`](#fn-spectargetselectorsmatchexpressionswithvaluesmixin)
   * [`obj spec.wasm`](#obj-specwasm)
     * [`fn withConfig(config)`](#fn-specwasmwithconfig)
     * [`fn withFailOpen(failOpen)`](#fn-specwasmwithfailopen)
@@ -198,6 +237,12 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
       * [`obj spec.wasm.code.http`](#obj-specwasmcodehttp)
         * [`fn withSha256(sha256)`](#fn-specwasmcodehttpwithsha256)
         * [`fn withUrl(url)`](#fn-specwasmcodehttpwithurl)
+        * [`obj spec.wasm.code.http.tls`](#obj-specwasmcodehttptls)
+          * [`obj spec.wasm.code.http.tls.caCertificateRef`](#obj-specwasmcodehttptlscacertificateref)
+            * [`fn withGroup(group)`](#fn-specwasmcodehttptlscacertificaterefwithgroup)
+            * [`fn withKind(kind)`](#fn-specwasmcodehttptlscacertificaterefwithkind)
+            * [`fn withName(name)`](#fn-specwasmcodehttptlscacertificaterefwithname)
+            * [`fn withNamespace(namespace)`](#fn-specwasmcodehttptlscacertificaterefwithnamespace)
       * [`obj spec.wasm.code.image`](#obj-specwasmcodeimage)
         * [`fn withSha256(sha256)`](#fn-specwasmcodeimagewithsha256)
         * [`fn withUrl(url)`](#fn-specwasmcodeimagewithurl)
@@ -206,6 +251,12 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyExtensionPolicy/
           * [`fn withKind(kind)`](#fn-specwasmcodeimagepullsecretrefwithkind)
           * [`fn withName(name)`](#fn-specwasmcodeimagepullsecretrefwithname)
           * [`fn withNamespace(namespace)`](#fn-specwasmcodeimagepullsecretrefwithnamespace)
+        * [`obj spec.wasm.code.image.tls`](#obj-specwasmcodeimagetls)
+          * [`obj spec.wasm.code.image.tls.caCertificateRef`](#obj-specwasmcodeimagetlscacertificateref)
+            * [`fn withGroup(group)`](#fn-specwasmcodeimagetlscacertificaterefwithgroup)
+            * [`fn withKind(kind)`](#fn-specwasmcodeimagetlscacertificaterefwithkind)
+            * [`fn withName(name)`](#fn-specwasmcodeimagetlscacertificaterefwithname)
+            * [`fn withNamespace(namespace)`](#fn-specwasmcodeimagetlscacertificaterefwithnamespace)
     * [`obj spec.wasm.env`](#obj-specwasmenv)
       * [`fn withHostKeys(hostKeys)`](#fn-specwasmenvwithhostkeys)
       * [`fn withHostKeysMixin(hostKeys)`](#fn-specwasmenvwithhostkeysmixin)
@@ -506,7 +557,7 @@ withBackendRefsMixin(backendRefs)
 withFailOpen(failOpen)
 ```
 
-"FailOpen defines if requests or responses that cannot be processed due to connectivity to the\nexternal processor are terminated or passed-through.\nDefault: false"
+"FailOpen is a switch used to control the behavior when failing to call the external processor.\n\nIf FailOpen is set to true, the system bypasses the ExtProc extension and\nallows the traffic to pass through. If it is set to false or\nnot set (defaulting to false), the system blocks the traffic and returns\nan HTTP 5xx error.\n\nIf set to true, the ExtProc extension will also be bypassed if the configuration is invalid."
 
 ### fn spec.extProc.withMessageTimeout
 
@@ -612,6 +663,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.extProc.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.extProc.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -660,6 +719,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.extProc.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.extProc.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.extProc.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -680,6 +751,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.extProc.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.extProc.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.extProc.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.extProc.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -691,6 +782,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.extProc.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.extProc.backendSettings.dns.withRespectDnsTtl
 
@@ -704,6 +803,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.extProc.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.extProc.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -715,6 +822,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.extProc.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.extProc.backendSettings.healthCheck.active.withInterval
 
@@ -781,6 +896,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.extProc.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.extProc.backendSettings.healthCheck.active.http.withMethod
 
@@ -922,6 +1045,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.extProc.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.extProc.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -998,6 +1129,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.extProc.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -1012,7 +1179,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.extProc.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -1054,7 +1221,7 @@ withTtl(ttl)
 
 ## obj spec.extProc.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.extProc.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -1063,6 +1230,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.extProc.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.extProc.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extProc.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.extProc.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.extProc.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extProc.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.extProc.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extProc.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.extProc.backendSettings.loadBalancer.slowStart
 
@@ -1075,6 +1300,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.extProc.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.extProc.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.extProc.backendSettings.proxyProtocol
 
@@ -1091,6 +1352,14 @@ withVersion(version)
 ## obj spec.extProc.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.extProc.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.extProc.backendSettings.retry.withNumRetries
 
@@ -1223,6 +1492,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 ```
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
+
+### fn spec.extProc.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
 
 ### fn spec.extProc.backendSettings.timeout.http.withRequestTimeout
 
@@ -1496,6 +1773,24 @@ withKind(kind)
 
 "Kind is the resource kind that this selector targets."
 
+### fn spec.targetSelectors.withMatchExpressions
+
+```ts
+withMatchExpressions(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.withMatchExpressionsMixin
+
+```ts
+withMatchExpressionsMixin(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.targetSelectors.withMatchLabels
 
 ```ts
@@ -1511,6 +1806,44 @@ withMatchLabelsMixin(matchLabels)
 ```
 
 "MatchLabels are the set of label selectors for identifying the targeted resource"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.targetSelectors.matchExpressions
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.matchExpressions.withKey
+
+```ts
+withKey(key)
+```
+
+"key is the label key that the selector applies to."
+
+### fn spec.targetSelectors.matchExpressions.withOperator
+
+```ts
+withOperator(operator)
+```
+
+"operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+
+### fn spec.targetSelectors.matchExpressions.withValues
+
+```ts
+withValues(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
+
+### fn spec.targetSelectors.matchExpressions.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
 
 **Note:** This function appends passed data to existing values
 
@@ -1532,7 +1865,7 @@ withConfig(config)
 withFailOpen(failOpen)
 ```
 
-"FailOpen is a switch used to control the behavior when a fatal error occurs\nduring the initialization or the execution of the Wasm extension.\nIf FailOpen is set to true, the system bypasses the Wasm extension and\nallows the traffic to pass through. Otherwise, if it is set to false or\nnot set (defaulting to false), the system blocks the traffic and returns\nan HTTP 5xx error."
+"FailOpen is a switch used to control the behavior when a fatal error occurs\nduring the initialization or the execution of the Wasm extension.\n\nIf FailOpen is set to true, the system bypasses the Wasm extension and\nallows the traffic to pass through. If it is set to false or\nnot set (defaulting to false), the system blocks the traffic and returns\nan HTTP 5xx error.\n\nIf set to true, the Wasm extension will also be bypassed if the configuration is invalid."
 
 ### fn spec.wasm.withName
 
@@ -1590,6 +1923,46 @@ withUrl(url)
 
 "URL is the URL containing the Wasm code."
 
+## obj spec.wasm.code.http.tls
+
+"TLS configuration when connecting to the Wasm code source."
+
+## obj spec.wasm.code.http.tls.caCertificateRef
+
+"CACertificateRef contains a references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the Wasm code source.\n\nKubernetes ConfigMap and Kubernetes Secret are supported.\nNote: The ConfigMap or Secret must be in the same namespace as the EnvoyExtensionPolicy."
+
+### fn spec.wasm.code.http.tls.caCertificateRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.wasm.code.http.tls.caCertificateRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.wasm.code.http.tls.caCertificateRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.wasm.code.http.tls.caCertificateRef.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
+
 ## obj spec.wasm.code.image
 
 "Image is the OCI image containing the Wasm code.\n\nNote that the image must be accessible from the Envoy Gateway."
@@ -1639,6 +2012,46 @@ withName(name)
 "Name is the name of the referent."
 
 ### fn spec.wasm.code.image.pullSecretRef.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
+
+## obj spec.wasm.code.image.tls
+
+"TLS configuration when connecting to the Wasm code source."
+
+## obj spec.wasm.code.image.tls.caCertificateRef
+
+"CACertificateRef contains a references to\nKubernetes objects that contain TLS certificates of\nthe Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the Wasm code source.\n\nKubernetes ConfigMap and Kubernetes Secret are supported.\nNote: The ConfigMap or Secret must be in the same namespace as the EnvoyExtensionPolicy."
+
+### fn spec.wasm.code.image.tls.caCertificateRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.wasm.code.image.tls.caCertificateRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.wasm.code.image.tls.caCertificateRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.wasm.code.image.tls.caCertificateRef.withNamespace
 
 ```ts
 withNamespace(namespace)

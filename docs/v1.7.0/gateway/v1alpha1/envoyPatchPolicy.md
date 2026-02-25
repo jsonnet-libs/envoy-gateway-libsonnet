@@ -1,10 +1,10 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/httpRouteFilter/
+permalink: /v1.7.0/gateway/v1alpha1/envoyPatchPolicy/
 ---
 
-# gateway.v1alpha1.httpRouteFilter
+# gateway.v1alpha1.envoyPatchPolicy
 
-"HTTPRouteFilter is a custom Envoy Gateway HTTPRouteFilter which provides extended\ntraffic processing options such as path regex rewrite, direct response and more."
+"EnvoyPatchPolicy allows the user to modify the generated Envoy xDS\nresources by Envoy Gateway using this patch API"
 
 ## Index
 
@@ -30,25 +30,23 @@ permalink: /v1.3.0/gateway/v1alpha1/httpRouteFilter/
   * [`fn withSelfLink(selfLink)`](#fn-metadatawithselflink)
   * [`fn withUid(uid)`](#fn-metadatawithuid)
 * [`obj spec`](#obj-spec)
-  * [`obj spec.directResponse`](#obj-specdirectresponse)
-    * [`fn withContentType(contentType)`](#fn-specdirectresponsewithcontenttype)
-    * [`fn withStatusCode(statusCode)`](#fn-specdirectresponsewithstatuscode)
-    * [`obj spec.directResponse.body`](#obj-specdirectresponsebody)
-      * [`fn withInline(inline)`](#fn-specdirectresponsebodywithinline)
-      * [`fn withType(type)`](#fn-specdirectresponsebodywithtype)
-      * [`obj spec.directResponse.body.valueRef`](#obj-specdirectresponsebodyvalueref)
-        * [`fn withGroup(group)`](#fn-specdirectresponsebodyvaluerefwithgroup)
-        * [`fn withKind(kind)`](#fn-specdirectresponsebodyvaluerefwithkind)
-        * [`fn withName(name)`](#fn-specdirectresponsebodyvaluerefwithname)
-  * [`obj spec.urlRewrite`](#obj-specurlrewrite)
-    * [`obj spec.urlRewrite.hostname`](#obj-specurlrewritehostname)
-      * [`fn withHeader(header)`](#fn-specurlrewritehostnamewithheader)
-      * [`fn withType(type)`](#fn-specurlrewritehostnamewithtype)
-    * [`obj spec.urlRewrite.path`](#obj-specurlrewritepath)
-      * [`fn withType(type)`](#fn-specurlrewritepathwithtype)
-      * [`obj spec.urlRewrite.path.replaceRegexMatch`](#obj-specurlrewritepathreplaceregexmatch)
-        * [`fn withPattern(pattern)`](#fn-specurlrewritepathreplaceregexmatchwithpattern)
-        * [`fn withSubstitution(substitution)`](#fn-specurlrewritepathreplaceregexmatchwithsubstitution)
+  * [`fn withJsonPatches(jsonPatches)`](#fn-specwithjsonpatches)
+  * [`fn withJsonPatchesMixin(jsonPatches)`](#fn-specwithjsonpatchesmixin)
+  * [`fn withPriority(priority)`](#fn-specwithpriority)
+  * [`fn withType(type)`](#fn-specwithtype)
+  * [`obj spec.jsonPatches`](#obj-specjsonpatches)
+    * [`fn withName(name)`](#fn-specjsonpatcheswithname)
+    * [`fn withType(type)`](#fn-specjsonpatcheswithtype)
+    * [`obj spec.jsonPatches.operation`](#obj-specjsonpatchesoperation)
+      * [`fn withFrom(from)`](#fn-specjsonpatchesoperationwithfrom)
+      * [`fn withJsonPath(jsonPath)`](#fn-specjsonpatchesoperationwithjsonpath)
+      * [`fn withOp(op)`](#fn-specjsonpatchesoperationwithop)
+      * [`fn withPath(path)`](#fn-specjsonpatchesoperationwithpath)
+      * [`fn withValue(value)`](#fn-specjsonpatchesoperationwithvalue)
+  * [`obj spec.targetRef`](#obj-spectargetref)
+    * [`fn withGroup(group)`](#fn-spectargetrefwithgroup)
+    * [`fn withKind(kind)`](#fn-spectargetrefwithkind)
+    * [`fn withName(name)`](#fn-spectargetrefwithname)
 
 ## Fields
 
@@ -58,7 +56,7 @@ permalink: /v1.3.0/gateway/v1alpha1/httpRouteFilter/
 new(name)
 ```
 
-new returns an instance of HTTPRouteFilter
+new returns an instance of EnvoyPatchPolicy
 
 ## obj metadata
 
@@ -226,128 +224,130 @@ withUid(uid)
 
 ## obj spec
 
-"Spec defines the desired state of HTTPRouteFilter."
+"Spec defines the desired state of EnvoyPatchPolicy."
 
-## obj spec.directResponse
-
-"HTTPDirectResponseFilter defines the configuration to return a fixed response."
-
-### fn spec.directResponse.withContentType
+### fn spec.withJsonPatches
 
 ```ts
-withContentType(contentType)
+withJsonPatches(jsonPatches)
 ```
 
-"Content Type of the response. This will be set in the Content-Type header."
+"JSONPatch defines the JSONPatch configuration."
 
-### fn spec.directResponse.withStatusCode
+### fn spec.withJsonPatchesMixin
 
 ```ts
-withStatusCode(statusCode)
+withJsonPatchesMixin(jsonPatches)
 ```
 
-"Status Code of the HTTP response\nIf unset, defaults to 200."
+"JSONPatch defines the JSONPatch configuration."
 
-## obj spec.directResponse.body
+**Note:** This function appends passed data to existing values
 
-"Body of the Response"
-
-### fn spec.directResponse.body.withInline
+### fn spec.withPriority
 
 ```ts
-withInline(inline)
+withPriority(priority)
 ```
 
-"Inline contains the value as an inline string."
+"Priority of the EnvoyPatchPolicy.\nIf multiple EnvoyPatchPolicies are applied to the same\nTargetRef, they will be applied in the ascending order of\nthe priority i.e. int32.min has the highest priority and\nint32.max has the lowest priority.\nDefaults to 0."
 
-### fn spec.directResponse.body.withType
+### fn spec.withType
 
 ```ts
 withType(type)
 ```
 
-"Type is the type of method to use to read the body value.\nValid values are Inline and ValueRef, default is Inline."
+"Type decides the type of patch.\nValid EnvoyPatchType values are \"JSONPatch\"."
 
-## obj spec.directResponse.body.valueRef
+## obj spec.jsonPatches
 
-"ValueRef contains the contents of the body\nspecified as a local object reference.\nOnly a reference to ConfigMap is supported.\n\nThe value of key `response.body` in the ConfigMap will be used as the response body.\nIf the key is not found, the first value in the ConfigMap will be used."
+"JSONPatch defines the JSONPatch configuration."
 
-### fn spec.directResponse.body.valueRef.withGroup
-
-```ts
-withGroup(group)
-```
-
-"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
-
-### fn spec.directResponse.body.valueRef.withKind
-
-```ts
-withKind(kind)
-```
-
-"Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\"."
-
-### fn spec.directResponse.body.valueRef.withName
+### fn spec.jsonPatches.withName
 
 ```ts
 withName(name)
 ```
 
-"Name is the name of the referent."
+"Name is the name of the resource"
 
-## obj spec.urlRewrite
-
-"HTTPURLRewriteFilter define rewrites of HTTP URL components such as path and host"
-
-## obj spec.urlRewrite.hostname
-
-"Hostname is the value to be used to replace the Host header value during\nforwarding."
-
-### fn spec.urlRewrite.hostname.withHeader
-
-```ts
-withHeader(header)
-```
-
-"Header is the name of the header whose value would be used to rewrite the Host header"
-
-### fn spec.urlRewrite.hostname.withType
+### fn spec.jsonPatches.withType
 
 ```ts
 withType(type)
 ```
 
-"HTTPPathModifierType defines the type of Hostname rewrite."
+"Type is the typed URL of the Envoy xDS Resource"
 
-## obj spec.urlRewrite.path
+## obj spec.jsonPatches.operation
 
-"Path defines a path rewrite."
+"Patch defines the JSON Patch Operation"
 
-### fn spec.urlRewrite.path.withType
-
-```ts
-withType(type)
-```
-
-"HTTPPathModifierType defines the type of path redirect or rewrite."
-
-## obj spec.urlRewrite.path.replaceRegexMatch
-
-"ReplaceRegexMatch defines a path regex rewrite. The path portions matched by the regex pattern are replaced by the defined substitution.\nhttps://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#envoy-v3-api-field-config-route-v3-routeaction-regex-rewrite\nSome examples:\n(1) replaceRegexMatch:\n      pattern: ^/service/([^/]+)(/.*)$\n      substitution: \\2/instance/\\1\n    Would transform /service/foo/v1/api into /v1/api/instance/foo.\n(2) replaceRegexMatch:\n      pattern: one\n      substitution: two\n    Would transform /xxx/one/yyy/one/zzz into /xxx/two/yyy/two/zzz.\n(3) replaceRegexMatch:\n      pattern: ^(.*?)one(.*)$\n      substitution: \\1two\\2\n    Would transform /xxx/one/yyy/one/zzz into /xxx/two/yyy/one/zzz.\n(3) replaceRegexMatch:\n      pattern: (?i)/xxx/\n      substitution: /yyy/\n    Would transform path /aaa/XxX/bbb into /aaa/yyy/bbb (case-insensitive)."
-
-### fn spec.urlRewrite.path.replaceRegexMatch.withPattern
+### fn spec.jsonPatches.operation.withFrom
 
 ```ts
-withPattern(pattern)
+withFrom(from)
 ```
 
-"Pattern matches a regular expression against the value of the HTTP Path.The regex string must\nadhere to the syntax documented in https://github.com/google/re2/wiki/Syntax."
+"From is the source location of the value to be copied or moved. Only valid\nfor move or copy operations\nRefer to https://datatracker.ietf.org/doc/html/rfc6901 for more details."
 
-### fn spec.urlRewrite.path.replaceRegexMatch.withSubstitution
+### fn spec.jsonPatches.operation.withJsonPath
 
 ```ts
-withSubstitution(substitution)
+withJsonPath(jsonPath)
 ```
 
-"Substitution is an expression that replaces the matched portion.The expression may include numbered\ncapture groups that adhere to syntax documented in https://github.com/google/re2/wiki/Syntax."
+"JSONPath is a JSONPath expression. Refer to https://datatracker.ietf.org/doc/rfc9535/ for more details.\nIt produces one or more JSONPointer expressions based on the given JSON document.\nIf no JSONPointer is found, it will result in an error.\nIf the 'Path' property is also set, it will be appended to the resulting JSONPointer expressions from the JSONPath evaluation.\nThis is useful when creating a property that does not yet exist in the JSON document.\nThe final JSONPointer expressions specifies the locations in the target document/field where the operation will be applied."
+
+### fn spec.jsonPatches.operation.withOp
+
+```ts
+withOp(op)
+```
+
+"Op is the type of operation to perform"
+
+### fn spec.jsonPatches.operation.withPath
+
+```ts
+withPath(path)
+```
+
+"Path is a JSONPointer expression. Refer to https://datatracker.ietf.org/doc/html/rfc6901 for more details.\nIt specifies the location of the target document/field where the operation will be performed"
+
+### fn spec.jsonPatches.operation.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the new value of the path location. The value is only used by\nthe `add` and `replace` operations."
+
+## obj spec.targetRef
+
+"TargetRef is the name of the Gateway API resource this policy\nis being attached to.\nBy default, attaching to Gateway is supported and\nwhen mergeGateways is enabled it should attach to GatewayClass.\nThis Policy and the TargetRef MUST be in the same namespace\nfor this Policy to have effect and be applied to the Gateway\nTargetRef"
+
+### fn spec.targetRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the target resource."
+
+### fn spec.targetRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the target resource."
+
+### fn spec.targetRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the target resource."

@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/backend/
+permalink: /v1.7.0/gateway/v1alpha1/backend/
 ---
 
 # gateway.v1alpha1.backend
@@ -35,7 +35,10 @@ permalink: /v1.3.0/gateway/v1alpha1/backend/
   * [`fn withEndpoints(endpoints)`](#fn-specwithendpoints)
   * [`fn withEndpointsMixin(endpoints)`](#fn-specwithendpointsmixin)
   * [`fn withFallback(fallback)`](#fn-specwithfallback)
+  * [`fn withType(type)`](#fn-specwithtype)
   * [`obj spec.endpoints`](#obj-specendpoints)
+    * [`fn withHostname(hostname)`](#fn-specendpointswithhostname)
+    * [`fn withZone(zone)`](#fn-specendpointswithzone)
     * [`obj spec.endpoints.fqdn`](#obj-specendpointsfqdn)
       * [`fn withHostname(hostname)`](#fn-specendpointsfqdnwithhostname)
       * [`fn withPort(port)`](#fn-specendpointsfqdnwithport)
@@ -44,6 +47,31 @@ permalink: /v1.3.0/gateway/v1alpha1/backend/
       * [`fn withPort(port)`](#fn-specendpointsipwithport)
     * [`obj spec.endpoints.unix`](#obj-specendpointsunix)
       * [`fn withPath(path)`](#fn-specendpointsunixwithpath)
+  * [`obj spec.tls`](#obj-spectls)
+    * [`fn withAlpnProtocols(alpnProtocols)`](#fn-spectlswithalpnprotocols)
+    * [`fn withAlpnProtocolsMixin(alpnProtocols)`](#fn-spectlswithalpnprotocolsmixin)
+    * [`fn withCaCertificateRefs(caCertificateRefs)`](#fn-spectlswithcacertificaterefs)
+    * [`fn withCaCertificateRefsMixin(caCertificateRefs)`](#fn-spectlswithcacertificaterefsmixin)
+    * [`fn withCiphers(ciphers)`](#fn-spectlswithciphers)
+    * [`fn withCiphersMixin(ciphers)`](#fn-spectlswithciphersmixin)
+    * [`fn withEcdhCurves(ecdhCurves)`](#fn-spectlswithecdhcurves)
+    * [`fn withEcdhCurvesMixin(ecdhCurves)`](#fn-spectlswithecdhcurvesmixin)
+    * [`fn withInsecureSkipVerify(insecureSkipVerify)`](#fn-spectlswithinsecureskipverify)
+    * [`fn withMaxVersion(maxVersion)`](#fn-spectlswithmaxversion)
+    * [`fn withMinVersion(minVersion)`](#fn-spectlswithminversion)
+    * [`fn withSignatureAlgorithms(signatureAlgorithms)`](#fn-spectlswithsignaturealgorithms)
+    * [`fn withSignatureAlgorithmsMixin(signatureAlgorithms)`](#fn-spectlswithsignaturealgorithmsmixin)
+    * [`fn withSni(sni)`](#fn-spectlswithsni)
+    * [`fn withWellKnownCACertificates(wellKnownCACertificates)`](#fn-spectlswithwellknowncacertificates)
+    * [`obj spec.tls.caCertificateRefs`](#obj-spectlscacertificaterefs)
+      * [`fn withGroup(group)`](#fn-spectlscacertificaterefswithgroup)
+      * [`fn withKind(kind)`](#fn-spectlscacertificaterefswithkind)
+      * [`fn withName(name)`](#fn-spectlscacertificaterefswithname)
+    * [`obj spec.tls.clientCertificateRef`](#obj-spectlsclientcertificateref)
+      * [`fn withGroup(group)`](#fn-spectlsclientcertificaterefwithgroup)
+      * [`fn withKind(kind)`](#fn-spectlsclientcertificaterefwithkind)
+      * [`fn withName(name)`](#fn-spectlsclientcertificaterefwithname)
+      * [`fn withNamespace(namespace)`](#fn-spectlsclientcertificaterefwithnamespace)
 
 ## Fields
 
@@ -267,9 +295,33 @@ withFallback(fallback)
 
 "Fallback indicates whether the backend is designated as a fallback.\nIt is highly recommended to configure active or passive health checks to ensure that failover can be detected\nwhen the active backends become unhealthy and to automatically readjust once the primary backends are healthy again.\nThe overprovisioning factor is set to 1.4, meaning the fallback backends will only start receiving traffic when\nthe health of the active backends falls below 72%."
 
+### fn spec.withType
+
+```ts
+withType(type)
+```
+
+"Type defines the type of the backend. Defaults to \"Endpoints\
+
 ## obj spec.endpoints
 
 "Endpoints defines the endpoints to be used when connecting to the backend."
+
+### fn spec.endpoints.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines an optional hostname for the backend endpoint."
+
+### fn spec.endpoints.withZone
+
+```ts
+withZone(zone)
+```
+
+"Zone defines the service zone of the backend endpoint."
 
 ## obj spec.endpoints.fqdn
 
@@ -321,4 +373,202 @@ withPort(port)
 withPath(path)
 ```
 
-"Path defines the unix domain socket path of the backend endpoint."
+"Path defines the unix domain socket path of the backend endpoint.\nThe path length must not exceed 108 characters."
+
+## obj spec.tls
+
+"TLS defines the TLS settings for the backend.\nIf TLS is specified here and a BackendTLSPolicy is also configured for the backend, the final TLS settings will\nbe a merge of both configurations. In case of overlapping fields, the values defined in the BackendTLSPolicy will\ntake precedence."
+
+### fn spec.tls.withAlpnProtocols
+
+```ts
+withAlpnProtocols(alpnProtocols)
+```
+
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
+
+### fn spec.tls.withAlpnProtocolsMixin
+
+```ts
+withAlpnProtocolsMixin(alpnProtocols)
+```
+
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withCaCertificateRefs
+
+```ts
+withCaCertificateRefs(caCertificateRefs)
+```
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+### fn spec.tls.withCaCertificateRefsMixin
+
+```ts
+withCaCertificateRefsMixin(caCertificateRefs)
+```
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withCiphers
+
+```ts
+withCiphers(ciphers)
+```
+
+"Ciphers specifies the set of cipher suites supported when\nnegotiating TLS 1.0 - 1.2. This setting has no effect for TLS 1.3.\nIn non-FIPS Envoy Proxy builds the default cipher list is:\n- [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]\n- [ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384\nIn builds using BoringSSL FIPS the default cipher list is:\n- ECDHE-ECDSA-AES128-GCM-SHA256\n- ECDHE-RSA-AES128-GCM-SHA256\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384"
+
+### fn spec.tls.withCiphersMixin
+
+```ts
+withCiphersMixin(ciphers)
+```
+
+"Ciphers specifies the set of cipher suites supported when\nnegotiating TLS 1.0 - 1.2. This setting has no effect for TLS 1.3.\nIn non-FIPS Envoy Proxy builds the default cipher list is:\n- [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]\n- [ECDHE-RSA-AES128-GCM-SHA256|ECDHE-RSA-CHACHA20-POLY1305]\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384\nIn builds using BoringSSL FIPS the default cipher list is:\n- ECDHE-ECDSA-AES128-GCM-SHA256\n- ECDHE-RSA-AES128-GCM-SHA256\n- ECDHE-ECDSA-AES256-GCM-SHA384\n- ECDHE-RSA-AES256-GCM-SHA384"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withEcdhCurves
+
+```ts
+withEcdhCurves(ecdhCurves)
+```
+
+"ECDHCurves specifies the set of supported ECDH curves.\nIn non-FIPS Envoy Proxy builds the default curves are:\n- X25519\n- P-256\nIn builds using BoringSSL FIPS the default curve is:\n- P-256"
+
+### fn spec.tls.withEcdhCurvesMixin
+
+```ts
+withEcdhCurvesMixin(ecdhCurves)
+```
+
+"ECDHCurves specifies the set of supported ECDH curves.\nIn non-FIPS Envoy Proxy builds the default curves are:\n- X25519\n- P-256\nIn builds using BoringSSL FIPS the default curve is:\n- P-256"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withInsecureSkipVerify
+
+```ts
+withInsecureSkipVerify(insecureSkipVerify)
+```
+
+"InsecureSkipVerify indicates whether the upstream's certificate verification\nshould be skipped. Defaults to \"false\"."
+
+### fn spec.tls.withMaxVersion
+
+```ts
+withMaxVersion(maxVersion)
+```
+
+"Max specifies the maximal TLS protocol version to allow\nThe default is TLS 1.3 if this is not specified."
+
+### fn spec.tls.withMinVersion
+
+```ts
+withMinVersion(minVersion)
+```
+
+"Min specifies the minimal TLS protocol version to allow.\nThe default is TLS 1.2 if this is not specified."
+
+### fn spec.tls.withSignatureAlgorithms
+
+```ts
+withSignatureAlgorithms(signatureAlgorithms)
+```
+
+"SignatureAlgorithms specifies which signature algorithms the listener should\nsupport."
+
+### fn spec.tls.withSignatureAlgorithmsMixin
+
+```ts
+withSignatureAlgorithmsMixin(signatureAlgorithms)
+```
+
+"SignatureAlgorithms specifies which signature algorithms the listener should\nsupport."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.withSni
+
+```ts
+withSni(sni)
+```
+
+"SNI is specifies the SNI value used when establishing an upstream TLS connection to the backend.\n\nEnvoy Gateway will use the HTTP host header value for SNI, when all resources referenced in BackendRefs are:\n1. Backend resources that do not set SNI, or\n2. Service/ServiceImport resources that do not have a BackendTLSPolicy attached to them\n\nWhen a BackendTLSPolicy attaches to a Backend resource, the BackendTLSPolicy's Hostname value takes precedence\nover this value."
+
+### fn spec.tls.withWellKnownCACertificates
+
+```ts
+withWellKnownCACertificates(wellKnownCACertificates)
+```
+
+"WellKnownCACertificates specifies whether system CA certificates may be used in\nthe TLS handshake between the gateway and backend pod.\n\nIf WellKnownCACertificates is unspecified or empty (\"\"), then CACertificateRefs\nmust be specified with at least one entry for a valid configuration. Only one of\nCACertificateRefs or WellKnownCACertificates may be specified, not both."
+
+## obj spec.tls.caCertificateRefs
+
+"CACertificateRefs contains one or more references to Kubernetes objects that\ncontain TLS certificates of the Certificate Authorities that can be used\nas a trust anchor to validate the certificates presented by the backend.\n\nA single reference to a Kubernetes ConfigMap or a Kubernetes Secret,\nwith the CA certificate in a key named `ca.crt` is currently supported.\n\nIf CACertificateRefs is empty or unspecified, then WellKnownCACertificates must be\nspecified. Only one of CACertificateRefs or WellKnownCACertificates may be specified,\nnot both."
+
+### fn spec.tls.caCertificateRefs.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.tls.caCertificateRefs.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\"."
+
+### fn spec.tls.caCertificateRefs.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+## obj spec.tls.clientCertificateRef
+
+"ClientCertificateRef defines the reference to a Kubernetes Secret that contains\nthe client certificate and private key for Envoy to use when connecting to\nbackend services and external services, such as ExtAuth, ALS, OpenTelemetry, etc.\nThis secret should be located within the same namespace as the Envoy proxy resource that references it."
+
+### fn spec.tls.clientCertificateRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.tls.clientCertificateRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.tls.clientCertificateRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.tls.clientCertificateRef.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"

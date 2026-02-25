@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
+permalink: /v1.7.0/gateway/v1alpha1/envoyProxy/
 ---
 
 # gateway.v1alpha1.envoyProxy
@@ -36,6 +36,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
   * [`fn withFilterOrder(filterOrder)`](#fn-specwithfilterorder)
   * [`fn withFilterOrderMixin(filterOrder)`](#fn-specwithfilterordermixin)
   * [`fn withIpFamily(ipFamily)`](#fn-specwithipfamily)
+  * [`fn withLuaValidation(luaValidation)`](#fn-specwithluavalidation)
   * [`fn withMergeGateways(mergeGateways)`](#fn-specwithmergegateways)
   * [`fn withPreserveRouteOrder(preserveRouteOrder)`](#fn-specwithpreserverouteorder)
   * [`fn withRoutingType(routingType)`](#fn-specwithroutingtype)
@@ -75,6 +76,8 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
     * [`fn withLevelMixin(level)`](#fn-specloggingwithlevelmixin)
   * [`obj spec.provider`](#obj-specprovider)
     * [`fn withType(type)`](#fn-specproviderwithtype)
+    * [`obj spec.provider.host`](#obj-specproviderhost)
+      * [`fn withEnvoyVersion(envoyVersion)`](#fn-specproviderhostwithenvoyversion)
     * [`obj spec.provider.kubernetes`](#obj-specproviderkubernetes)
       * [`fn withUseListenerPortAsContainerPort(useListenerPortAsContainerPort)`](#fn-specproviderkuberneteswithuselistenerportascontainerport)
       * [`obj spec.provider.kubernetes.envoyDaemonSet`](#obj-specproviderkubernetesenvoydaemonset)
@@ -83,6 +86,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withEnv(env)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithenv)
           * [`fn withEnvMixin(env)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithenvmixin)
           * [`fn withImage(image)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithimage)
+          * [`fn withImageRepository(imageRepository)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithimagerepository)
           * [`fn withVolumeMounts(volumeMounts)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithvolumemounts)
           * [`fn withVolumeMountsMixin(volumeMounts)`](#fn-specproviderkubernetesenvoydaemonsetcontainerwithvolumemountsmixin)
           * [`obj spec.provider.kubernetes.envoyDaemonSet.container.env`](#obj-specproviderkubernetesenvoydaemonsetcontainerenv)
@@ -96,6 +100,11 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fieldRef`](#obj-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfieldref)
                 * [`fn withApiVersion(apiVersion)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfieldrefwithapiversion)
                 * [`fn withFieldPath(fieldPath)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfieldrefwithfieldpath)
+              * [`obj spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef`](#obj-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfilekeyref)
+                * [`fn withKey(key)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfilekeyrefwithkey)
+                * [`fn withOptional(optional)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfilekeyrefwithoptional)
+                * [`fn withPath(path)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfilekeyrefwithpath)
+                * [`fn withVolumeName(volumeName)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromfilekeyrefwithvolumename)
               * [`obj spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.resourceFieldRef`](#obj-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromresourcefieldref)
                 * [`fn withContainerName(containerName)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromresourcefieldrefwithcontainername)
                 * [`fn withDivisor(divisor)`](#fn-specproviderkubernetesenvoydaemonsetcontainerenvvaluefromresourcefieldrefwithdivisor)
@@ -163,6 +172,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withLabelsMixin(labels)`](#fn-specproviderkubernetesenvoydaemonsetpodwithlabelsmixin)
           * [`fn withNodeSelector(nodeSelector)`](#fn-specproviderkubernetesenvoydaemonsetpodwithnodeselector)
           * [`fn withNodeSelectorMixin(nodeSelector)`](#fn-specproviderkubernetesenvoydaemonsetpodwithnodeselectormixin)
+          * [`fn withPriorityClassName(priorityClassName)`](#fn-specproviderkubernetesenvoydaemonsetpodwithpriorityclassname)
           * [`fn withTolerations(tolerations)`](#fn-specproviderkubernetesenvoydaemonsetpodwithtolerations)
           * [`fn withTolerationsMixin(tolerations)`](#fn-specproviderkubernetesenvoydaemonsetpodwithtolerationsmixin)
           * [`fn withTopologySpreadConstraints(topologySpreadConstraints)`](#fn-specproviderkubernetesenvoydaemonsetpodwithtopologyspreadconstraints)
@@ -603,6 +613,15 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                       * [`fn withContainerName(containerName)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithcontainername)
                       * [`fn withDivisor(divisor)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithdivisor)
                       * [`fn withResource(resource)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithresource)
+                * [`obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate`](#obj-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificate)
+                  * [`fn withCertificateChainPath(certificateChainPath)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithcertificatechainpath)
+                  * [`fn withCredentialBundlePath(credentialBundlePath)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithcredentialbundlepath)
+                  * [`fn withKeyPath(keyPath)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithkeypath)
+                  * [`fn withKeyType(keyType)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithkeytype)
+                  * [`fn withMaxExpirationSeconds(maxExpirationSeconds)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithmaxexpirationseconds)
+                  * [`fn withSignerName(signerName)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithsignername)
+                  * [`fn withUserAnnotations(userAnnotations)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithuserannotations)
+                  * [`fn withUserAnnotationsMixin(userAnnotations)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcespodcertificatewithuserannotationsmixin)
                 * [`obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.secret`](#obj-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcessecret)
                   * [`fn withItems(items)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcessecretwithitems)
                   * [`fn withItemsMixin(items)`](#fn-specproviderkubernetesenvoydaemonsetpodvolumesprojectedsourcessecretwithitemsmixin)
@@ -682,6 +701,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withEnv(env)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithenv)
           * [`fn withEnvMixin(env)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithenvmixin)
           * [`fn withImage(image)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithimage)
+          * [`fn withImageRepository(imageRepository)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithimagerepository)
           * [`fn withVolumeMounts(volumeMounts)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithvolumemounts)
           * [`fn withVolumeMountsMixin(volumeMounts)`](#fn-specproviderkubernetesenvoydeploymentcontainerwithvolumemountsmixin)
           * [`obj spec.provider.kubernetes.envoyDeployment.container.env`](#obj-specproviderkubernetesenvoydeploymentcontainerenv)
@@ -695,6 +715,11 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fieldRef`](#obj-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfieldref)
                 * [`fn withApiVersion(apiVersion)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfieldrefwithapiversion)
                 * [`fn withFieldPath(fieldPath)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfieldrefwithfieldpath)
+              * [`obj spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef`](#obj-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfilekeyref)
+                * [`fn withKey(key)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfilekeyrefwithkey)
+                * [`fn withOptional(optional)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfilekeyrefwithoptional)
+                * [`fn withPath(path)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfilekeyrefwithpath)
+                * [`fn withVolumeName(volumeName)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromfilekeyrefwithvolumename)
               * [`obj spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.resourceFieldRef`](#obj-specproviderkubernetesenvoydeploymentcontainerenvvaluefromresourcefieldref)
                 * [`fn withContainerName(containerName)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromresourcefieldrefwithcontainername)
                 * [`fn withDivisor(divisor)`](#fn-specproviderkubernetesenvoydeploymentcontainerenvvaluefromresourcefieldrefwithdivisor)
@@ -767,6 +792,8 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withResizePolicy(resizePolicy)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithresizepolicy)
           * [`fn withResizePolicyMixin(resizePolicy)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithresizepolicymixin)
           * [`fn withRestartPolicy(restartPolicy)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithrestartpolicy)
+          * [`fn withRestartPolicyRules(restartPolicyRules)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithrestartpolicyrules)
+          * [`fn withRestartPolicyRulesMixin(restartPolicyRules)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithrestartpolicyrulesmixin)
           * [`fn withStdin(stdin)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithstdin)
           * [`fn withStdinOnce(stdinOnce)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithstdinonce)
           * [`fn withTerminationMessagePath(terminationMessagePath)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerswithterminationmessagepath)
@@ -788,6 +815,11 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fieldRef`](#obj-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfieldref)
                 * [`fn withApiVersion(apiVersion)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfieldrefwithapiversion)
                 * [`fn withFieldPath(fieldPath)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfieldrefwithfieldpath)
+              * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef`](#obj-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfilekeyref)
+                * [`fn withKey(key)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfilekeyrefwithkey)
+                * [`fn withOptional(optional)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfilekeyrefwithoptional)
+                * [`fn withPath(path)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfilekeyrefwithpath)
+                * [`fn withVolumeName(volumeName)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromfilekeyrefwithvolumename)
               * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.resourceFieldRef`](#obj-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromresourcefieldref)
                 * [`fn withContainerName(containerName)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromresourcefieldrefwithcontainername)
                 * [`fn withDivisor(divisor)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvvaluefromresourcefieldrefwithdivisor)
@@ -805,6 +837,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`fn withName(name)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvfromsecretrefwithname)
               * [`fn withOptional(optional)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersenvfromsecretrefwithoptional)
           * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle`](#obj-specproviderkubernetesenvoydeploymentinitcontainerslifecycle)
+            * [`fn withStopSignal(stopSignal)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerslifecyclewithstopsignal)
             * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle.postStart`](#obj-specproviderkubernetesenvoydeploymentinitcontainerslifecyclepoststart)
               * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle.postStart.exec`](#obj-specproviderkubernetesenvoydeploymentinitcontainerslifecyclepoststartexec)
                 * [`fn withCommand(command)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerslifecyclepoststartexecwithcommand)
@@ -914,6 +947,12 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.resources.claims`](#obj-specproviderkubernetesenvoydeploymentinitcontainersresourcesclaims)
               * [`fn withName(name)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersresourcesclaimswithname)
               * [`fn withRequest(request)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersresourcesclaimswithrequest)
+          * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules`](#obj-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyrules)
+            * [`fn withAction(action)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyruleswithaction)
+            * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.exitCodes`](#obj-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyrulesexitcodes)
+              * [`fn withOperator(operator)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyrulesexitcodeswithoperator)
+              * [`fn withValues(values)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyrulesexitcodeswithvalues)
+              * [`fn withValuesMixin(values)`](#fn-specproviderkubernetesenvoydeploymentinitcontainersrestartpolicyrulesexitcodeswithvaluesmixin)
           * [`obj spec.provider.kubernetes.envoyDeployment.initContainers.securityContext`](#obj-specproviderkubernetesenvoydeploymentinitcontainerssecuritycontext)
             * [`fn withAllowPrivilegeEscalation(allowPrivilegeEscalation)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerssecuritycontextwithallowprivilegeescalation)
             * [`fn withPrivileged(privileged)`](#fn-specproviderkubernetesenvoydeploymentinitcontainerssecuritycontextwithprivileged)
@@ -992,6 +1031,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withLabelsMixin(labels)`](#fn-specproviderkubernetesenvoydeploymentpodwithlabelsmixin)
           * [`fn withNodeSelector(nodeSelector)`](#fn-specproviderkubernetesenvoydeploymentpodwithnodeselector)
           * [`fn withNodeSelectorMixin(nodeSelector)`](#fn-specproviderkubernetesenvoydeploymentpodwithnodeselectormixin)
+          * [`fn withPriorityClassName(priorityClassName)`](#fn-specproviderkubernetesenvoydeploymentpodwithpriorityclassname)
           * [`fn withTolerations(tolerations)`](#fn-specproviderkubernetesenvoydeploymentpodwithtolerations)
           * [`fn withTolerationsMixin(tolerations)`](#fn-specproviderkubernetesenvoydeploymentpodwithtolerationsmixin)
           * [`fn withTopologySpreadConstraints(topologySpreadConstraints)`](#fn-specproviderkubernetesenvoydeploymentpodwithtopologyspreadconstraints)
@@ -1432,6 +1472,15 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                       * [`fn withContainerName(containerName)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithcontainername)
                       * [`fn withDivisor(divisor)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithdivisor)
                       * [`fn withResource(resource)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcesdownwardapiitemsresourcefieldrefwithresource)
+                * [`obj spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate`](#obj-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificate)
+                  * [`fn withCertificateChainPath(certificateChainPath)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithcertificatechainpath)
+                  * [`fn withCredentialBundlePath(credentialBundlePath)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithcredentialbundlepath)
+                  * [`fn withKeyPath(keyPath)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithkeypath)
+                  * [`fn withKeyType(keyType)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithkeytype)
+                  * [`fn withMaxExpirationSeconds(maxExpirationSeconds)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithmaxexpirationseconds)
+                  * [`fn withSignerName(signerName)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithsignername)
+                  * [`fn withUserAnnotations(userAnnotations)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithuserannotations)
+                  * [`fn withUserAnnotationsMixin(userAnnotations)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcespodcertificatewithuserannotationsmixin)
                 * [`obj spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.secret`](#obj-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcessecret)
                   * [`fn withItems(items)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcessecretwithitems)
                   * [`fn withItemsMixin(items)`](#fn-specproviderkubernetesenvoydeploymentpodvolumesprojectedsourcessecretwithitemsmixin)
@@ -1507,12 +1556,14 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
         * [`fn withMetrics(metrics)`](#fn-specproviderkubernetesenvoyhpawithmetrics)
         * [`fn withMetricsMixin(metrics)`](#fn-specproviderkubernetesenvoyhpawithmetricsmixin)
         * [`fn withMinReplicas(minReplicas)`](#fn-specproviderkubernetesenvoyhpawithminreplicas)
+        * [`fn withName(name)`](#fn-specproviderkubernetesenvoyhpawithname)
         * [`obj spec.provider.kubernetes.envoyHpa.behavior`](#obj-specproviderkubernetesenvoyhpabehavior)
           * [`obj spec.provider.kubernetes.envoyHpa.behavior.scaleDown`](#obj-specproviderkubernetesenvoyhpabehaviorscaledown)
             * [`fn withPolicies(policies)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownwithpolicies)
             * [`fn withPoliciesMixin(policies)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownwithpoliciesmixin)
             * [`fn withSelectPolicy(selectPolicy)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownwithselectpolicy)
             * [`fn withStabilizationWindowSeconds(stabilizationWindowSeconds)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownwithstabilizationwindowseconds)
+            * [`fn withTolerance(tolerance)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownwithtolerance)
             * [`obj spec.provider.kubernetes.envoyHpa.behavior.scaleDown.policies`](#obj-specproviderkubernetesenvoyhpabehaviorscaledownpolicies)
               * [`fn withPeriodSeconds(periodSeconds)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownpolicieswithperiodseconds)
               * [`fn withType(type)`](#fn-specproviderkubernetesenvoyhpabehaviorscaledownpolicieswithtype)
@@ -1522,6 +1573,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`fn withPoliciesMixin(policies)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleupwithpoliciesmixin)
             * [`fn withSelectPolicy(selectPolicy)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleupwithselectpolicy)
             * [`fn withStabilizationWindowSeconds(stabilizationWindowSeconds)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleupwithstabilizationwindowseconds)
+            * [`fn withTolerance(tolerance)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleupwithtolerance)
             * [`obj spec.provider.kubernetes.envoyHpa.behavior.scaleUp.policies`](#obj-specproviderkubernetesenvoyhpabehaviorscaleuppolicies)
               * [`fn withPeriodSeconds(periodSeconds)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleuppolicieswithperiodseconds)
               * [`fn withType(type)`](#fn-specproviderkubernetesenvoyhpabehaviorscaleuppolicieswithtype)
@@ -1605,7 +1657,9 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withType(type)`](#fn-specproviderkubernetesenvoyhpapatchwithtype)
           * [`fn withValue(value)`](#fn-specproviderkubernetesenvoyhpapatchwithvalue)
       * [`obj spec.provider.kubernetes.envoyPDB`](#obj-specproviderkubernetesenvoypdb)
+        * [`fn withMaxUnavailable(maxUnavailable)`](#fn-specproviderkubernetesenvoypdbwithmaxunavailable)
         * [`fn withMinAvailable(minAvailable)`](#fn-specproviderkubernetesenvoypdbwithminavailable)
+        * [`fn withName(name)`](#fn-specproviderkubernetesenvoypdbwithname)
         * [`obj spec.provider.kubernetes.envoyPDB.patch`](#obj-specproviderkubernetesenvoypdbpatch)
           * [`fn withType(type)`](#fn-specproviderkubernetesenvoypdbpatchwithtype)
           * [`fn withValue(value)`](#fn-specproviderkubernetesenvoypdbpatchwithvalue)
@@ -1625,6 +1679,8 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
         * [`obj spec.provider.kubernetes.envoyService.patch`](#obj-specproviderkubernetesenvoyservicepatch)
           * [`fn withType(type)`](#fn-specproviderkubernetesenvoyservicepatchwithtype)
           * [`fn withValue(value)`](#fn-specproviderkubernetesenvoyservicepatchwithvalue)
+      * [`obj spec.provider.kubernetes.envoyServiceAccount`](#obj-specproviderkubernetesenvoyserviceaccount)
+        * [`fn withName(name)`](#fn-specproviderkubernetesenvoyserviceaccountwithname)
   * [`obj spec.shutdown`](#obj-specshutdown)
     * [`fn withDrainTimeout(drainTimeout)`](#fn-specshutdownwithdraintimeout)
     * [`fn withMinDrainDuration(minDrainDuration)`](#fn-specshutdownwithmindrainduration)
@@ -1664,6 +1720,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksalsbackendrefswithname)
               * [`fn withNamespace(namespace)`](#fn-spectelemetryaccesslogsettingssinksalsbackendrefswithnamespace)
               * [`fn withPort(port)`](#fn-spectelemetryaccesslogsettingssinksalsbackendrefswithport)
+              * [`fn withWeight(weight)`](#fn-spectelemetryaccesslogsettingssinksalsbackendrefswithweight)
             * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettings)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.circuitBreaker`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreaker)
                 * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerwithmaxconnections)
@@ -1671,15 +1728,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerwithmaxparallelretries)
                 * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerwithmaxpendingrequests)
                 * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+                * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.circuitBreaker.perEndpoint`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerperendpoint)
+                  * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingscircuitbreakerperendpointwithmaxconnections)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsconnection)
                 * [`fn withBufferLimit(bufferLimit)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsconnectionwithbufferlimit)
                 * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsconnectionwithsocketbufferlimit)
+                * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection.preconnect`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsconnectionpreconnect)
+                  * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsconnectionpreconnectwithperendpointpercent)
+                  * [`fn withPredictivePercent(predictivePercent)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsconnectionpreconnectwithpredictivepercent)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.dns`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsdns)
                 * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsdnswithdnsrefreshrate)
+                * [`fn withLookupFamily(lookupFamily)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsdnswithlookupfamily)
                 * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsdnswithrespectdnsttl)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheck)
+                * [`fn withPanicThreshold(panicThreshold)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckwithpanicthreshold)
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactive)
                   * [`fn withHealthyThreshold(healthyThreshold)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivewithhealthythreshold)
+                  * [`fn withInitialJitter(initialJitter)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivewithinitialjitter)
                   * [`fn withInterval(interval)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivewithinterval)
                   * [`fn withTimeout(timeout)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivewithtimeout)
                   * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivewithtype)
@@ -1689,6 +1754,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                   * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.http`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttp)
                     * [`fn withExpectedStatuses(expectedStatuses)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpwithexpectedstatuses)
                     * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+                    * [`fn withHostname(hostname)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpwithhostname)
                     * [`fn withMethod(method)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpwithmethod)
                     * [`fn withPath(path)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpwithpath)
                     * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.http.expectedResponse`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -1709,6 +1775,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                   * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
                   * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
                   * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+                  * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
                   * [`fn withInterval(interval)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithinterval)
                   * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithmaxejectionpercent)
                   * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -1720,6 +1787,10 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancer)
                 * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerwithtype)
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthash)
+                  * [`fn withHeaders(headers)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithheaders)
+                  * [`fn withHeadersMixin(headers)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+                  * [`fn withQueryParams(queryParams)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithqueryparams)
+                  * [`fn withQueryParamsMixin(queryParams)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
                   * [`fn withTableSize(tableSize)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithtablesize)
                   * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashwithtype)
                   * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.cookie`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashcookie)
@@ -1729,11 +1800,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                     * [`fn withTtl(ttl)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashcookiewithttl)
                   * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.header`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashheader)
                     * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashheaderwithname)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.headers`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashheaders)
+                    * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashheaderswithname)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashqueryparams)
+                    * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+                * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerendpointoverride)
+                  * [`fn withExtractFrom(extractFrom)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerendpointoverridewithextractfrom)
+                  * [`fn withExtractFromMixin(extractFrom)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerendpointoverrideextractfrom)
+                    * [`fn withHeader(header)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.slowStart`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerslowstart)
                   * [`fn withWindow(window)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerslowstartwithwindow)
+                * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneaware)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneawarepreferlocal)
+                    * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+                    * [`fn withPercentageEnabled(percentageEnabled)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+                    * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                      * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.proxyProtocol`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsproxyprotocol)
                 * [`fn withVersion(version)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsproxyprotocolwithversion)
               * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.retry`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsretry)
+                * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsretrywithnumattemptsperpriority)
                 * [`fn withNumRetries(numRetries)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsretrywithnumretries)
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.retry.perRetry`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingsretryperretry)
                   * [`fn withTimeout(timeout)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingsretryperretrywithtimeout)
@@ -1753,6 +1840,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.timeout.http`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouthttp)
                   * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouthttpwithconnectionidletimeout)
                   * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouthttpwithmaxconnectionduration)
+                  * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouthttpwithmaxstreamduration)
                   * [`fn withRequestTimeout(requestTimeout)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouthttpwithrequesttimeout)
                 * [`obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.timeout.tcp`](#obj-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouttcp)
                   * [`fn withConnectTimeout(connectTimeout)`](#fn-spectelemetryaccesslogsettingssinksalsbackendsettingstimeouttcpwithconnecttimeout)
@@ -1768,8 +1856,12 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry`](#obj-spectelemetryaccesslogsettingssinksopentelemetry)
             * [`fn withBackendRefs(backendRefs)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithbackendrefs)
             * [`fn withBackendRefsMixin(backendRefs)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithbackendrefsmixin)
+            * [`fn withHeaders(headers)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithheaders)
+            * [`fn withHeadersMixin(headers)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithheadersmixin)
             * [`fn withHost(host)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithhost)
             * [`fn withPort(port)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithport)
+            * [`fn withResourceAttributes(resourceAttributes)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithresourceattributes)
+            * [`fn withResourceAttributesMixin(resourceAttributes)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithresourceattributesmixin)
             * [`fn withResources(resources)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithresources)
             * [`fn withResourcesMixin(resources)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrywithresourcesmixin)
             * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendRef`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendref)
@@ -1785,6 +1877,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendrefswithname)
               * [`fn withNamespace(namespace)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendrefswithnamespace)
               * [`fn withPort(port)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendrefswithport)
+              * [`fn withWeight(weight)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendrefswithweight)
             * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettings)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.circuitBreaker`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreaker)
                 * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerwithmaxconnections)
@@ -1792,15 +1885,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerwithmaxparallelretries)
                 * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerwithmaxpendingrequests)
                 * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerwithmaxrequestsperconnection)
+                * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerperendpoint)
+                  * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingscircuitbreakerperendpointwithmaxconnections)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnection)
                 * [`fn withBufferLimit(bufferLimit)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnectionwithbufferlimit)
                 * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnectionwithsocketbufferlimit)
+                * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection.preconnect`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnectionpreconnect)
+                  * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnectionpreconnectwithperendpointpercent)
+                  * [`fn withPredictivePercent(predictivePercent)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsconnectionpreconnectwithpredictivepercent)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.dns`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsdns)
                 * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsdnswithdnsrefreshrate)
+                * [`fn withLookupFamily(lookupFamily)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsdnswithlookupfamily)
                 * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsdnswithrespectdnsttl)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheck)
+                * [`fn withPanicThreshold(panicThreshold)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckwithpanicthreshold)
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactive)
                   * [`fn withHealthyThreshold(healthyThreshold)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivewithhealthythreshold)
+                  * [`fn withInitialJitter(initialJitter)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivewithinitialjitter)
                   * [`fn withInterval(interval)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivewithinterval)
                   * [`fn withTimeout(timeout)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivewithtimeout)
                   * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivewithtype)
@@ -1810,6 +1911,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                   * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.http`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttp)
                     * [`fn withExpectedStatuses(expectedStatuses)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpwithexpectedstatuses)
                     * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+                    * [`fn withHostname(hostname)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpwithhostname)
                     * [`fn withMethod(method)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpwithmethod)
                     * [`fn withPath(path)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpwithpath)
                     * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.http.expectedResponse`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckactivehttpexpectedresponse)
@@ -1830,6 +1932,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                   * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutive5xxerrors)
                   * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
                   * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+                  * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithfailurepercentagethreshold)
                   * [`fn withInterval(interval)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithinterval)
                   * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithmaxejectionpercent)
                   * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -1841,6 +1944,10 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancer)
                 * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerwithtype)
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthash)
+                  * [`fn withHeaders(headers)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithheaders)
+                  * [`fn withHeadersMixin(headers)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithheadersmixin)
+                  * [`fn withQueryParams(queryParams)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithqueryparams)
+                  * [`fn withQueryParamsMixin(queryParams)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
                   * [`fn withTableSize(tableSize)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithtablesize)
                   * [`fn withType(type)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithtype)
                   * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.cookie`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashcookie)
@@ -1850,11 +1957,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                     * [`fn withTtl(ttl)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashcookiewithttl)
                   * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashheader)
                     * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaderwithname)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaders)
+                    * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaderswithname)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashqueryparams)
+                    * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerconsistenthashqueryparamswithname)
+                * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerendpointoverride)
+                  * [`fn withExtractFrom(extractFrom)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerendpointoverridewithextractfrom)
+                  * [`fn withExtractFromMixin(extractFrom)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerendpointoverrideextractfrom)
+                    * [`fn withHeader(header)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerendpointoverrideextractfromwithheader)
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.slowStart`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerslowstart)
                   * [`fn withWindow(window)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerslowstartwithwindow)
+                * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneaware)
+                  * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocal)
+                    * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+                    * [`fn withPercentageEnabled(percentageEnabled)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+                    * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalforce)
+                      * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.proxyProtocol`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsproxyprotocol)
                 * [`fn withVersion(version)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsproxyprotocolwithversion)
               * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.retry`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsretry)
+                * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsretrywithnumattemptsperpriority)
                 * [`fn withNumRetries(numRetries)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsretrywithnumretries)
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.retry.perRetry`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsretryperretry)
                   * [`fn withTimeout(timeout)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingsretryperretrywithtimeout)
@@ -1874,10 +1997,15 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.timeout.http`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouthttp)
                   * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouthttpwithconnectionidletimeout)
                   * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouthttpwithmaxconnectionduration)
+                  * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouthttpwithmaxstreamduration)
                   * [`fn withRequestTimeout(requestTimeout)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouthttpwithrequesttimeout)
                 * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.timeout.tcp`](#obj-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouttcp)
                   * [`fn withConnectTimeout(connectTimeout)`](#fn-spectelemetryaccesslogsettingssinksopentelemetrybackendsettingstimeouttcpwithconnecttimeout)
+            * [`obj spec.telemetry.accessLog.settings.sinks.openTelemetry.headers`](#obj-spectelemetryaccesslogsettingssinksopentelemetryheaders)
+              * [`fn withName(name)`](#fn-spectelemetryaccesslogsettingssinksopentelemetryheaderswithname)
+              * [`fn withValue(value)`](#fn-spectelemetryaccesslogsettingssinksopentelemetryheaderswithvalue)
     * [`obj spec.telemetry.metrics`](#obj-spectelemetrymetrics)
+      * [`fn withClusterStatName(clusterStatName)`](#fn-spectelemetrymetricswithclusterstatname)
       * [`fn withEnablePerEndpointStats(enablePerEndpointStats)`](#fn-spectelemetrymetricswithenableperendpointstats)
       * [`fn withEnableRequestResponseSizesStats(enableRequestResponseSizesStats)`](#fn-spectelemetrymetricswithenablerequestresponsesizesstats)
       * [`fn withEnableVirtualHostStats(enableVirtualHostStats)`](#fn-spectelemetrymetricswithenablevirtualhoststats)
@@ -1895,14 +2023,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withBrotliMixin(brotli)`](#fn-spectelemetrymetricsprometheuscompressionwithbrotlimixin)
           * [`fn withGzip(gzip)`](#fn-spectelemetrymetricsprometheuscompressionwithgzip)
           * [`fn withGzipMixin(gzip)`](#fn-spectelemetrymetricsprometheuscompressionwithgzipmixin)
+          * [`fn withMinContentLength(minContentLength)`](#fn-spectelemetrymetricsprometheuscompressionwithmincontentlength)
           * [`fn withType(type)`](#fn-spectelemetrymetricsprometheuscompressionwithtype)
+          * [`fn withZstd(zstd)`](#fn-spectelemetrymetricsprometheuscompressionwithzstd)
+          * [`fn withZstdMixin(zstd)`](#fn-spectelemetrymetricsprometheuscompressionwithzstdmixin)
       * [`obj spec.telemetry.metrics.sinks`](#obj-spectelemetrymetricssinks)
         * [`fn withType(type)`](#fn-spectelemetrymetricssinkswithtype)
         * [`obj spec.telemetry.metrics.sinks.openTelemetry`](#obj-spectelemetrymetricssinksopentelemetry)
           * [`fn withBackendRefs(backendRefs)`](#fn-spectelemetrymetricssinksopentelemetrywithbackendrefs)
           * [`fn withBackendRefsMixin(backendRefs)`](#fn-spectelemetrymetricssinksopentelemetrywithbackendrefsmixin)
+          * [`fn withHeaders(headers)`](#fn-spectelemetrymetricssinksopentelemetrywithheaders)
+          * [`fn withHeadersMixin(headers)`](#fn-spectelemetrymetricssinksopentelemetrywithheadersmixin)
           * [`fn withHost(host)`](#fn-spectelemetrymetricssinksopentelemetrywithhost)
           * [`fn withPort(port)`](#fn-spectelemetrymetricssinksopentelemetrywithport)
+          * [`fn withReportCountersAsDeltas(reportCountersAsDeltas)`](#fn-spectelemetrymetricssinksopentelemetrywithreportcountersasdeltas)
+          * [`fn withReportHistogramsAsDeltas(reportHistogramsAsDeltas)`](#fn-spectelemetrymetricssinksopentelemetrywithreporthistogramsasdeltas)
+          * [`fn withResourceAttributes(resourceAttributes)`](#fn-spectelemetrymetricssinksopentelemetrywithresourceattributes)
+          * [`fn withResourceAttributesMixin(resourceAttributes)`](#fn-spectelemetrymetricssinksopentelemetrywithresourceattributesmixin)
           * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendRef`](#obj-spectelemetrymetricssinksopentelemetrybackendref)
             * [`fn withGroup(group)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefwithgroup)
             * [`fn withKind(kind)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefwithkind)
@@ -1916,6 +2053,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`fn withName(name)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefswithname)
             * [`fn withNamespace(namespace)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefswithnamespace)
             * [`fn withPort(port)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefswithport)
+            * [`fn withWeight(weight)`](#fn-spectelemetrymetricssinksopentelemetrybackendrefswithweight)
           * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings`](#obj-spectelemetrymetricssinksopentelemetrybackendsettings)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.circuitBreaker`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreaker)
               * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerwithmaxconnections)
@@ -1923,15 +2061,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerwithmaxparallelretries)
               * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerwithmaxpendingrequests)
               * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerwithmaxrequestsperconnection)
+              * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerperendpoint)
+                * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingscircuitbreakerperendpointwithmaxconnections)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsconnection)
               * [`fn withBufferLimit(bufferLimit)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsconnectionwithbufferlimit)
               * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsconnectionwithsocketbufferlimit)
+              * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection.preconnect`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsconnectionpreconnect)
+                * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsconnectionpreconnectwithperendpointpercent)
+                * [`fn withPredictivePercent(predictivePercent)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsconnectionpreconnectwithpredictivepercent)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.dns`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsdns)
               * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsdnswithdnsrefreshrate)
+              * [`fn withLookupFamily(lookupFamily)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsdnswithlookupfamily)
               * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsdnswithrespectdnsttl)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheck)
+              * [`fn withPanicThreshold(panicThreshold)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckwithpanicthreshold)
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactive)
                 * [`fn withHealthyThreshold(healthyThreshold)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivewithhealthythreshold)
+                * [`fn withInitialJitter(initialJitter)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivewithinitialjitter)
                 * [`fn withInterval(interval)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivewithinterval)
                 * [`fn withTimeout(timeout)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivewithtimeout)
                 * [`fn withType(type)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivewithtype)
@@ -1941,6 +2087,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.http`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttp)
                   * [`fn withExpectedStatuses(expectedStatuses)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpwithexpectedstatuses)
                   * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+                  * [`fn withHostname(hostname)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpwithhostname)
                   * [`fn withMethod(method)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpwithmethod)
                   * [`fn withPath(path)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpwithpath)
                   * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.http.expectedResponse`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckactivehttpexpectedresponse)
@@ -1961,6 +2108,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutive5xxerrors)
                 * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
                 * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+                * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithfailurepercentagethreshold)
                 * [`fn withInterval(interval)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithinterval)
                 * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithmaxejectionpercent)
                 * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -1972,6 +2120,10 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancer)
               * [`fn withType(type)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerwithtype)
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthash)
+                * [`fn withHeaders(headers)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithheaders)
+                * [`fn withHeadersMixin(headers)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithheadersmixin)
+                * [`fn withQueryParams(queryParams)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithqueryparams)
+                * [`fn withQueryParamsMixin(queryParams)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
                 * [`fn withTableSize(tableSize)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithtablesize)
                 * [`fn withType(type)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashwithtype)
                 * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.cookie`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashcookie)
@@ -1981,11 +2133,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                   * [`fn withTtl(ttl)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashcookiewithttl)
                 * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashheader)
                   * [`fn withName(name)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaderwithname)
+                * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaders)
+                  * [`fn withName(name)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashheaderswithname)
+                * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashqueryparams)
+                  * [`fn withName(name)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerconsistenthashqueryparamswithname)
+              * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerendpointoverride)
+                * [`fn withExtractFrom(extractFrom)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerendpointoverridewithextractfrom)
+                * [`fn withExtractFromMixin(extractFrom)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+                * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerendpointoverrideextractfrom)
+                  * [`fn withHeader(header)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerendpointoverrideextractfromwithheader)
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.slowStart`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerslowstart)
                 * [`fn withWindow(window)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerslowstartwithwindow)
+              * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneaware)
+                * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocal)
+                  * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+                  * [`fn withPercentageEnabled(percentageEnabled)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+                  * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalforce)
+                    * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.proxyProtocol`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsproxyprotocol)
               * [`fn withVersion(version)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsproxyprotocolwithversion)
             * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.retry`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsretry)
+              * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsretrywithnumattemptsperpriority)
               * [`fn withNumRetries(numRetries)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsretrywithnumretries)
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.retry.perRetry`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingsretryperretry)
                 * [`fn withTimeout(timeout)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingsretryperretrywithtimeout)
@@ -2005,18 +2173,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.timeout.http`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingstimeouthttp)
                 * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingstimeouthttpwithconnectionidletimeout)
                 * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingstimeouthttpwithmaxconnectionduration)
+                * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingstimeouthttpwithmaxstreamduration)
                 * [`fn withRequestTimeout(requestTimeout)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingstimeouthttpwithrequesttimeout)
               * [`obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.timeout.tcp`](#obj-spectelemetrymetricssinksopentelemetrybackendsettingstimeouttcp)
                 * [`fn withConnectTimeout(connectTimeout)`](#fn-spectelemetrymetricssinksopentelemetrybackendsettingstimeouttcpwithconnecttimeout)
+          * [`obj spec.telemetry.metrics.sinks.openTelemetry.headers`](#obj-spectelemetrymetricssinksopentelemetryheaders)
+            * [`fn withName(name)`](#fn-spectelemetrymetricssinksopentelemetryheaderswithname)
+            * [`fn withValue(value)`](#fn-spectelemetrymetricssinksopentelemetryheaderswithvalue)
+    * [`obj spec.telemetry.requestID`](#obj-spectelemetryrequestid)
+      * [`fn withTracing(tracing)`](#fn-spectelemetryrequestidwithtracing)
     * [`obj spec.telemetry.tracing`](#obj-spectelemetrytracing)
       * [`fn withCustomTags(customTags)`](#fn-spectelemetrytracingwithcustomtags)
       * [`fn withCustomTagsMixin(customTags)`](#fn-spectelemetrytracingwithcustomtagsmixin)
       * [`fn withSamplingRate(samplingRate)`](#fn-spectelemetrytracingwithsamplingrate)
+      * [`fn withTags(tags)`](#fn-spectelemetrytracingwithtags)
+      * [`fn withTagsMixin(tags)`](#fn-spectelemetrytracingwithtagsmixin)
       * [`obj spec.telemetry.tracing.provider`](#obj-spectelemetrytracingprovider)
         * [`fn withBackendRefs(backendRefs)`](#fn-spectelemetrytracingproviderwithbackendrefs)
         * [`fn withBackendRefsMixin(backendRefs)`](#fn-spectelemetrytracingproviderwithbackendrefsmixin)
         * [`fn withHost(host)`](#fn-spectelemetrytracingproviderwithhost)
         * [`fn withPort(port)`](#fn-spectelemetrytracingproviderwithport)
+        * [`fn withServiceName(serviceName)`](#fn-spectelemetrytracingproviderwithservicename)
         * [`fn withType(type)`](#fn-spectelemetrytracingproviderwithtype)
         * [`obj spec.telemetry.tracing.provider.backendRef`](#obj-spectelemetrytracingproviderbackendref)
           * [`fn withGroup(group)`](#fn-spectelemetrytracingproviderbackendrefwithgroup)
@@ -2031,6 +2208,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`fn withName(name)`](#fn-spectelemetrytracingproviderbackendrefswithname)
           * [`fn withNamespace(namespace)`](#fn-spectelemetrytracingproviderbackendrefswithnamespace)
           * [`fn withPort(port)`](#fn-spectelemetrytracingproviderbackendrefswithport)
+          * [`fn withWeight(weight)`](#fn-spectelemetrytracingproviderbackendrefswithweight)
         * [`obj spec.telemetry.tracing.provider.backendSettings`](#obj-spectelemetrytracingproviderbackendsettings)
           * [`obj spec.telemetry.tracing.provider.backendSettings.circuitBreaker`](#obj-spectelemetrytracingproviderbackendsettingscircuitbreaker)
             * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetrytracingproviderbackendsettingscircuitbreakerwithmaxconnections)
@@ -2038,15 +2216,23 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-spectelemetrytracingproviderbackendsettingscircuitbreakerwithmaxparallelretries)
             * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-spectelemetrytracingproviderbackendsettingscircuitbreakerwithmaxpendingrequests)
             * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-spectelemetrytracingproviderbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+            * [`obj spec.telemetry.tracing.provider.backendSettings.circuitBreaker.perEndpoint`](#obj-spectelemetrytracingproviderbackendsettingscircuitbreakerperendpoint)
+              * [`fn withMaxConnections(maxConnections)`](#fn-spectelemetrytracingproviderbackendsettingscircuitbreakerperendpointwithmaxconnections)
           * [`obj spec.telemetry.tracing.provider.backendSettings.connection`](#obj-spectelemetrytracingproviderbackendsettingsconnection)
             * [`fn withBufferLimit(bufferLimit)`](#fn-spectelemetrytracingproviderbackendsettingsconnectionwithbufferlimit)
             * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-spectelemetrytracingproviderbackendsettingsconnectionwithsocketbufferlimit)
+            * [`obj spec.telemetry.tracing.provider.backendSettings.connection.preconnect`](#obj-spectelemetrytracingproviderbackendsettingsconnectionpreconnect)
+              * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-spectelemetrytracingproviderbackendsettingsconnectionpreconnectwithperendpointpercent)
+              * [`fn withPredictivePercent(predictivePercent)`](#fn-spectelemetrytracingproviderbackendsettingsconnectionpreconnectwithpredictivepercent)
           * [`obj spec.telemetry.tracing.provider.backendSettings.dns`](#obj-spectelemetrytracingproviderbackendsettingsdns)
             * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-spectelemetrytracingproviderbackendsettingsdnswithdnsrefreshrate)
+            * [`fn withLookupFamily(lookupFamily)`](#fn-spectelemetrytracingproviderbackendsettingsdnswithlookupfamily)
             * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-spectelemetrytracingproviderbackendsettingsdnswithrespectdnsttl)
           * [`obj spec.telemetry.tracing.provider.backendSettings.healthCheck`](#obj-spectelemetrytracingproviderbackendsettingshealthcheck)
+            * [`fn withPanicThreshold(panicThreshold)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckwithpanicthreshold)
             * [`obj spec.telemetry.tracing.provider.backendSettings.healthCheck.active`](#obj-spectelemetrytracingproviderbackendsettingshealthcheckactive)
               * [`fn withHealthyThreshold(healthyThreshold)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivewithhealthythreshold)
+              * [`fn withInitialJitter(initialJitter)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivewithinitialjitter)
               * [`fn withInterval(interval)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivewithinterval)
               * [`fn withTimeout(timeout)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivewithtimeout)
               * [`fn withType(type)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivewithtype)
@@ -2056,6 +2242,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`obj spec.telemetry.tracing.provider.backendSettings.healthCheck.active.http`](#obj-spectelemetrytracingproviderbackendsettingshealthcheckactivehttp)
                 * [`fn withExpectedStatuses(expectedStatuses)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpwithexpectedstatuses)
                 * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+                * [`fn withHostname(hostname)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpwithhostname)
                 * [`fn withMethod(method)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpwithmethod)
                 * [`fn withPath(path)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpwithpath)
                 * [`obj spec.telemetry.tracing.provider.backendSettings.healthCheck.active.http.expectedResponse`](#obj-spectelemetrytracingproviderbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -2076,6 +2263,7 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
               * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
               * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
               * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+              * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
               * [`fn withInterval(interval)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithinterval)
               * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithmaxejectionpercent)
               * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-spectelemetrytracingproviderbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -2087,6 +2275,10 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
           * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancer)
             * [`fn withType(type)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerwithtype)
             * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthash)
+              * [`fn withHeaders(headers)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithheaders)
+              * [`fn withHeadersMixin(headers)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+              * [`fn withQueryParams(queryParams)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithqueryparams)
+              * [`fn withQueryParamsMixin(queryParams)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
               * [`fn withTableSize(tableSize)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithtablesize)
               * [`fn withType(type)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashwithtype)
               * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.cookie`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashcookie)
@@ -2096,11 +2288,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
                 * [`fn withTtl(ttl)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashcookiewithttl)
               * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.header`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashheader)
                 * [`fn withName(name)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashheaderwithname)
+              * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.headers`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashheaders)
+                * [`fn withName(name)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashheaderswithname)
+              * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashqueryparams)
+                * [`fn withName(name)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+            * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerendpointoverride)
+              * [`fn withExtractFrom(extractFrom)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerendpointoverridewithextractfrom)
+              * [`fn withExtractFromMixin(extractFrom)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+              * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerendpointoverrideextractfrom)
+                * [`fn withHeader(header)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
             * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.slowStart`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerslowstart)
               * [`fn withWindow(window)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerslowstartwithwindow)
+            * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerzoneaware)
+              * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerzoneawarepreferlocal)
+                * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+                * [`fn withPercentageEnabled(percentageEnabled)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+                * [`obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-spectelemetrytracingproviderbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                  * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-spectelemetrytracingproviderbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
           * [`obj spec.telemetry.tracing.provider.backendSettings.proxyProtocol`](#obj-spectelemetrytracingproviderbackendsettingsproxyprotocol)
             * [`fn withVersion(version)`](#fn-spectelemetrytracingproviderbackendsettingsproxyprotocolwithversion)
           * [`obj spec.telemetry.tracing.provider.backendSettings.retry`](#obj-spectelemetrytracingproviderbackendsettingsretry)
+            * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-spectelemetrytracingproviderbackendsettingsretrywithnumattemptsperpriority)
             * [`fn withNumRetries(numRetries)`](#fn-spectelemetrytracingproviderbackendsettingsretrywithnumretries)
             * [`obj spec.telemetry.tracing.provider.backendSettings.retry.perRetry`](#obj-spectelemetrytracingproviderbackendsettingsretryperretry)
               * [`fn withTimeout(timeout)`](#fn-spectelemetrytracingproviderbackendsettingsretryperretrywithtimeout)
@@ -2120,15 +2328,27 @@ permalink: /v1.3.0/gateway/v1alpha1/envoyProxy/
             * [`obj spec.telemetry.tracing.provider.backendSettings.timeout.http`](#obj-spectelemetrytracingproviderbackendsettingstimeouthttp)
               * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-spectelemetrytracingproviderbackendsettingstimeouthttpwithconnectionidletimeout)
               * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-spectelemetrytracingproviderbackendsettingstimeouthttpwithmaxconnectionduration)
+              * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-spectelemetrytracingproviderbackendsettingstimeouthttpwithmaxstreamduration)
               * [`fn withRequestTimeout(requestTimeout)`](#fn-spectelemetrytracingproviderbackendsettingstimeouthttpwithrequesttimeout)
             * [`obj spec.telemetry.tracing.provider.backendSettings.timeout.tcp`](#obj-spectelemetrytracingproviderbackendsettingstimeouttcp)
               * [`fn withConnectTimeout(connectTimeout)`](#fn-spectelemetrytracingproviderbackendsettingstimeouttcpwithconnecttimeout)
+        * [`obj spec.telemetry.tracing.provider.openTelemetry`](#obj-spectelemetrytracingprovideropentelemetry)
+          * [`fn withHeaders(headers)`](#fn-spectelemetrytracingprovideropentelemetrywithheaders)
+          * [`fn withHeadersMixin(headers)`](#fn-spectelemetrytracingprovideropentelemetrywithheadersmixin)
+          * [`fn withResourceAttributes(resourceAttributes)`](#fn-spectelemetrytracingprovideropentelemetrywithresourceattributes)
+          * [`fn withResourceAttributesMixin(resourceAttributes)`](#fn-spectelemetrytracingprovideropentelemetrywithresourceattributesmixin)
+          * [`obj spec.telemetry.tracing.provider.openTelemetry.headers`](#obj-spectelemetrytracingprovideropentelemetryheaders)
+            * [`fn withName(name)`](#fn-spectelemetrytracingprovideropentelemetryheaderswithname)
+            * [`fn withValue(value)`](#fn-spectelemetrytracingprovideropentelemetryheaderswithvalue)
         * [`obj spec.telemetry.tracing.provider.zipkin`](#obj-spectelemetrytracingproviderzipkin)
           * [`fn withDisableSharedSpanContext(disableSharedSpanContext)`](#fn-spectelemetrytracingproviderzipkinwithdisablesharedspancontext)
           * [`fn withEnable128BitTraceId(enable128BitTraceId)`](#fn-spectelemetrytracingproviderzipkinwithenable128bittraceid)
       * [`obj spec.telemetry.tracing.samplingFraction`](#obj-spectelemetrytracingsamplingfraction)
         * [`fn withDenominator(denominator)`](#fn-spectelemetrytracingsamplingfractionwithdenominator)
         * [`fn withNumerator(numerator)`](#fn-spectelemetrytracingsamplingfractionwithnumerator)
+      * [`obj spec.telemetry.tracing.spanName`](#obj-spectelemetrytracingspanname)
+        * [`fn withClient(client)`](#fn-spectelemetrytracingspannamewithclient)
+        * [`fn withServer(server)`](#fn-spectelemetrytracingspannamewithserver)
 
 ## Fields
 
@@ -2340,7 +2560,7 @@ withExtraArgsMixin(extraArgs)
 withFilterOrder(filterOrder)
 ```
 
-"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
+"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.header_mutation\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.api_key_auth\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.buffer\n\n- envoy.filters.http.lua\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.grpc_web\n\n- envoy.filters.http.grpc_stats\n\n- envoy.filters.http.credential_injector\n\n- envoy.filters.http.compressor\n\n- envoy.filters.http.dynamic_forward_proxy\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
 
 ### fn spec.withFilterOrderMixin
 
@@ -2348,7 +2568,7 @@ withFilterOrder(filterOrder)
 withFilterOrderMixin(filterOrder)
 ```
 
-"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
+"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.header_mutation\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.api_key_auth\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.buffer\n\n- envoy.filters.http.lua\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.grpc_web\n\n- envoy.filters.http.grpc_stats\n\n- envoy.filters.http.credential_injector\n\n- envoy.filters.http.compressor\n\n- envoy.filters.http.dynamic_forward_proxy\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
 
 **Note:** This function appends passed data to existing values
 
@@ -2359,6 +2579,14 @@ withIpFamily(ipFamily)
 ```
 
 "IPFamily specifies the IP family for the EnvoyProxy fleet.\nThis setting only affects the Gateway listener port and does not impact\nother aspects of the Envoy proxy configuration.\nIf not specified, the system will operate as follows:\n- It defaults to IPv4 only.\n- IPv6 and dual-stack environments are not supported in this default configuration.\nNote: To enable IPv6 or dual-stack functionality, explicit configuration is required."
+
+### fn spec.withLuaValidation
+
+```ts
+withLuaValidation(luaValidation)
+```
+
+"LuaValidation determines strictness of the Lua script validation for Lua EnvoyExtensionPolicies\nDefault: Strict"
 
 ### fn spec.withMergeGateways
 
@@ -2374,7 +2602,7 @@ withMergeGateways(mergeGateways)
 withPreserveRouteOrder(preserveRouteOrder)
 ```
 
-"PreserveRouteOrder determines if the order of matching for HTTPRoutes is determined by Gateway-API\nspecification (https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRouteRule)\nor preserves the order defined by users in the HTTPRoute's HTTPRouteRule list.\nDefault: False"
+"PreserveRouteOrder determines if the order of matching for HTTPRoutes is determined by Gateway-API\nspecification (https://gateway-api.sigs.k8s.io/reference/1.4/spec/#httprouterule)\nor preserves the order defined by users in the HTTPRoute's HTTPRouteRule list.\nDefault: False"
 
 ### fn spec.withRoutingType
 
@@ -2394,7 +2622,7 @@ withRoutingType(routingType)
 withAlpnProtocols(alpnProtocols)
 ```
 
-"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2"
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
 
 ### fn spec.backendTLS.withAlpnProtocolsMixin
 
@@ -2402,7 +2630,7 @@ withAlpnProtocols(alpnProtocols)
 withAlpnProtocolsMixin(alpnProtocols)
 ```
 
-"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2"
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
 
 **Note:** This function appends passed data to existing values
 
@@ -2540,7 +2768,7 @@ withJsonPatchesMixin(jsonPatches)
 withType(type)
 ```
 
-"Type is the type of the bootstrap configuration, it should be either Replace,  Merge, or JSONPatch.\nIf unspecified, it defaults to Replace."
+"Type is the type of the bootstrap configuration, it should be either **Replace**,  **Merge**, or **JSONPatch**.\nIf unspecified, it defaults to Replace."
 
 ### fn spec.bootstrap.withValue
 
@@ -2596,7 +2824,7 @@ withValue(value)
 
 ## obj spec.filterOrder
 
-"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
+"FilterOrder defines the order of filters in the Envoy proxy's HTTP filter chain.\nThe FilterPosition in the list will be applied in the order they are defined.\nIf unspecified, the default filter order is applied.\nDefault filter order is:\n\n- envoy.filters.http.custom_response\n\n- envoy.filters.http.health_check\n\n- envoy.filters.http.fault\n\n- envoy.filters.http.cors\n\n- envoy.filters.http.header_mutation\n\n- envoy.filters.http.ext_authz\n\n- envoy.filters.http.api_key_auth\n\n- envoy.filters.http.basic_auth\n\n- envoy.filters.http.oauth2\n\n- envoy.filters.http.jwt_authn\n\n- envoy.filters.http.stateful_session\n\n- envoy.filters.http.buffer\n\n- envoy.filters.http.lua\n\n- envoy.filters.http.ext_proc\n\n- envoy.filters.http.wasm\n\n- envoy.filters.http.rbac\n\n- envoy.filters.http.local_ratelimit\n\n- envoy.filters.http.ratelimit\n\n- envoy.filters.http.grpc_web\n\n- envoy.filters.http.grpc_stats\n\n- envoy.filters.http.credential_injector\n\n- envoy.filters.http.compressor\n\n- envoy.filters.http.dynamic_forward_proxy\n\n- envoy.filters.http.router\n\nNote: \"envoy.filters.http.router\" cannot be reordered, it's always the last filter in the chain."
 
 ### fn spec.filterOrder.withAfter
 
@@ -2654,7 +2882,19 @@ withLevelMixin(level)
 withType(type)
 ```
 
-"Type is the type of resource provider to use. A resource provider provides\ninfrastructure resources for running the data plane, e.g. Envoy proxy, and\noptional auxiliary control planes. Supported types are \"Kubernetes\"."
+"Type is the type of resource provider to use. A resource provider provides\ninfrastructure resources for running the data plane, e.g. Envoy proxy, and\noptional auxiliary control planes. Supported types are \"Kubernetes\"and \"Host\"."
+
+## obj spec.provider.host
+
+"Host provides runtime deployment of the data plane as a child process on the\nhost environment.\nIf unspecified and type is \"Host\", default settings for the custom provider\nare applied."
+
+### fn spec.provider.host.withEnvoyVersion
+
+```ts
+withEnvoyVersion(envoyVersion)
+```
+
+"EnvoyVersion is the version of Envoy to use. If unspecified, the version\nagainst which Envoy Gateway is built will be used."
 
 ## obj spec.provider.kubernetes
 
@@ -2708,7 +2948,15 @@ withEnvMixin(env)
 withImage(image)
 ```
 
-"Image specifies the EnvoyProxy container image to be used, instead of the default image."
+"Image specifies the EnvoyProxy container image to be used including a tag, instead of the default image.\nThis field is mutually exclusive with ImageRepository."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.container.withImageRepository
+
+```ts
+withImageRepository(imageRepository)
+```
+
+"ImageRepository specifies the container image repository to be used without specifying a tag.\nThe default tag will be used.\nThis field is mutually exclusive with Image."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.container.withVolumeMounts
 
@@ -2738,7 +2986,7 @@ withVolumeMountsMixin(volumeMounts)
 withName(name)
 ```
 
-"Name of the environment variable. Must be a C_IDENTIFIER."
+"Name of the environment variable.\nMay consist of any printable ASCII characters except '='."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.container.env.withValue
 
@@ -2799,6 +3047,42 @@ withFieldPath(fieldPath)
 ```
 
 "Path of the field to select in the specified API version."
+
+## obj spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef
+
+"FileKeyRef selects a key of the env file.\nRequires the EnvFiles feature gate to be enabled."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef.withKey
+
+```ts
+withKey(key)
+```
+
+"The key within the env file. An invalid key will prevent the pod from starting.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nDuring Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef.withOptional
+
+```ts
+withOptional(optional)
+```
+
+"Specify whether the file or its key must be defined. If the file or key\ndoes not exist, then the env var is not published.\nIf optional is set to true and the specified key does not exist,\nthe environment variable will not be set in the Pod's containers.\n\nIf optional is set to false and the specified key does not exist,\nan error will be returned during Pod creation."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef.withPath
+
+```ts
+withPath(path)
+```
+
+"The path within the volume from which to select the file.\nMust be relative and may not contain the '..' path or start with '..'."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.fileKeyRef.withVolumeName
+
+```ts
+withVolumeName(volumeName)
+```
+
+"The name of the volume mount containing the env file."
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.container.env.valueFrom.resourceFieldRef
 
@@ -2866,7 +3150,7 @@ withOptional(optional)
 withClaims(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.container.resources.withClaimsMixin
 
@@ -2874,7 +3158,7 @@ withClaims(claims)
 withClaimsMixin(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 **Note:** This function appends passed data to existing values
 
@@ -2916,7 +3200,7 @@ withRequestsMixin(requests)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.container.resources.claims
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.container.resources.claims.withName
 
@@ -3301,6 +3585,14 @@ withNodeSelectorMixin(nodeSelector)
 "NodeSelector is a selector which must be true for the pod to fit on a node.\nSelector which must match a node's labels for the pod to be scheduled on that node.\nMore info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.withPriorityClassName
+
+```ts
+withPriorityClassName(priorityClassName)
+```
+
+"PriorityClassName indicates the importance of a Pod relative to other Pods.\nIf a PriorityClassName is not specified, the pod priority will be default or zero if there is no default.\nMore info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.withTolerations
 
@@ -3710,7 +4002,7 @@ withWeight(weight)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMatchLabelKeysMixin
 
@@ -3718,7 +4010,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -3728,7 +4020,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMismatchLabelKeysMixin
 
@@ -3736,7 +4028,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -3932,7 +4224,7 @@ withValuesMixin(values)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMatchLabelKeysMixin
 
@@ -3940,7 +4232,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -3950,7 +4242,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMismatchLabelKeysMixin
 
@@ -3958,7 +4250,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -4154,7 +4446,7 @@ withValuesMixin(values)
 withPreferredDuringSchedulingIgnoredDuringExecution(preferredDuringSchedulingIgnoredDuringExecution)
 ```
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.withPreferredDuringSchedulingIgnoredDuringExecutionMixin
 
@@ -4162,7 +4454,7 @@ withPreferredDuringSchedulingIgnoredDuringExecution(preferredDuringSchedulingIgn
 withPreferredDuringSchedulingIgnoredDuringExecutionMixin(preferredDuringSchedulingIgnoredDuringExecution)
 ```
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 **Note:** This function appends passed data to existing values
 
@@ -4186,7 +4478,7 @@ withRequiredDuringSchedulingIgnoredDuringExecutionMixin(requiredDuringScheduling
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.withWeight
 
@@ -4206,7 +4498,7 @@ withWeight(weight)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMatchLabelKeysMixin
 
@@ -4214,7 +4506,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -4224,7 +4516,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMismatchLabelKeysMixin
 
@@ -4232,7 +4524,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -4428,7 +4720,7 @@ withValuesMixin(values)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMatchLabelKeysMixin
 
@@ -4436,7 +4728,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -4446,7 +4738,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMismatchLabelKeysMixin
 
@@ -4454,7 +4746,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -4906,7 +5198,7 @@ withKey(key)
 withOperator(operator)
 ```
 
-"Operator represents a key's relationship to the value.\nValid operators are Exists and Equal. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category."
+"Operator represents a key's relationship to the value.\nValid operators are Exists, Equal, Lt, and Gt. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category.\nLt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators)."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.tolerations.withTolerationSeconds
 
@@ -4968,7 +5260,7 @@ withMinDomains(minDomains)
 withNodeAffinityPolicy(nodeAffinityPolicy)
 ```
 
-"NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector\nwhen calculating pod topology spread skew. Options are:\n- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.\n- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.\n\nIf this value is nil, the behavior is equivalent to the Honor policy.\nThis is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag."
+"NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector\nwhen calculating pod topology spread skew. Options are:\n- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.\n- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.\n\nIf this value is nil, the behavior is equivalent to the Honor policy."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.topologySpreadConstraints.withNodeTaintsPolicy
 
@@ -4976,7 +5268,7 @@ withNodeAffinityPolicy(nodeAffinityPolicy)
 withNodeTaintsPolicy(nodeTaintsPolicy)
 ```
 
-"NodeTaintsPolicy indicates how we will treat node taints when calculating\npod topology spread skew. Options are:\n- Honor: nodes without taints, along with tainted nodes for which the incoming pod\nhas a toleration, are included.\n- Ignore: node taints are ignored. All nodes are included.\n\nIf this value is nil, the behavior is equivalent to the Ignore policy.\nThis is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag."
+"NodeTaintsPolicy indicates how we will treat node taints when calculating\npod topology spread skew. Options are:\n- Honor: nodes without taints, along with tainted nodes for which the incoming pod\nhas a toleration, are included.\n- Ignore: node taints are ignored. All nodes are included.\n\nIf this value is nil, the behavior is equivalent to the Ignore policy."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.topologySpreadConstraints.withTopologyKey
 
@@ -5618,7 +5910,7 @@ withStorageClassName(storageClassName)
 withVolumeAttributesClassName(volumeAttributesClassName)
 ```
 
-"volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.\nIf specified, the CSI driver will create or update the volume with the attributes defined\nin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,\nit can be changed after the claim is created. An empty string value means that no VolumeAttributesClass\nwill be applied to the claim but it's not allowed to reset this field to empty string once it is set.\nIf unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass\nwill be set by the persistentvolume controller if it exists.\nIf the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be\nset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource\nexists.\nMore info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/\n(Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default)."
+"volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.\nIf specified, the CSI driver will create or update the volume with the attributes defined\nin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,\nit can be changed after the claim is created. An empty string or nil value indicates that no\nVolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state,\nthis field can be reset to its previous value (including nil) to cancel the modification.\nIf the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be\nset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource\nexists.\nMore info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/"
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.ephemeral.volumeClaimTemplate.spec.withVolumeMode
 
@@ -5702,7 +5994,7 @@ withNamespace(namespace)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.ephemeral.volumeClaimTemplate.spec.resources
 
-"resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
+"resources represents the minimum resources the volume should have.\nUsers are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.ephemeral.volumeClaimTemplate.spec.resources.withLimits
 
@@ -6026,7 +6318,7 @@ withRevision(revision)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.glusterfs
 
-"glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.\nDeprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported.\nMore info: https://examples.k8s.io/volumes/glusterfs/README.md"
+"glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.\nDeprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.glusterfs.withEndpoints
 
@@ -6034,7 +6326,7 @@ withRevision(revision)
 withEndpoints(endpoints)
 ```
 
-"endpoints is the endpoint name that details Glusterfs topology.\nMore info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod"
+"endpoints is the endpoint name that details Glusterfs topology."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.glusterfs.withPath
 
@@ -6074,7 +6366,7 @@ withType(type)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.image
 
-"image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath).\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type."
+"image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33.\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.image.withPullPolicy
 
@@ -6094,7 +6386,7 @@ withReference(reference)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.iscsi
 
-"iscsi represents an ISCSI Disk resource that is attached to a\nkubelet's host machine and then exposed to the pod.\nMore info: https://examples.k8s.io/volumes/iscsi/README.md"
+"iscsi represents an ISCSI Disk resource that is attached to a\nkubelet's host machine and then exposed to the pod.\nMore info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi"
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.iscsi.withChapAuthDiscovery
 
@@ -6598,6 +6890,76 @@ withResource(resource)
 
 "Required: resource to select"
 
+## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate
+
+"Projects an auto-rotating credential bundle (private key and certificate\nchain) that the pod can use either as a TLS client or server.\n\nKubelet generates a private key and uses it to send a\nPodCertificateRequest to the named signer.  Once the signer approves the\nrequest and issues a certificate chain, Kubelet writes the key and\ncertificate chain to the pod filesystem.  The pod does not start until\ncertificates have been issued for each podCertificate projected volume\nsource in its spec.\n\nKubelet will begin trying to rotate the certificate at the time indicated\nby the signer using the PodCertificateRequest.Status.BeginRefreshAt\ntimestamp.\n\nKubelet can write a single file, indicated by the credentialBundlePath\nfield, or separate files, indicated by the keyPath and\ncertificateChainPath fields.\n\nThe credential bundle is a single file in PEM format.  The first PEM\nentry is the private key (in PKCS#8 format), and the remaining PEM\nentries are the certificate chain issued by the signer (typically,\nsigners will return their certificate chain in leaf-to-root order).\n\nPrefer using the credential bundle format, since your application code\ncan read it atomically.  If you use keyPath and certificateChainPath,\nyour application must make two separate file reads. If these coincide\nwith a certificate rotation, it is possible that the private key and leaf\ncertificate you read may not correspond to each other.  Your application\nwill need to check for this condition, and re-read until they are\nconsistent.\n\nThe named signer controls chooses the format of the certificate it\nissues; consult the signer implementation's documentation to learn how to\nuse the certificates it issues."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withCertificateChainPath
+
+```ts
+withCertificateChainPath(certificateChainPath)
+```
+
+"Write the certificate chain at this path in the projected volume.\n\nMost applications should use credentialBundlePath.  When using keyPath\nand certificateChainPath, your application needs to check that the key\nand leaf certificate are consistent, because it is possible to read the\nfiles mid-rotation."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withCredentialBundlePath
+
+```ts
+withCredentialBundlePath(credentialBundlePath)
+```
+
+"Write the credential bundle at this path in the projected volume.\n\nThe credential bundle is a single file that contains multiple PEM blocks.\nThe first PEM block is a PRIVATE KEY block, containing a PKCS#8 private\nkey.\n\nThe remaining blocks are CERTIFICATE blocks, containing the issued\ncertificate chain from the signer (leaf and any intermediates).\n\nUsing credentialBundlePath lets your Pod's application code make a single\natomic read that retrieves a consistent key and certificate chain.  If you\nproject them to separate files, your application code will need to\nadditionally check that the leaf certificate was issued to the key."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withKeyPath
+
+```ts
+withKeyPath(keyPath)
+```
+
+"Write the key at this path in the projected volume.\n\nMost applications should use credentialBundlePath.  When using keyPath\nand certificateChainPath, your application needs to check that the key\nand leaf certificate are consistent, because it is possible to read the\nfiles mid-rotation."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withKeyType
+
+```ts
+withKeyType(keyType)
+```
+
+"The type of keypair Kubelet will generate for the pod.\n\nValid values are \"RSA3072\", \"RSA4096\", \"ECDSAP256\", \"ECDSAP384\",\n\"ECDSAP521\", and \"ED25519\"."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withMaxExpirationSeconds
+
+```ts
+withMaxExpirationSeconds(maxExpirationSeconds)
+```
+
+"maxExpirationSeconds is the maximum lifetime permitted for the\ncertificate.\n\nKubelet copies this value verbatim into the PodCertificateRequests it\ngenerates for this projection.\n\nIf omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver\nwill reject values shorter than 3600 (1 hour).  The maximum allowable\nvalue is 7862400 (91 days).\n\nThe signer implementation is then free to issue a certificate with any\nlifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600\nseconds (1 hour).  This constraint is enforced by kube-apiserver.\n`kubernetes.io` signers will never issue certificates with a lifetime\nlonger than 24 hours."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withSignerName
+
+```ts
+withSignerName(signerName)
+```
+
+"Kubelet's generated CSRs will be addressed to this signer."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withUserAnnotations
+
+```ts
+withUserAnnotations(userAnnotations)
+```
+
+"userAnnotations allow pod authors to pass additional information to\nthe signer implementation.  Kubernetes does not restrict or validate this\nmetadata in any way.\n\nThese values are copied verbatim into the `spec.unverifiedUserAnnotations` field of\nthe PodCertificateRequest objects that Kubelet creates.\n\nEntries are subject to the same validation as object metadata annotations,\nwith the addition that all keys must be domain-prefixed. No restrictions\nare placed on values, except an overall size limitation on the entire field.\n\nSigners should document the keys and values they support. Signers should\ndeny requests that contain keys they do not recognize."
+
+### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.podCertificate.withUserAnnotationsMixin
+
+```ts
+withUserAnnotationsMixin(userAnnotations)
+```
+
+"userAnnotations allow pod authors to pass additional information to\nthe signer implementation.  Kubernetes does not restrict or validate this\nmetadata in any way.\n\nThese values are copied verbatim into the `spec.unverifiedUserAnnotations` field of\nthe PodCertificateRequest objects that Kubelet creates.\n\nEntries are subject to the same validation as object metadata annotations,\nwith the addition that all keys must be domain-prefixed. No restrictions\nare placed on values, except an overall size limitation on the entire field.\n\nSigners should document the keys and values they support. Signers should\ndeny requests that contain keys they do not recognize."
+
+**Note:** This function appends passed data to existing values
+
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.projected.sources.secret
 
 "secret information about the secret data to project"
@@ -6746,7 +7108,7 @@ withVolume(volume)
 
 ## obj spec.provider.kubernetes.envoyDaemonSet.pod.volumes.rbd
 
-"rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.\nDeprecated: RBD is deprecated and the in-tree rbd type is no longer supported.\nMore info: https://examples.k8s.io/volumes/rbd/README.md"
+"rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.\nDeprecated: RBD is deprecated and the in-tree rbd type is no longer supported."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.pod.volumes.rbd.withFsType
 
@@ -7094,7 +7456,7 @@ withType(type)
 withMaxSurge(maxSurge)
 ```
 
-"The maximum number of nodes with an existing available DaemonSet pod that\ncan have an updated DaemonSet pod during during an update.\nValue can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).\nThis can not be 0 if MaxUnavailable is 0.\nAbsolute number is calculated from percentage by rounding up to a minimum of 1.\nDefault value is 0.\nExample: when this is set to 30%, at most 30% of the total number of nodes\nthat should be running the daemon pod (i.e. status.desiredNumberScheduled)\ncan have their a new pod created before the old pod is marked as deleted.\nThe update starts by launching new pods on 30% of nodes. Once an updated\npod is available (Ready for at least minReadySeconds) the old DaemonSet pod\non that node is marked deleted. If the old pod becomes unavailable for any\nreason (Ready transitions to false, is evicted, or is drained) an updated\npod is immediatedly created on that node without considering surge limits.\nAllowing surge implies the possibility that the resources consumed by the\ndaemonset on any given node can double if the readiness check fails, and\nso resource intensive daemonsets should take into account that they may\ncause evictions during disruption."
+"The maximum number of nodes with an existing available DaemonSet pod that\ncan have an updated DaemonSet pod during during an update.\nValue can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).\nThis can not be 0 if MaxUnavailable is 0.\nAbsolute number is calculated from percentage by rounding up to a minimum of 1.\nDefault value is 0.\nExample: when this is set to 30%, at most 30% of the total number of nodes\nthat should be running the daemon pod (i.e. status.desiredNumberScheduled)\ncan have their a new pod created before the old pod is marked as deleted.\nThe update starts by launching new pods on 30% of nodes. Once an updated\npod is available (Ready for at least minReadySeconds) the old DaemonSet pod\non that node is marked deleted. If the old pod becomes unavailable for any\nreason (Ready transitions to false, is evicted, or is drained) an updated\npod is immediately created on that node without considering surge limits.\nAllowing surge implies the possibility that the resources consumed by the\ndaemonset on any given node can double if the readiness check fails, and\nso resource intensive daemonsets should take into account that they may\ncause evictions during disruption."
 
 ### fn spec.provider.kubernetes.envoyDaemonSet.strategy.rollingUpdate.withMaxUnavailable
 
@@ -7170,7 +7532,15 @@ withEnvMixin(env)
 withImage(image)
 ```
 
-"Image specifies the EnvoyProxy container image to be used, instead of the default image."
+"Image specifies the EnvoyProxy container image to be used including a tag, instead of the default image.\nThis field is mutually exclusive with ImageRepository."
+
+### fn spec.provider.kubernetes.envoyDeployment.container.withImageRepository
+
+```ts
+withImageRepository(imageRepository)
+```
+
+"ImageRepository specifies the container image repository to be used without specifying a tag.\nThe default tag will be used.\nThis field is mutually exclusive with Image."
 
 ### fn spec.provider.kubernetes.envoyDeployment.container.withVolumeMounts
 
@@ -7200,7 +7570,7 @@ withVolumeMountsMixin(volumeMounts)
 withName(name)
 ```
 
-"Name of the environment variable. Must be a C_IDENTIFIER."
+"Name of the environment variable.\nMay consist of any printable ASCII characters except '='."
 
 ### fn spec.provider.kubernetes.envoyDeployment.container.env.withValue
 
@@ -7261,6 +7631,42 @@ withFieldPath(fieldPath)
 ```
 
 "Path of the field to select in the specified API version."
+
+## obj spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef
+
+"FileKeyRef selects a key of the env file.\nRequires the EnvFiles feature gate to be enabled."
+
+### fn spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef.withKey
+
+```ts
+withKey(key)
+```
+
+"The key within the env file. An invalid key will prevent the pod from starting.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nDuring Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters."
+
+### fn spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef.withOptional
+
+```ts
+withOptional(optional)
+```
+
+"Specify whether the file or its key must be defined. If the file or key\ndoes not exist, then the env var is not published.\nIf optional is set to true and the specified key does not exist,\nthe environment variable will not be set in the Pod's containers.\n\nIf optional is set to false and the specified key does not exist,\nan error will be returned during Pod creation."
+
+### fn spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef.withPath
+
+```ts
+withPath(path)
+```
+
+"The path within the volume from which to select the file.\nMust be relative and may not contain the '..' path or start with '..'."
+
+### fn spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.fileKeyRef.withVolumeName
+
+```ts
+withVolumeName(volumeName)
+```
+
+"The name of the volume mount containing the env file."
 
 ## obj spec.provider.kubernetes.envoyDeployment.container.env.valueFrom.resourceFieldRef
 
@@ -7328,7 +7734,7 @@ withOptional(optional)
 withClaims(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.container.resources.withClaimsMixin
 
@@ -7336,7 +7742,7 @@ withClaims(claims)
 withClaimsMixin(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 **Note:** This function appends passed data to existing values
 
@@ -7378,7 +7784,7 @@ withRequestsMixin(requests)
 
 ## obj spec.provider.kubernetes.envoyDeployment.container.resources.claims
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.container.resources.claims.withName
 
@@ -7722,7 +8128,7 @@ withEnv(env)
 withEnvFrom(envFrom)
 ```
 
-"List of sources to populate environment variables in the container.\nThe keys defined within a source must be a C_IDENTIFIER. All invalid keys\nwill be reported as an event when the container is starting. When a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
+"List of sources to populate environment variables in the container.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nWhen a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.withEnvFromMixin
 
@@ -7730,7 +8136,7 @@ withEnvFrom(envFrom)
 withEnvFromMixin(envFrom)
 ```
 
-"List of sources to populate environment variables in the container.\nThe keys defined within a source must be a C_IDENTIFIER. All invalid keys\nwill be reported as an event when the container is starting. When a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
+"List of sources to populate environment variables in the container.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nWhen a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
 
 **Note:** This function appends passed data to existing values
 
@@ -7792,7 +8198,7 @@ withPortsMixin(ports)
 withResizePolicy(resizePolicy)
 ```
 
-"Resources resize policy for the container."
+"Resources resize policy for the container.\nThis field cannot be set on ephemeral containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.withResizePolicyMixin
 
@@ -7800,7 +8206,7 @@ withResizePolicy(resizePolicy)
 withResizePolicyMixin(resizePolicy)
 ```
 
-"Resources resize policy for the container."
+"Resources resize policy for the container.\nThis field cannot be set on ephemeral containers."
 
 **Note:** This function appends passed data to existing values
 
@@ -7810,7 +8216,25 @@ withResizePolicyMixin(resizePolicy)
 withRestartPolicy(restartPolicy)
 ```
 
-"RestartPolicy defines the restart behavior of individual containers in a pod.\nThis field may only be set for init containers, and the only allowed value is \"Always\".\nFor non-init containers or when this field is not specified,\nthe restart behavior is defined by the Pod's restart policy and the container type.\nSetting the RestartPolicy as \"Always\" for the init container will have the following effect:\nthis init container will be continually restarted on\nexit until all regular containers have terminated. Once all regular\ncontainers have completed, all init containers with restartPolicy \"Always\"\nwill be shut down. This lifecycle differs from normal init containers and\nis often referred to as a \"sidecar\" container. Although this init\ncontainer still starts in the init container sequence, it does not wait\nfor the container to complete before proceeding to the next init\ncontainer. Instead, the next init container starts immediately after this\ninit container is started, or after any startupProbe has successfully\ncompleted."
+"RestartPolicy defines the restart behavior of individual containers in a pod.\nThis overrides the pod-level restart policy. When this field is not specified,\nthe restart behavior is defined by the Pod's restart policy and the container type.\nAdditionally, setting the RestartPolicy as \"Always\" for the init container will\nhave the following effect:\nthis init container will be continually restarted on\nexit until all regular containers have terminated. Once all regular\ncontainers have completed, all init containers with restartPolicy \"Always\"\nwill be shut down. This lifecycle differs from normal init containers and\nis often referred to as a \"sidecar\" container. Although this init\ncontainer still starts in the init container sequence, it does not wait\nfor the container to complete before proceeding to the next init\ncontainer. Instead, the next init container starts immediately after this\ninit container is started, or after any startupProbe has successfully\ncompleted."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.withRestartPolicyRules
+
+```ts
+withRestartPolicyRules(restartPolicyRules)
+```
+
+"Represents a list of rules to be checked to determine if the\ncontainer should be restarted on exit. The rules are evaluated in\norder. Once a rule matches a container exit condition, the remaining\nrules are ignored. If no rule matches the container exit condition,\nthe Container-level restart policy determines the whether the container\nis restarted or not. Constraints on the rules:\n- At most 20 rules are allowed.\n- Rules can have the same action.\n- Identical rules are not forbidden in validations.\nWhen rules are specified, container MUST set RestartPolicy explicitly\neven it if matches the Pod's RestartPolicy."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.withRestartPolicyRulesMixin
+
+```ts
+withRestartPolicyRulesMixin(restartPolicyRules)
+```
+
+"Represents a list of rules to be checked to determine if the\ncontainer should be restarted on exit. The rules are evaluated in\norder. Once a rule matches a container exit condition, the remaining\nrules are ignored. If no rule matches the container exit condition,\nthe Container-level restart policy determines the whether the container\nis restarted or not. Constraints on the rules:\n- At most 20 rules are allowed.\n- Rules can have the same action.\n- Identical rules are not forbidden in validations.\nWhen rules are specified, container MUST set RestartPolicy explicitly\neven it if matches the Pod's RestartPolicy."
+
+**Note:** This function appends passed data to existing values
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.withStdin
 
@@ -7906,7 +8330,7 @@ withWorkingDir(workingDir)
 withName(name)
 ```
 
-"Name of the environment variable. Must be a C_IDENTIFIER."
+"Name of the environment variable.\nMay consist of any printable ASCII characters except '='."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.env.withValue
 
@@ -7968,6 +8392,42 @@ withFieldPath(fieldPath)
 
 "Path of the field to select in the specified API version."
 
+## obj spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef
+
+"FileKeyRef selects a key of the env file.\nRequires the EnvFiles feature gate to be enabled."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef.withKey
+
+```ts
+withKey(key)
+```
+
+"The key within the env file. An invalid key will prevent the pod from starting.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nDuring Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef.withOptional
+
+```ts
+withOptional(optional)
+```
+
+"Specify whether the file or its key must be defined. If the file or key\ndoes not exist, then the env var is not published.\nIf optional is set to true and the specified key does not exist,\nthe environment variable will not be set in the Pod's containers.\n\nIf optional is set to false and the specified key does not exist,\nan error will be returned during Pod creation."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef.withPath
+
+```ts
+withPath(path)
+```
+
+"The path within the volume from which to select the file.\nMust be relative and may not contain the '..' path or start with '..'."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.fileKeyRef.withVolumeName
+
+```ts
+withVolumeName(volumeName)
+```
+
+"The name of the volume mount containing the env file."
+
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.env.valueFrom.resourceFieldRef
 
 "Selects a resource of the container: only resources limits and requests\n(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported."
@@ -8026,7 +8486,7 @@ withOptional(optional)
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.envFrom
 
-"List of sources to populate environment variables in the container.\nThe keys defined within a source must be a C_IDENTIFIER. All invalid keys\nwill be reported as an event when the container is starting. When a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
+"List of sources to populate environment variables in the container.\nThe keys defined within a source may consist of any printable ASCII characters except '='.\nWhen a key exists in multiple\nsources, the value associated with the last source will take precedence.\nValues defined by an Env with a duplicate key will take precedence.\nCannot be updated."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.envFrom.withPrefix
 
@@ -8034,7 +8494,7 @@ withOptional(optional)
 withPrefix(prefix)
 ```
 
-"An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
+"Optional text to prepend to the name of each environment variable.\nMay consist of any printable ASCII characters except '='."
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.envFrom.configMapRef
 
@@ -8079,6 +8539,14 @@ withOptional(optional)
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle
 
 "Actions that the management system should take in response to container lifecycle events.\nCannot be updated."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle.withStopSignal
+
+```ts
+withStopSignal(stopSignal)
+```
+
+"StopSignal defines which signal will be sent to a container when it is being stopped.\nIf not specified, the default is defined by the container runtime in use.\nStopSignal can only be set for Pods with a non-empty .spec.os.name"
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.lifecycle.postStart
 
@@ -8766,7 +9234,7 @@ withPort(port)
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.resizePolicy
 
-"Resources resize policy for the container."
+"Resources resize policy for the container.\nThis field cannot be set on ephemeral containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.resizePolicy.withResourceName
 
@@ -8794,7 +9262,7 @@ withRestartPolicy(restartPolicy)
 withClaims(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.resources.withClaimsMixin
 
@@ -8802,7 +9270,7 @@ withClaims(claims)
 withClaimsMixin(claims)
 ```
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 **Note:** This function appends passed data to existing values
 
@@ -8844,7 +9312,7 @@ withRequestsMixin(requests)
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.resources.claims
 
-"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis is an alpha field and requires enabling the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
+"Claims lists the names of resources, defined in spec.resourceClaims,\nthat are used by this container.\n\nThis field depends on the\nDynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers."
 
 ### fn spec.provider.kubernetes.envoyDeployment.initContainers.resources.claims.withName
 
@@ -8861,6 +9329,48 @@ withRequest(request)
 ```
 
 "Request is the name chosen for a request in the referenced claim.\nIf empty, everything from the claim is made available, otherwise\nonly the result of this request."
+
+## obj spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules
+
+"Represents a list of rules to be checked to determine if the\ncontainer should be restarted on exit. The rules are evaluated in\norder. Once a rule matches a container exit condition, the remaining\nrules are ignored. If no rule matches the container exit condition,\nthe Container-level restart policy determines the whether the container\nis restarted or not. Constraints on the rules:\n- At most 20 rules are allowed.\n- Rules can have the same action.\n- Identical rules are not forbidden in validations.\nWhen rules are specified, container MUST set RestartPolicy explicitly\neven it if matches the Pod's RestartPolicy."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.withAction
+
+```ts
+withAction(action)
+```
+
+"Specifies the action taken on a container exit if the requirements\nare satisfied. The only possible value is \"Restart\" to restart the\ncontainer."
+
+## obj spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.exitCodes
+
+"Represents the exit codes to check on container exits."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.exitCodes.withOperator
+
+```ts
+withOperator(operator)
+```
+
+"Represents the relationship between the container exit code(s) and the\nspecified values. Possible values are:\n- In: the requirement is satisfied if the container exit code is in the\n  set of specified values.\n- NotIn: the requirement is satisfied if the container exit code is\n  not in the set of specified values."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.exitCodes.withValues
+
+```ts
+withValues(values)
+```
+
+"Specifies the set of values to check for container exit codes.\nAt most 255 elements are allowed."
+
+### fn spec.provider.kubernetes.envoyDeployment.initContainers.restartPolicyRules.exitCodes.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"Specifies the set of values to check for container exit codes.\nAt most 255 elements are allowed."
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.provider.kubernetes.envoyDeployment.initContainers.securityContext
 
@@ -9438,6 +9948,14 @@ withNodeSelectorMixin(nodeSelector)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.provider.kubernetes.envoyDeployment.pod.withPriorityClassName
+
+```ts
+withPriorityClassName(priorityClassName)
+```
+
+"PriorityClassName indicates the importance of a Pod relative to other Pods.\nIf a PriorityClassName is not specified, the pod priority will be default or zero if there is no default.\nMore info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+
 ### fn spec.provider.kubernetes.envoyDeployment.pod.withTolerations
 
 ```ts
@@ -9846,7 +10364,7 @@ withWeight(weight)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMatchLabelKeysMixin
 
@@ -9854,7 +10372,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -9864,7 +10382,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMismatchLabelKeysMixin
 
@@ -9872,7 +10390,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10068,7 +10586,7 @@ withValuesMixin(values)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMatchLabelKeysMixin
 
@@ -10076,7 +10594,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10086,7 +10604,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMismatchLabelKeysMixin
 
@@ -10094,7 +10612,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10290,7 +10808,7 @@ withValuesMixin(values)
 withPreferredDuringSchedulingIgnoredDuringExecution(preferredDuringSchedulingIgnoredDuringExecution)
 ```
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.withPreferredDuringSchedulingIgnoredDuringExecutionMixin
 
@@ -10298,7 +10816,7 @@ withPreferredDuringSchedulingIgnoredDuringExecution(preferredDuringSchedulingIgn
 withPreferredDuringSchedulingIgnoredDuringExecutionMixin(preferredDuringSchedulingIgnoredDuringExecution)
 ```
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 **Note:** This function appends passed data to existing values
 
@@ -10322,7 +10840,7 @@ withRequiredDuringSchedulingIgnoredDuringExecutionMixin(requiredDuringScheduling
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution
 
-"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and adding\n\"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
+"The scheduler will prefer to schedule pods to nodes that satisfy\nthe anti-affinity expressions specified by this field, but it may choose\na node that violates one or more of the expressions. The node that is\nmost preferred is the one with the greatest sum of weights, i.e.\nfor each node that meets all of the scheduling requirements (resource\nrequest, requiredDuringScheduling anti-affinity expressions, etc.),\ncompute a sum by iterating through the elements of this field and subtracting\n\"weight\" from the sum if the node has pods which matches the corresponding podAffinityTerm; the\nnode(s) with the highest sum are the most preferred."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.withWeight
 
@@ -10342,7 +10860,7 @@ withWeight(weight)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMatchLabelKeysMixin
 
@@ -10350,7 +10868,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10360,7 +10878,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.withMismatchLabelKeysMixin
 
@@ -10368,7 +10886,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10564,7 +11082,7 @@ withValuesMixin(values)
 withMatchLabelKeys(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMatchLabelKeysMixin
 
@@ -10572,7 +11090,7 @@ withMatchLabelKeys(matchLabelKeys)
 withMatchLabelKeysMixin(matchLabelKeys)
 ```
 
-"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -10582,7 +11100,7 @@ withMatchLabelKeysMixin(matchLabelKeys)
 withMismatchLabelKeys(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.withMismatchLabelKeysMixin
 
@@ -10590,7 +11108,7 @@ withMismatchLabelKeys(mismatchLabelKeys)
 withMismatchLabelKeysMixin(mismatchLabelKeys)
 ```
 
-"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set.\nThis is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default)."
+"MismatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both mismatchLabelKeys and labelSelector.\nAlso, mismatchLabelKeys cannot be set when labelSelector isn't set."
 
 **Note:** This function appends passed data to existing values
 
@@ -11042,7 +11560,7 @@ withKey(key)
 withOperator(operator)
 ```
 
-"Operator represents a key's relationship to the value.\nValid operators are Exists and Equal. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category."
+"Operator represents a key's relationship to the value.\nValid operators are Exists, Equal, Lt, and Gt. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category.\nLt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators)."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.tolerations.withTolerationSeconds
 
@@ -11104,7 +11622,7 @@ withMinDomains(minDomains)
 withNodeAffinityPolicy(nodeAffinityPolicy)
 ```
 
-"NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector\nwhen calculating pod topology spread skew. Options are:\n- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.\n- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.\n\nIf this value is nil, the behavior is equivalent to the Honor policy.\nThis is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag."
+"NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector\nwhen calculating pod topology spread skew. Options are:\n- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.\n- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.\n\nIf this value is nil, the behavior is equivalent to the Honor policy."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.topologySpreadConstraints.withNodeTaintsPolicy
 
@@ -11112,7 +11630,7 @@ withNodeAffinityPolicy(nodeAffinityPolicy)
 withNodeTaintsPolicy(nodeTaintsPolicy)
 ```
 
-"NodeTaintsPolicy indicates how we will treat node taints when calculating\npod topology spread skew. Options are:\n- Honor: nodes without taints, along with tainted nodes for which the incoming pod\nhas a toleration, are included.\n- Ignore: node taints are ignored. All nodes are included.\n\nIf this value is nil, the behavior is equivalent to the Ignore policy.\nThis is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag."
+"NodeTaintsPolicy indicates how we will treat node taints when calculating\npod topology spread skew. Options are:\n- Honor: nodes without taints, along with tainted nodes for which the incoming pod\nhas a toleration, are included.\n- Ignore: node taints are ignored. All nodes are included.\n\nIf this value is nil, the behavior is equivalent to the Ignore policy."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.topologySpreadConstraints.withTopologyKey
 
@@ -11754,7 +12272,7 @@ withStorageClassName(storageClassName)
 withVolumeAttributesClassName(volumeAttributesClassName)
 ```
 
-"volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.\nIf specified, the CSI driver will create or update the volume with the attributes defined\nin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,\nit can be changed after the claim is created. An empty string value means that no VolumeAttributesClass\nwill be applied to the claim but it's not allowed to reset this field to empty string once it is set.\nIf unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass\nwill be set by the persistentvolume controller if it exists.\nIf the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be\nset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource\nexists.\nMore info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/\n(Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default)."
+"volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.\nIf specified, the CSI driver will create or update the volume with the attributes defined\nin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,\nit can be changed after the claim is created. An empty string or nil value indicates that no\nVolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state,\nthis field can be reset to its previous value (including nil) to cancel the modification.\nIf the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be\nset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource\nexists.\nMore info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/"
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.ephemeral.volumeClaimTemplate.spec.withVolumeMode
 
@@ -11838,7 +12356,7 @@ withNamespace(namespace)
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.ephemeral.volumeClaimTemplate.spec.resources
 
-"resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
+"resources represents the minimum resources the volume should have.\nUsers are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.ephemeral.volumeClaimTemplate.spec.resources.withLimits
 
@@ -12162,7 +12680,7 @@ withRevision(revision)
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.glusterfs
 
-"glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.\nDeprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported.\nMore info: https://examples.k8s.io/volumes/glusterfs/README.md"
+"glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.\nDeprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.glusterfs.withEndpoints
 
@@ -12170,7 +12688,7 @@ withRevision(revision)
 withEndpoints(endpoints)
 ```
 
-"endpoints is the endpoint name that details Glusterfs topology.\nMore info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod"
+"endpoints is the endpoint name that details Glusterfs topology."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.glusterfs.withPath
 
@@ -12210,7 +12728,7 @@ withType(type)
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.image
 
-"image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath).\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type."
+"image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33.\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.image.withPullPolicy
 
@@ -12230,7 +12748,7 @@ withReference(reference)
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.iscsi
 
-"iscsi represents an ISCSI Disk resource that is attached to a\nkubelet's host machine and then exposed to the pod.\nMore info: https://examples.k8s.io/volumes/iscsi/README.md"
+"iscsi represents an ISCSI Disk resource that is attached to a\nkubelet's host machine and then exposed to the pod.\nMore info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi"
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.iscsi.withChapAuthDiscovery
 
@@ -12734,6 +13252,76 @@ withResource(resource)
 
 "Required: resource to select"
 
+## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate
+
+"Projects an auto-rotating credential bundle (private key and certificate\nchain) that the pod can use either as a TLS client or server.\n\nKubelet generates a private key and uses it to send a\nPodCertificateRequest to the named signer.  Once the signer approves the\nrequest and issues a certificate chain, Kubelet writes the key and\ncertificate chain to the pod filesystem.  The pod does not start until\ncertificates have been issued for each podCertificate projected volume\nsource in its spec.\n\nKubelet will begin trying to rotate the certificate at the time indicated\nby the signer using the PodCertificateRequest.Status.BeginRefreshAt\ntimestamp.\n\nKubelet can write a single file, indicated by the credentialBundlePath\nfield, or separate files, indicated by the keyPath and\ncertificateChainPath fields.\n\nThe credential bundle is a single file in PEM format.  The first PEM\nentry is the private key (in PKCS#8 format), and the remaining PEM\nentries are the certificate chain issued by the signer (typically,\nsigners will return their certificate chain in leaf-to-root order).\n\nPrefer using the credential bundle format, since your application code\ncan read it atomically.  If you use keyPath and certificateChainPath,\nyour application must make two separate file reads. If these coincide\nwith a certificate rotation, it is possible that the private key and leaf\ncertificate you read may not correspond to each other.  Your application\nwill need to check for this condition, and re-read until they are\nconsistent.\n\nThe named signer controls chooses the format of the certificate it\nissues; consult the signer implementation's documentation to learn how to\nuse the certificates it issues."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withCertificateChainPath
+
+```ts
+withCertificateChainPath(certificateChainPath)
+```
+
+"Write the certificate chain at this path in the projected volume.\n\nMost applications should use credentialBundlePath.  When using keyPath\nand certificateChainPath, your application needs to check that the key\nand leaf certificate are consistent, because it is possible to read the\nfiles mid-rotation."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withCredentialBundlePath
+
+```ts
+withCredentialBundlePath(credentialBundlePath)
+```
+
+"Write the credential bundle at this path in the projected volume.\n\nThe credential bundle is a single file that contains multiple PEM blocks.\nThe first PEM block is a PRIVATE KEY block, containing a PKCS#8 private\nkey.\n\nThe remaining blocks are CERTIFICATE blocks, containing the issued\ncertificate chain from the signer (leaf and any intermediates).\n\nUsing credentialBundlePath lets your Pod's application code make a single\natomic read that retrieves a consistent key and certificate chain.  If you\nproject them to separate files, your application code will need to\nadditionally check that the leaf certificate was issued to the key."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withKeyPath
+
+```ts
+withKeyPath(keyPath)
+```
+
+"Write the key at this path in the projected volume.\n\nMost applications should use credentialBundlePath.  When using keyPath\nand certificateChainPath, your application needs to check that the key\nand leaf certificate are consistent, because it is possible to read the\nfiles mid-rotation."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withKeyType
+
+```ts
+withKeyType(keyType)
+```
+
+"The type of keypair Kubelet will generate for the pod.\n\nValid values are \"RSA3072\", \"RSA4096\", \"ECDSAP256\", \"ECDSAP384\",\n\"ECDSAP521\", and \"ED25519\"."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withMaxExpirationSeconds
+
+```ts
+withMaxExpirationSeconds(maxExpirationSeconds)
+```
+
+"maxExpirationSeconds is the maximum lifetime permitted for the\ncertificate.\n\nKubelet copies this value verbatim into the PodCertificateRequests it\ngenerates for this projection.\n\nIf omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver\nwill reject values shorter than 3600 (1 hour).  The maximum allowable\nvalue is 7862400 (91 days).\n\nThe signer implementation is then free to issue a certificate with any\nlifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600\nseconds (1 hour).  This constraint is enforced by kube-apiserver.\n`kubernetes.io` signers will never issue certificates with a lifetime\nlonger than 24 hours."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withSignerName
+
+```ts
+withSignerName(signerName)
+```
+
+"Kubelet's generated CSRs will be addressed to this signer."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withUserAnnotations
+
+```ts
+withUserAnnotations(userAnnotations)
+```
+
+"userAnnotations allow pod authors to pass additional information to\nthe signer implementation.  Kubernetes does not restrict or validate this\nmetadata in any way.\n\nThese values are copied verbatim into the `spec.unverifiedUserAnnotations` field of\nthe PodCertificateRequest objects that Kubelet creates.\n\nEntries are subject to the same validation as object metadata annotations,\nwith the addition that all keys must be domain-prefixed. No restrictions\nare placed on values, except an overall size limitation on the entire field.\n\nSigners should document the keys and values they support. Signers should\ndeny requests that contain keys they do not recognize."
+
+### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.podCertificate.withUserAnnotationsMixin
+
+```ts
+withUserAnnotationsMixin(userAnnotations)
+```
+
+"userAnnotations allow pod authors to pass additional information to\nthe signer implementation.  Kubernetes does not restrict or validate this\nmetadata in any way.\n\nThese values are copied verbatim into the `spec.unverifiedUserAnnotations` field of\nthe PodCertificateRequest objects that Kubelet creates.\n\nEntries are subject to the same validation as object metadata annotations,\nwith the addition that all keys must be domain-prefixed. No restrictions\nare placed on values, except an overall size limitation on the entire field.\n\nSigners should document the keys and values they support. Signers should\ndeny requests that contain keys they do not recognize."
+
+**Note:** This function appends passed data to existing values
+
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.projected.sources.secret
 
 "secret information about the secret data to project"
@@ -12882,7 +13470,7 @@ withVolume(volume)
 
 ## obj spec.provider.kubernetes.envoyDeployment.pod.volumes.rbd
 
-"rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.\nDeprecated: RBD is deprecated and the in-tree rbd type is no longer supported.\nMore info: https://examples.k8s.io/volumes/rbd/README.md"
+"rbd represents a Rados Block Device mount on the host that shares a pod's lifetime.\nDeprecated: RBD is deprecated and the in-tree rbd type is no longer supported."
 
 ### fn spec.provider.kubernetes.envoyDeployment.pod.volumes.rbd.withFsType
 
@@ -13242,7 +13830,7 @@ withMaxUnavailable(maxUnavailable)
 
 ## obj spec.provider.kubernetes.envoyHpa
 
-"EnvoyHpa defines the Horizontal Pod Autoscaler settings for Envoy Proxy Deployment.\nOnce the HPA is being set, Replicas field from EnvoyDeployment will be ignored."
+"EnvoyHpa defines the Horizontal Pod Autoscaler settings for Envoy Proxy Deployment."
 
 ### fn spec.provider.kubernetes.envoyHpa.withMaxReplicas
 
@@ -13278,6 +13866,14 @@ withMinReplicas(minReplicas)
 
 "minReplicas is the lower limit for the number of replicas to which the autoscaler\ncan scale down. It defaults to 1 replica."
 
+### fn spec.provider.kubernetes.envoyHpa.withName
+
+```ts
+withName(name)
+```
+
+"Name of the horizontalPodAutoScaler.\nWhen unset, this defaults to an autogenerated name."
+
 ## obj spec.provider.kubernetes.envoyHpa.behavior
 
 "behavior configures the scaling behavior of the target\nin both Up and Down directions (scaleUp and scaleDown fields respectively).\nIf not set, the default HPAScalingRules for scale up and scale down are used.\nSee k8s.io.autoscaling.v2.HorizontalPodAutoScalerBehavior."
@@ -13292,7 +13888,7 @@ withMinReplicas(minReplicas)
 withPolicies(policies)
 ```
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 ### fn spec.provider.kubernetes.envoyHpa.behavior.scaleDown.withPoliciesMixin
 
@@ -13300,7 +13896,7 @@ withPolicies(policies)
 withPoliciesMixin(policies)
 ```
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 **Note:** This function appends passed data to existing values
 
@@ -13320,9 +13916,17 @@ withStabilizationWindowSeconds(stabilizationWindowSeconds)
 
 "stabilizationWindowSeconds is the number of seconds for which past recommendations should be\nconsidered while scaling up or scaling down.\nStabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).\nIf not set, use the default values:\n- For scale up: 0 (i.e. no stabilization is done).\n- For scale down: 300 (i.e. the stabilization window is 300 seconds long)."
 
+### fn spec.provider.kubernetes.envoyHpa.behavior.scaleDown.withTolerance
+
+```ts
+withTolerance(tolerance)
+```
+
+"tolerance is the tolerance on the ratio between the current and desired\nmetric value under which no updates are made to the desired number of\nreplicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not\nset, the default cluster-wide tolerance is applied (by default 10%).\n\nFor example, if autoscaling is configured with a memory consumption target of 100Mi,\nand scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be\ntriggered when the actual consumption falls below 95Mi or exceeds 101Mi.\n\nThis is an beta field and requires the HPAConfigurableTolerance feature\ngate to be enabled."
+
 ## obj spec.provider.kubernetes.envoyHpa.behavior.scaleDown.policies
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 ### fn spec.provider.kubernetes.envoyHpa.behavior.scaleDown.policies.withPeriodSeconds
 
@@ -13358,7 +13962,7 @@ withValue(value)
 withPolicies(policies)
 ```
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 ### fn spec.provider.kubernetes.envoyHpa.behavior.scaleUp.withPoliciesMixin
 
@@ -13366,7 +13970,7 @@ withPolicies(policies)
 withPoliciesMixin(policies)
 ```
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 **Note:** This function appends passed data to existing values
 
@@ -13386,9 +13990,17 @@ withStabilizationWindowSeconds(stabilizationWindowSeconds)
 
 "stabilizationWindowSeconds is the number of seconds for which past recommendations should be\nconsidered while scaling up or scaling down.\nStabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).\nIf not set, use the default values:\n- For scale up: 0 (i.e. no stabilization is done).\n- For scale down: 300 (i.e. the stabilization window is 300 seconds long)."
 
+### fn spec.provider.kubernetes.envoyHpa.behavior.scaleUp.withTolerance
+
+```ts
+withTolerance(tolerance)
+```
+
+"tolerance is the tolerance on the ratio between the current and desired\nmetric value under which no updates are made to the desired number of\nreplicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not\nset, the default cluster-wide tolerance is applied (by default 10%).\n\nFor example, if autoscaling is configured with a memory consumption target of 100Mi,\nand scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be\ntriggered when the actual consumption falls below 95Mi or exceeds 101Mi.\n\nThis is an beta field and requires the HPAConfigurableTolerance feature\ngate to be enabled."
+
 ## obj spec.provider.kubernetes.envoyHpa.behavior.scaleUp.policies
 
-"policies is a list of potential scaling polices which can be used during scaling.\nAt least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid"
+"policies is a list of potential scaling polices which can be used during scaling.\nIf not set, use the default values:\n- For scale up: allow doubling the number of pods, or an absolute change of 4 pods in a 15s window.\n- For scale down: allow all pods to be removed in a 15s window."
 
 ### fn spec.provider.kubernetes.envoyHpa.behavior.scaleUp.policies.withPeriodSeconds
 
@@ -13972,13 +14584,29 @@ withValue(value)
 
 "EnvoyPDB allows to control the pod disruption budget of an Envoy Proxy."
 
+### fn spec.provider.kubernetes.envoyPDB.withMaxUnavailable
+
+```ts
+withMaxUnavailable(maxUnavailable)
+```
+
+"MaxUnavailable specifies the maximum amount of pods (can be expressed as integers or as a percentage) that can be unavailable at all times during voluntary disruptions,\nsuch as node drains or updates. This setting ensures that your envoy proxy maintains a certain level of availability\nand resilience during maintenance operations. Cannot be combined with minAvailable."
+
 ### fn spec.provider.kubernetes.envoyPDB.withMinAvailable
 
 ```ts
 withMinAvailable(minAvailable)
 ```
 
-"MinAvailable specifies the minimum number of pods that must be available at all times during voluntary disruptions,\nsuch as node drains or updates. This setting ensures that your envoy proxy maintains a certain level of availability\nand resilience during maintenance operations."
+"MinAvailable specifies the minimum amount of pods (can be expressed as integers or as a percentage) that must be available at all times during voluntary disruptions,\nsuch as node drains or updates. This setting ensures that your envoy proxy maintains a certain level of availability\nand resilience during maintenance operations. Cannot be combined with maxUnavailable."
+
+### fn spec.provider.kubernetes.envoyPDB.withName
+
+```ts
+withName(name)
+```
+
+"Name of the podDisruptionBudget.\nWhen unset, this defaults to an autogenerated name."
 
 ## obj spec.provider.kubernetes.envoyPDB.patch
 
@@ -14126,6 +14754,18 @@ withValue(value)
 
 "Object contains the raw configuration for merged object"
 
+## obj spec.provider.kubernetes.envoyServiceAccount
+
+"EnvoyServiceAccount defines the desired state of the Envoy service account resource."
+
+### fn spec.provider.kubernetes.envoyServiceAccount.withName
+
+```ts
+withName(name)
+```
+
+"Name of the Service Account.\nWhen unset, this defaults to an autogenerated name."
+
 ## obj spec.shutdown
 
 "Shutdown defines configuration for graceful envoy shutdown process."
@@ -14264,7 +14904,7 @@ withText(text)
 withType(type)
 ```
 
-"Type defines the type of accesslog format."
+"Type defines the type of accesslog format.\nWhen unset, both text and json can be specified."
 
 ## obj spec.telemetry.accessLog.settings.sinks
 
@@ -14412,6 +15052,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.telemetry.accessLog.settings.sinks.als.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -14460,6 +15108,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -14480,6 +15140,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -14491,6 +15171,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.dns.withRespectDnsTtl
 
@@ -14504,6 +15192,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -14515,6 +15211,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.withInterval
 
@@ -14581,6 +15285,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.active.http.withMethod
 
@@ -14722,6 +15434,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -14798,6 +15518,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -14812,7 +15568,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -14854,7 +15610,7 @@ withTtl(ttl)
 
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -14863,6 +15619,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.slowStart
 
@@ -14875,6 +15689,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.proxyProtocol
 
@@ -14891,6 +15741,14 @@ withVersion(version)
 ## obj spec.telemetry.accessLog.settings.sinks.als.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.retry.withNumRetries
 
@@ -15024,6 +15882,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.telemetry.accessLog.settings.sinks.als.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -15136,6 +16002,24 @@ withBackendRefsMixin(backendRefs)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withHost
 
 ```ts
@@ -15152,13 +16036,31 @@ withPort(port)
 
 "Port defines the port the extension service is exposed on.\nDeprecated: Use BackendRefs instead."
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withResourceAttributes
+
+```ts
+withResourceAttributes(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/)."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withResourceAttributesMixin
+
+```ts
+withResourceAttributesMixin(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/)."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withResources
 
 ```ts
 withResources(resources)
 ```
 
-"Resources is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/)."
+"Resources is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/).\n\nDeprecated: Use ResourceAttributes instead."
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.withResourcesMixin
 
@@ -15166,7 +16068,7 @@ withResources(resources)
 withResourcesMixin(resources)
 ```
 
-"Resources is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/)."
+"Resources is a set of labels that describe the source of a log entry, including envoy node info.\nIt's recommended to follow [semantic conventions](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/).\n\nDeprecated: Use ResourceAttributes instead."
 
 **Note:** This function appends passed data to existing values
 
@@ -15266,6 +16168,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -15314,6 +16224,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -15334,6 +16256,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -15345,6 +16287,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.dns.withRespectDnsTtl
 
@@ -15358,6 +16308,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -15369,6 +16327,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.withInterval
 
@@ -15435,6 +16401,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.active.http.withMethod
 
@@ -15576,6 +16550,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -15652,6 +16634,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -15666,7 +16684,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -15708,7 +16726,7 @@ withTtl(ttl)
 
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -15717,6 +16735,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.slowStart
 
@@ -15729,6 +16805,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.proxyProtocol
 
@@ -15745,6 +16857,14 @@ withVersion(version)
 ## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.retry.withNumRetries
 
@@ -15878,6 +16998,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -15898,9 +17026,37 @@ withConnectTimeout(connectTimeout)
 
 "The timeout for network connection establishment, including TCP and TLS handshakes.\nDefault: 10 seconds."
 
+## obj spec.telemetry.accessLog.settings.sinks.openTelemetry.headers
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.telemetry.accessLog.settings.sinks.openTelemetry.headers.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
 ## obj spec.telemetry.metrics
 
 "Metrics defines metrics configuration for managed proxies."
+
+### fn spec.telemetry.metrics.withClusterStatName
+
+```ts
+withClusterStatName(clusterStatName)
+```
+
+"ClusterStatName defines the value of cluster alt_stat_name, determining how cluster stats are named.\nFor more details, see envoy docs: https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto.html\nThe supported operators for this pattern are:\n`%ROUTE_NAME%`: name of Gateway API xRoute resource\n`%ROUTE_NAMESPACE%`: namespace of Gateway API xRoute resource\n`%ROUTE_KIND%`: kind of Gateway API xRoute resource\n`%ROUTE_RULE_NAME%`: name of the Gateway API xRoute section\n`%ROUTE_RULE_NUMBER%`: name of the Gateway API xRoute section\n`%BACKEND_REFS%`: names of all backends referenced in `<NAMESPACE>/<NAME>|<NAMESPACE>/<NAME>|...` format\nOnly xDS Clusters created for HTTPRoute and GRPCRoute are currently supported.\nDefault: `%ROUTE_KIND%/%ROUTE_NAMESPACE%/%ROUTE_NAME%/rule/%ROUTE_RULE_NUMBER%`\nExample: `httproute/my-ns/my-route/rule/0`"
 
 ### fn spec.telemetry.metrics.withEnablePerEndpointStats
 
@@ -16034,6 +17190,14 @@ withGzipMixin(gzip)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.telemetry.metrics.prometheus.compression.withMinContentLength
+
+```ts
+withMinContentLength(minContentLength)
+```
+
+"MinContentLength defines the minimum response size in bytes to apply compression.\nResponses smaller than this threshold will not be compressed.\nMust be at least 30 bytes as enforced by Envoy Proxy.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 30 bytes"
+
 ### fn spec.telemetry.metrics.prometheus.compression.withType
 
 ```ts
@@ -16041,6 +17205,24 @@ withType(type)
 ```
 
 "CompressorType defines the compressor type to use for compression."
+
+### fn spec.telemetry.metrics.prometheus.compression.withZstd
+
+```ts
+withZstd(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+### fn spec.telemetry.metrics.prometheus.compression.withZstdMixin
+
+```ts
+withZstdMixin(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.telemetry.metrics.sinks
 
@@ -16076,6 +17258,24 @@ withBackendRefsMixin(backendRefs)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.metrics.sinks.openTelemetry.withHost
 
 ```ts
@@ -16091,6 +17291,40 @@ withPort(port)
 ```
 
 "Port defines the port the service is exposed on.\nDeprecated: Use BackendRefs instead."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.withReportCountersAsDeltas
+
+```ts
+withReportCountersAsDeltas(reportCountersAsDeltas)
+```
+
+"ReportCountersAsDeltas configures the OpenTelemetry sink to report\ncounters as delta temporality instead of cumulative."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.withReportHistogramsAsDeltas
+
+```ts
+withReportHistogramsAsDeltas(reportHistogramsAsDeltas)
+```
+
+"ReportHistogramsAsDeltas configures the OpenTelemetry sink to report\nhistograms as delta temporality instead of cumulative.\nRequired for backends like Elastic that drop cumulative histograms."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.withResourceAttributes
+
+```ts
+withResourceAttributes(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of metrics.\nIt's recommended to follow semantic conventions: https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/"
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.withResourceAttributesMixin
+
+```ts
+withResourceAttributesMixin(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of metrics.\nIt's recommended to follow semantic conventions: https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/"
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendRef
 
@@ -16188,6 +17422,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -16236,6 +17478,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -16256,6 +17510,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -16267,6 +17541,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.dns.withRespectDnsTtl
 
@@ -16280,6 +17562,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -16291,6 +17581,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.withInterval
 
@@ -16357,6 +17655,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.active.http.withMethod
 
@@ -16498,6 +17804,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -16574,6 +17888,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -16588,7 +17938,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -16630,7 +17980,7 @@ withTtl(ttl)
 
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -16639,6 +17989,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.slowStart
 
@@ -16651,6 +18059,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.proxyProtocol
 
@@ -16667,6 +18111,14 @@ withVersion(version)
 ## obj spec.telemetry.metrics.sinks.openTelemetry.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.retry.withNumRetries
 
@@ -16800,6 +18252,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.telemetry.metrics.sinks.openTelemetry.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -16820,6 +18280,38 @@ withConnectTimeout(connectTimeout)
 
 "The timeout for network connection establishment, including TCP and TLS handshakes.\nDefault: 10 seconds."
 
+## obj spec.telemetry.metrics.sinks.openTelemetry.headers
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.telemetry.metrics.sinks.openTelemetry.headers.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.telemetry.requestID
+
+"RequestID configures Envoy request ID behavior."
+
+### fn spec.telemetry.requestID.withTracing
+
+```ts
+withTracing(tracing)
+```
+
+"Tracing configures Envoy's behavior for the UUID request ID extension,\nincluding whether the trace sampling decision is packed into the UUID and\nwhether `X-Request-ID` is used for trace sampling decisions.\n\nWhen omitted, the default behavior is `PackAndSample`, which alters the UUID\nto contain the trace sampling decision and uses `X-Request-ID` for stable\ntrace sampling."
+
 ## obj spec.telemetry.tracing
 
 "Tracing defines tracing configuration for managed proxies.\nIf unspecified, will not send tracing data."
@@ -16830,7 +18322,7 @@ withConnectTimeout(connectTimeout)
 withCustomTags(customTags)
 ```
 
-"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default."
+"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nDeprecated: Use Tags instead."
 
 ### fn spec.telemetry.tracing.withCustomTagsMixin
 
@@ -16838,7 +18330,7 @@ withCustomTags(customTags)
 withCustomTagsMixin(customTags)
 ```
 
-"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default."
+"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nDeprecated: Use Tags instead."
 
 **Note:** This function appends passed data to existing values
 
@@ -16849,6 +18341,24 @@ withSamplingRate(samplingRate)
 ```
 
 "SamplingRate controls the rate at which traffic will be\nselected for tracing if no prior sampling decision has been made.\nDefaults to 100, valid values [0-100]. 100 indicates 100% sampling.\n\nOnly one of SamplingRate or SamplingFraction may be specified.\nIf neither field is specified, all requests will be sampled."
+
+### fn spec.telemetry.tracing.withTags
+
+```ts
+withTags(tags)
+```
+
+"Tags defines the custom tags to add to each span.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nSame keys take precedence over CustomTags."
+
+### fn spec.telemetry.tracing.withTagsMixin
+
+```ts
+withTagsMixin(tags)
+```
+
+"Tags defines the custom tags to add to each span.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nSame keys take precedence over CustomTags."
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.telemetry.tracing.provider
 
@@ -16887,6 +18397,14 @@ withPort(port)
 ```
 
 "Port defines the port the provider service is exposed on.\nDeprecated: Use BackendRefs instead."
+
+### fn spec.telemetry.tracing.provider.withServiceName
+
+```ts
+withServiceName(serviceName)
+```
+
+"ServiceName defines the service name to use in tracing configuration.\nIf not set, Envoy Gateway will use a default service name set as\n\"name.namespace\" (e.g., \"my-gateway.default\").\nNote: This field is only supported for OpenTelemetry and Datadog tracing providers.\nFor Zipkin, the service name in traces is always derived from the Envoy --service-cluster flag\n(typically \"namespace/name\" format). Setting this field has no effect for Zipkin."
 
 ### fn spec.telemetry.tracing.provider.withType
 
@@ -16992,6 +18510,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.telemetry.tracing.provider.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.telemetry.tracing.provider.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -17040,6 +18566,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.telemetry.tracing.provider.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.telemetry.tracing.provider.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.telemetry.tracing.provider.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -17060,6 +18598,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.telemetry.tracing.provider.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.telemetry.tracing.provider.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.telemetry.tracing.provider.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.telemetry.tracing.provider.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -17071,6 +18629,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.telemetry.tracing.provider.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.telemetry.tracing.provider.backendSettings.dns.withRespectDnsTtl
 
@@ -17084,6 +18650,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.telemetry.tracing.provider.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -17095,6 +18669,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.active.withInterval
 
@@ -17161,6 +18743,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.active.http.withMethod
 
@@ -17302,6 +18892,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.telemetry.tracing.provider.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -17378,6 +18976,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -17392,7 +19026,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -17434,7 +19068,7 @@ withTtl(ttl)
 
 ## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -17443,6 +19077,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.slowStart
 
@@ -17455,6 +19147,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.telemetry.tracing.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.telemetry.tracing.provider.backendSettings.proxyProtocol
 
@@ -17471,6 +19199,14 @@ withVersion(version)
 ## obj spec.telemetry.tracing.provider.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.telemetry.tracing.provider.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.telemetry.tracing.provider.backendSettings.retry.withNumRetries
 
@@ -17604,6 +19340,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.telemetry.tracing.provider.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.telemetry.tracing.provider.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -17623,6 +19367,66 @@ withConnectTimeout(connectTimeout)
 ```
 
 "The timeout for network connection establishment, including TCP and TLS handshakes.\nDefault: 10 seconds."
+
+## obj spec.telemetry.tracing.provider.openTelemetry
+
+"OpenTelemetry defines the OpenTelemetry tracing provider configuration"
+
+### fn spec.telemetry.tracing.provider.openTelemetry.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.tracing.provider.openTelemetry.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.tracing.provider.openTelemetry.withResourceAttributes
+
+```ts
+withResourceAttributes(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of traces.\nIt's recommended to follow semantic conventions: https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/"
+
+### fn spec.telemetry.tracing.provider.openTelemetry.withResourceAttributesMixin
+
+```ts
+withResourceAttributesMixin(resourceAttributes)
+```
+
+"ResourceAttributes is a set of labels that describe the source of traces.\nIt's recommended to follow semantic conventions: https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.tracing.provider.openTelemetry.headers
+
+"Headers is a list of additional headers to send with OTLP export requests.\nThese headers are added as gRPC initial metadata for the OTLP gRPC service."
+
+### fn spec.telemetry.tracing.provider.openTelemetry.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.telemetry.tracing.provider.openTelemetry.headers.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
 
 ## obj spec.telemetry.tracing.provider.zipkin
 
@@ -17646,7 +19450,7 @@ withEnable128BitTraceId(enable128BitTraceId)
 
 ## obj spec.telemetry.tracing.samplingFraction
 
-"SamplingFraction represents the fraction of requests that should be\nselected for tracing if no prior sampling decision has been made.\n\nOnly one of SamplingRate or SamplingFraction may be specified.\nIf neither field is specified, all requests will be sampled."
+"SamplingFraction represents the fraction of requests that should be\nselected for tracing if no prior sampling decision has been made."
 
 ### fn spec.telemetry.tracing.samplingFraction.withDenominator
 
@@ -17662,3 +19466,24 @@ withDenominator(denominator)
 withNumerator(numerator)
 ```
 
+
+
+## obj spec.telemetry.tracing.spanName
+
+"SpanName defines the name of the span which will be used for tracing.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\n\nIf not set, the span name is provider specific.\ne.g. Datadog use `ingress` as the default client span name,\nand `router <UPSTREAM_CLUSTER> egress` as the server span name."
+
+### fn spec.telemetry.tracing.spanName.withClient
+
+```ts
+withClient(client)
+```
+
+"Client defines operation name of the span which will be used for tracing."
+
+### fn spec.telemetry.tracing.spanName.withServer
+
+```ts
+withServer(server)
+```
+
+"Server defines the operation name of the upstream span which will be used for tracing."

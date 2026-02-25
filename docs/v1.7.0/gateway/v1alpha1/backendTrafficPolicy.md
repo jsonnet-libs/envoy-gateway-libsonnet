@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
+permalink: /v1.7.0/gateway/v1alpha1/backendTrafficPolicy/
 ---
 
 # gateway.v1alpha1.backendTrafficPolicy
@@ -32,8 +32,14 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
 * [`obj spec`](#obj-spec)
   * [`fn withCompression(compression)`](#fn-specwithcompression)
   * [`fn withCompressionMixin(compression)`](#fn-specwithcompressionmixin)
+  * [`fn withCompressor(compressor)`](#fn-specwithcompressor)
+  * [`fn withCompressorMixin(compressor)`](#fn-specwithcompressormixin)
+  * [`fn withHttpUpgrade(httpUpgrade)`](#fn-specwithhttpupgrade)
+  * [`fn withHttpUpgradeMixin(httpUpgrade)`](#fn-specwithhttpupgrademixin)
+  * [`fn withMergeType(mergeType)`](#fn-specwithmergetype)
   * [`fn withResponseOverride(responseOverride)`](#fn-specwithresponseoverride)
   * [`fn withResponseOverrideMixin(responseOverride)`](#fn-specwithresponseoverridemixin)
+  * [`fn withRoutingType(routingType)`](#fn-specwithroutingtype)
   * [`fn withTargetRefs(targetRefs)`](#fn-specwithtargetrefs)
   * [`fn withTargetRefsMixin(targetRefs)`](#fn-specwithtargetrefsmixin)
   * [`fn withTargetSelectors(targetSelectors)`](#fn-specwithtargetselectors)
@@ -45,17 +51,35 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
     * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-speccircuitbreakerwithmaxparallelretries)
     * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-speccircuitbreakerwithmaxpendingrequests)
     * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-speccircuitbreakerwithmaxrequestsperconnection)
+    * [`obj spec.circuitBreaker.perEndpoint`](#obj-speccircuitbreakerperendpoint)
+      * [`fn withMaxConnections(maxConnections)`](#fn-speccircuitbreakerperendpointwithmaxconnections)
   * [`obj spec.compression`](#obj-speccompression)
     * [`fn withBrotli(brotli)`](#fn-speccompressionwithbrotli)
     * [`fn withBrotliMixin(brotli)`](#fn-speccompressionwithbrotlimixin)
     * [`fn withGzip(gzip)`](#fn-speccompressionwithgzip)
     * [`fn withGzipMixin(gzip)`](#fn-speccompressionwithgzipmixin)
+    * [`fn withMinContentLength(minContentLength)`](#fn-speccompressionwithmincontentlength)
     * [`fn withType(type)`](#fn-speccompressionwithtype)
+    * [`fn withZstd(zstd)`](#fn-speccompressionwithzstd)
+    * [`fn withZstdMixin(zstd)`](#fn-speccompressionwithzstdmixin)
+  * [`obj spec.compressor`](#obj-speccompressor)
+    * [`fn withBrotli(brotli)`](#fn-speccompressorwithbrotli)
+    * [`fn withBrotliMixin(brotli)`](#fn-speccompressorwithbrotlimixin)
+    * [`fn withGzip(gzip)`](#fn-speccompressorwithgzip)
+    * [`fn withGzipMixin(gzip)`](#fn-speccompressorwithgzipmixin)
+    * [`fn withMinContentLength(minContentLength)`](#fn-speccompressorwithmincontentlength)
+    * [`fn withType(type)`](#fn-speccompressorwithtype)
+    * [`fn withZstd(zstd)`](#fn-speccompressorwithzstd)
+    * [`fn withZstdMixin(zstd)`](#fn-speccompressorwithzstdmixin)
   * [`obj spec.connection`](#obj-specconnection)
     * [`fn withBufferLimit(bufferLimit)`](#fn-specconnectionwithbufferlimit)
     * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specconnectionwithsocketbufferlimit)
+    * [`obj spec.connection.preconnect`](#obj-specconnectionpreconnect)
+      * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specconnectionpreconnectwithperendpointpercent)
+      * [`fn withPredictivePercent(predictivePercent)`](#fn-specconnectionpreconnectwithpredictivepercent)
   * [`obj spec.dns`](#obj-specdns)
     * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specdnswithdnsrefreshrate)
+    * [`fn withLookupFamily(lookupFamily)`](#fn-specdnswithlookupfamily)
     * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specdnswithrespectdnsttl)
   * [`obj spec.faultInjection`](#obj-specfaultinjection)
     * [`obj spec.faultInjection.abort`](#obj-specfaultinjectionabort)
@@ -66,8 +90,10 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
       * [`fn withFixedDelay(fixedDelay)`](#fn-specfaultinjectiondelaywithfixeddelay)
       * [`fn withPercentage(percentage)`](#fn-specfaultinjectiondelaywithpercentage)
   * [`obj spec.healthCheck`](#obj-spechealthcheck)
+    * [`fn withPanicThreshold(panicThreshold)`](#fn-spechealthcheckwithpanicthreshold)
     * [`obj spec.healthCheck.active`](#obj-spechealthcheckactive)
       * [`fn withHealthyThreshold(healthyThreshold)`](#fn-spechealthcheckactivewithhealthythreshold)
+      * [`fn withInitialJitter(initialJitter)`](#fn-spechealthcheckactivewithinitialjitter)
       * [`fn withInterval(interval)`](#fn-spechealthcheckactivewithinterval)
       * [`fn withTimeout(timeout)`](#fn-spechealthcheckactivewithtimeout)
       * [`fn withType(type)`](#fn-spechealthcheckactivewithtype)
@@ -77,6 +103,7 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
       * [`obj spec.healthCheck.active.http`](#obj-spechealthcheckactivehttp)
         * [`fn withExpectedStatuses(expectedStatuses)`](#fn-spechealthcheckactivehttpwithexpectedstatuses)
         * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-spechealthcheckactivehttpwithexpectedstatusesmixin)
+        * [`fn withHostname(hostname)`](#fn-spechealthcheckactivehttpwithhostname)
         * [`fn withMethod(method)`](#fn-spechealthcheckactivehttpwithmethod)
         * [`fn withPath(path)`](#fn-spechealthcheckactivehttpwithpath)
         * [`obj spec.healthCheck.active.http.expectedResponse`](#obj-spechealthcheckactivehttpexpectedresponse)
@@ -97,6 +124,7 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
       * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-spechealthcheckpassivewithconsecutive5xxerrors)
       * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-spechealthcheckpassivewithconsecutivegatewayerrors)
       * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-spechealthcheckpassivewithconsecutivelocaloriginfailures)
+      * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-spechealthcheckpassivewithfailurepercentagethreshold)
       * [`fn withInterval(interval)`](#fn-spechealthcheckpassivewithinterval)
       * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-spechealthcheckpassivewithmaxejectionpercent)
       * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-spechealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -105,9 +133,17 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
     * [`fn withInitialStreamWindowSize(initialStreamWindowSize)`](#fn-spechttp2withinitialstreamwindowsize)
     * [`fn withMaxConcurrentStreams(maxConcurrentStreams)`](#fn-spechttp2withmaxconcurrentstreams)
     * [`fn withOnInvalidMessage(onInvalidMessage)`](#fn-spechttp2withoninvalidmessage)
+  * [`obj spec.httpUpgrade`](#obj-spechttpupgrade)
+    * [`fn withType(type)`](#fn-spechttpupgradewithtype)
+    * [`obj spec.httpUpgrade.connect`](#obj-spechttpupgradeconnect)
+      * [`fn withTerminate(terminate)`](#fn-spechttpupgradeconnectwithterminate)
   * [`obj spec.loadBalancer`](#obj-specloadbalancer)
     * [`fn withType(type)`](#fn-specloadbalancerwithtype)
     * [`obj spec.loadBalancer.consistentHash`](#obj-specloadbalancerconsistenthash)
+      * [`fn withHeaders(headers)`](#fn-specloadbalancerconsistenthashwithheaders)
+      * [`fn withHeadersMixin(headers)`](#fn-specloadbalancerconsistenthashwithheadersmixin)
+      * [`fn withQueryParams(queryParams)`](#fn-specloadbalancerconsistenthashwithqueryparams)
+      * [`fn withQueryParamsMixin(queryParams)`](#fn-specloadbalancerconsistenthashwithqueryparamsmixin)
       * [`fn withTableSize(tableSize)`](#fn-specloadbalancerconsistenthashwithtablesize)
       * [`fn withType(type)`](#fn-specloadbalancerconsistenthashwithtype)
       * [`obj spec.loadBalancer.consistentHash.cookie`](#obj-specloadbalancerconsistenthashcookie)
@@ -117,8 +153,23 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
         * [`fn withTtl(ttl)`](#fn-specloadbalancerconsistenthashcookiewithttl)
       * [`obj spec.loadBalancer.consistentHash.header`](#obj-specloadbalancerconsistenthashheader)
         * [`fn withName(name)`](#fn-specloadbalancerconsistenthashheaderwithname)
+      * [`obj spec.loadBalancer.consistentHash.headers`](#obj-specloadbalancerconsistenthashheaders)
+        * [`fn withName(name)`](#fn-specloadbalancerconsistenthashheaderswithname)
+      * [`obj spec.loadBalancer.consistentHash.queryParams`](#obj-specloadbalancerconsistenthashqueryparams)
+        * [`fn withName(name)`](#fn-specloadbalancerconsistenthashqueryparamswithname)
+    * [`obj spec.loadBalancer.endpointOverride`](#obj-specloadbalancerendpointoverride)
+      * [`fn withExtractFrom(extractFrom)`](#fn-specloadbalancerendpointoverridewithextractfrom)
+      * [`fn withExtractFromMixin(extractFrom)`](#fn-specloadbalancerendpointoverridewithextractfrommixin)
+      * [`obj spec.loadBalancer.endpointOverride.extractFrom`](#obj-specloadbalancerendpointoverrideextractfrom)
+        * [`fn withHeader(header)`](#fn-specloadbalancerendpointoverrideextractfromwithheader)
     * [`obj spec.loadBalancer.slowStart`](#obj-specloadbalancerslowstart)
       * [`fn withWindow(window)`](#fn-specloadbalancerslowstartwithwindow)
+    * [`obj spec.loadBalancer.zoneAware`](#obj-specloadbalancerzoneaware)
+      * [`obj spec.loadBalancer.zoneAware.preferLocal`](#obj-specloadbalancerzoneawarepreferlocal)
+        * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+        * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specloadbalancerzoneawarepreferlocalwithpercentageenabled)
+        * [`obj spec.loadBalancer.zoneAware.preferLocal.force`](#obj-specloadbalancerzoneawarepreferlocalforce)
+          * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
   * [`obj spec.proxyProtocol`](#obj-specproxyprotocol)
     * [`fn withVersion(version)`](#fn-specproxyprotocolwithversion)
   * [`obj spec.rateLimit`](#obj-specratelimit)
@@ -129,14 +180,32 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
       * [`obj spec.rateLimit.global.rules`](#obj-specratelimitglobalrules)
         * [`fn withClientSelectors(clientSelectors)`](#fn-specratelimitglobalruleswithclientselectors)
         * [`fn withClientSelectorsMixin(clientSelectors)`](#fn-specratelimitglobalruleswithclientselectorsmixin)
+        * [`fn withShadowMode(shadowMode)`](#fn-specratelimitglobalruleswithshadowmode)
+        * [`fn withShared(shared)`](#fn-specratelimitglobalruleswithshared)
         * [`obj spec.rateLimit.global.rules.clientSelectors`](#obj-specratelimitglobalrulesclientselectors)
           * [`fn withHeaders(headers)`](#fn-specratelimitglobalrulesclientselectorswithheaders)
           * [`fn withHeadersMixin(headers)`](#fn-specratelimitglobalrulesclientselectorswithheadersmixin)
+          * [`fn withMethods(methods)`](#fn-specratelimitglobalrulesclientselectorswithmethods)
+          * [`fn withMethodsMixin(methods)`](#fn-specratelimitglobalrulesclientselectorswithmethodsmixin)
+          * [`fn withQueryParams(queryParams)`](#fn-specratelimitglobalrulesclientselectorswithqueryparams)
+          * [`fn withQueryParamsMixin(queryParams)`](#fn-specratelimitglobalrulesclientselectorswithqueryparamsmixin)
           * [`obj spec.rateLimit.global.rules.clientSelectors.headers`](#obj-specratelimitglobalrulesclientselectorsheaders)
             * [`fn withInvert(invert)`](#fn-specratelimitglobalrulesclientselectorsheaderswithinvert)
             * [`fn withName(name)`](#fn-specratelimitglobalrulesclientselectorsheaderswithname)
             * [`fn withType(type)`](#fn-specratelimitglobalrulesclientselectorsheaderswithtype)
             * [`fn withValue(value)`](#fn-specratelimitglobalrulesclientselectorsheaderswithvalue)
+          * [`obj spec.rateLimit.global.rules.clientSelectors.methods`](#obj-specratelimitglobalrulesclientselectorsmethods)
+            * [`fn withInvert(invert)`](#fn-specratelimitglobalrulesclientselectorsmethodswithinvert)
+            * [`fn withValue(value)`](#fn-specratelimitglobalrulesclientselectorsmethodswithvalue)
+          * [`obj spec.rateLimit.global.rules.clientSelectors.path`](#obj-specratelimitglobalrulesclientselectorspath)
+            * [`fn withInvert(invert)`](#fn-specratelimitglobalrulesclientselectorspathwithinvert)
+            * [`fn withType(type)`](#fn-specratelimitglobalrulesclientselectorspathwithtype)
+            * [`fn withValue(value)`](#fn-specratelimitglobalrulesclientselectorspathwithvalue)
+          * [`obj spec.rateLimit.global.rules.clientSelectors.queryParams`](#obj-specratelimitglobalrulesclientselectorsqueryparams)
+            * [`fn withInvert(invert)`](#fn-specratelimitglobalrulesclientselectorsqueryparamswithinvert)
+            * [`fn withName(name)`](#fn-specratelimitglobalrulesclientselectorsqueryparamswithname)
+            * [`fn withType(type)`](#fn-specratelimitglobalrulesclientselectorsqueryparamswithtype)
+            * [`fn withValue(value)`](#fn-specratelimitglobalrulesclientselectorsqueryparamswithvalue)
           * [`obj spec.rateLimit.global.rules.clientSelectors.sourceCIDR`](#obj-specratelimitglobalrulesclientselectorssourcecidr)
             * [`fn withType(type)`](#fn-specratelimitglobalrulesclientselectorssourcecidrwithtype)
             * [`fn withValue(value)`](#fn-specratelimitglobalrulesclientselectorssourcecidrwithvalue)
@@ -162,14 +231,32 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
       * [`obj spec.rateLimit.local.rules`](#obj-specratelimitlocalrules)
         * [`fn withClientSelectors(clientSelectors)`](#fn-specratelimitlocalruleswithclientselectors)
         * [`fn withClientSelectorsMixin(clientSelectors)`](#fn-specratelimitlocalruleswithclientselectorsmixin)
+        * [`fn withShadowMode(shadowMode)`](#fn-specratelimitlocalruleswithshadowmode)
+        * [`fn withShared(shared)`](#fn-specratelimitlocalruleswithshared)
         * [`obj spec.rateLimit.local.rules.clientSelectors`](#obj-specratelimitlocalrulesclientselectors)
           * [`fn withHeaders(headers)`](#fn-specratelimitlocalrulesclientselectorswithheaders)
           * [`fn withHeadersMixin(headers)`](#fn-specratelimitlocalrulesclientselectorswithheadersmixin)
+          * [`fn withMethods(methods)`](#fn-specratelimitlocalrulesclientselectorswithmethods)
+          * [`fn withMethodsMixin(methods)`](#fn-specratelimitlocalrulesclientselectorswithmethodsmixin)
+          * [`fn withQueryParams(queryParams)`](#fn-specratelimitlocalrulesclientselectorswithqueryparams)
+          * [`fn withQueryParamsMixin(queryParams)`](#fn-specratelimitlocalrulesclientselectorswithqueryparamsmixin)
           * [`obj spec.rateLimit.local.rules.clientSelectors.headers`](#obj-specratelimitlocalrulesclientselectorsheaders)
             * [`fn withInvert(invert)`](#fn-specratelimitlocalrulesclientselectorsheaderswithinvert)
             * [`fn withName(name)`](#fn-specratelimitlocalrulesclientselectorsheaderswithname)
             * [`fn withType(type)`](#fn-specratelimitlocalrulesclientselectorsheaderswithtype)
             * [`fn withValue(value)`](#fn-specratelimitlocalrulesclientselectorsheaderswithvalue)
+          * [`obj spec.rateLimit.local.rules.clientSelectors.methods`](#obj-specratelimitlocalrulesclientselectorsmethods)
+            * [`fn withInvert(invert)`](#fn-specratelimitlocalrulesclientselectorsmethodswithinvert)
+            * [`fn withValue(value)`](#fn-specratelimitlocalrulesclientselectorsmethodswithvalue)
+          * [`obj spec.rateLimit.local.rules.clientSelectors.path`](#obj-specratelimitlocalrulesclientselectorspath)
+            * [`fn withInvert(invert)`](#fn-specratelimitlocalrulesclientselectorspathwithinvert)
+            * [`fn withType(type)`](#fn-specratelimitlocalrulesclientselectorspathwithtype)
+            * [`fn withValue(value)`](#fn-specratelimitlocalrulesclientselectorspathwithvalue)
+          * [`obj spec.rateLimit.local.rules.clientSelectors.queryParams`](#obj-specratelimitlocalrulesclientselectorsqueryparams)
+            * [`fn withInvert(invert)`](#fn-specratelimitlocalrulesclientselectorsqueryparamswithinvert)
+            * [`fn withName(name)`](#fn-specratelimitlocalrulesclientselectorsqueryparamswithname)
+            * [`fn withType(type)`](#fn-specratelimitlocalrulesclientselectorsqueryparamswithtype)
+            * [`fn withValue(value)`](#fn-specratelimitlocalrulesclientselectorsqueryparamswithvalue)
           * [`obj spec.rateLimit.local.rules.clientSelectors.sourceCIDR`](#obj-specratelimitlocalrulesclientselectorssourcecidr)
             * [`fn withType(type)`](#fn-specratelimitlocalrulesclientselectorssourcecidrwithtype)
             * [`fn withValue(value)`](#fn-specratelimitlocalrulesclientselectorssourcecidrwithvalue)
@@ -189,6 +276,8 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
         * [`obj spec.rateLimit.local.rules.limit`](#obj-specratelimitlocalruleslimit)
           * [`fn withRequests(requests)`](#fn-specratelimitlocalruleslimitwithrequests)
           * [`fn withUnit(unit)`](#fn-specratelimitlocalruleslimitwithunit)
+  * [`obj spec.requestBuffer`](#obj-specrequestbuffer)
+    * [`fn withLimit(limit)`](#fn-specrequestbufferwithlimit)
   * [`obj spec.responseOverride`](#obj-specresponseoverride)
     * [`obj spec.responseOverride.match`](#obj-specresponseoverridematch)
       * [`fn withStatusCodes(statusCodes)`](#fn-specresponseoverridematchwithstatuscodes)
@@ -199,6 +288,15 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
         * [`obj spec.responseOverride.match.statusCodes.range`](#obj-specresponseoverridematchstatuscodesrange)
           * [`fn withEnd(end)`](#fn-specresponseoverridematchstatuscodesrangewithend)
           * [`fn withStart(start)`](#fn-specresponseoverridematchstatuscodesrangewithstart)
+    * [`obj spec.responseOverride.redirect`](#obj-specresponseoverrideredirect)
+      * [`fn withHostname(hostname)`](#fn-specresponseoverrideredirectwithhostname)
+      * [`fn withPort(port)`](#fn-specresponseoverrideredirectwithport)
+      * [`fn withScheme(scheme)`](#fn-specresponseoverrideredirectwithscheme)
+      * [`fn withStatusCode(statusCode)`](#fn-specresponseoverrideredirectwithstatuscode)
+      * [`obj spec.responseOverride.redirect.path`](#obj-specresponseoverrideredirectpath)
+        * [`fn withReplaceFullPath(replaceFullPath)`](#fn-specresponseoverrideredirectpathwithreplacefullpath)
+        * [`fn withReplacePrefixMatch(replacePrefixMatch)`](#fn-specresponseoverrideredirectpathwithreplaceprefixmatch)
+        * [`fn withType(type)`](#fn-specresponseoverrideredirectpathwithtype)
     * [`obj spec.responseOverride.response`](#obj-specresponseoverrideresponse)
       * [`fn withContentType(contentType)`](#fn-specresponseoverrideresponsewithcontenttype)
       * [`fn withStatusCode(statusCode)`](#fn-specresponseoverrideresponsewithstatuscode)
@@ -209,7 +307,21 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
           * [`fn withGroup(group)`](#fn-specresponseoverrideresponsebodyvaluerefwithgroup)
           * [`fn withKind(kind)`](#fn-specresponseoverrideresponsebodyvaluerefwithkind)
           * [`fn withName(name)`](#fn-specresponseoverrideresponsebodyvaluerefwithname)
+      * [`obj spec.responseOverride.response.header`](#obj-specresponseoverrideresponseheader)
+        * [`fn withAdd(add)`](#fn-specresponseoverrideresponseheaderwithadd)
+        * [`fn withAddMixin(add)`](#fn-specresponseoverrideresponseheaderwithaddmixin)
+        * [`fn withRemove(remove)`](#fn-specresponseoverrideresponseheaderwithremove)
+        * [`fn withRemoveMixin(remove)`](#fn-specresponseoverrideresponseheaderwithremovemixin)
+        * [`fn withSet(set)`](#fn-specresponseoverrideresponseheaderwithset)
+        * [`fn withSetMixin(set)`](#fn-specresponseoverrideresponseheaderwithsetmixin)
+        * [`obj spec.responseOverride.response.header.add`](#obj-specresponseoverrideresponseheaderadd)
+          * [`fn withName(name)`](#fn-specresponseoverrideresponseheaderaddwithname)
+          * [`fn withValue(value)`](#fn-specresponseoverrideresponseheaderaddwithvalue)
+        * [`obj spec.responseOverride.response.header.set`](#obj-specresponseoverrideresponseheaderset)
+          * [`fn withName(name)`](#fn-specresponseoverrideresponseheadersetwithname)
+          * [`fn withValue(value)`](#fn-specresponseoverrideresponseheadersetwithvalue)
   * [`obj spec.retry`](#obj-specretry)
+    * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specretrywithnumattemptsperpriority)
     * [`fn withNumRetries(numRetries)`](#fn-specretrywithnumretries)
     * [`obj spec.retry.perRetry`](#obj-specretryperretry)
       * [`fn withTimeout(timeout)`](#fn-specretryperretrywithtimeout)
@@ -234,16 +346,38 @@ permalink: /v1.3.0/gateway/v1alpha1/backendTrafficPolicy/
   * [`obj spec.targetSelectors`](#obj-spectargetselectors)
     * [`fn withGroup(group)`](#fn-spectargetselectorswithgroup)
     * [`fn withKind(kind)`](#fn-spectargetselectorswithkind)
+    * [`fn withMatchExpressions(matchExpressions)`](#fn-spectargetselectorswithmatchexpressions)
+    * [`fn withMatchExpressionsMixin(matchExpressions)`](#fn-spectargetselectorswithmatchexpressionsmixin)
     * [`fn withMatchLabels(matchLabels)`](#fn-spectargetselectorswithmatchlabels)
     * [`fn withMatchLabelsMixin(matchLabels)`](#fn-spectargetselectorswithmatchlabelsmixin)
+    * [`obj spec.targetSelectors.matchExpressions`](#obj-spectargetselectorsmatchexpressions)
+      * [`fn withKey(key)`](#fn-spectargetselectorsmatchexpressionswithkey)
+      * [`fn withOperator(operator)`](#fn-spectargetselectorsmatchexpressionswithoperator)
+      * [`fn withValues(values)`](#fn-spectargetselectorsmatchexpressionswithvalues)
+      * [`fn withValuesMixin(values)`](#fn-spectargetselectorsmatchexpressionswithvaluesmixin)
   * [`obj spec.tcpKeepalive`](#obj-spectcpkeepalive)
     * [`fn withIdleTime(idleTime)`](#fn-spectcpkeepalivewithidletime)
     * [`fn withInterval(interval)`](#fn-spectcpkeepalivewithinterval)
     * [`fn withProbes(probes)`](#fn-spectcpkeepalivewithprobes)
+  * [`obj spec.telemetry`](#obj-spectelemetry)
+    * [`obj spec.telemetry.metrics`](#obj-spectelemetrymetrics)
+      * [`fn withRouteStatName(routeStatName)`](#fn-spectelemetrymetricswithroutestatname)
+    * [`obj spec.telemetry.tracing`](#obj-spectelemetrytracing)
+      * [`fn withCustomTags(customTags)`](#fn-spectelemetrytracingwithcustomtags)
+      * [`fn withCustomTagsMixin(customTags)`](#fn-spectelemetrytracingwithcustomtagsmixin)
+      * [`fn withTags(tags)`](#fn-spectelemetrytracingwithtags)
+      * [`fn withTagsMixin(tags)`](#fn-spectelemetrytracingwithtagsmixin)
+      * [`obj spec.telemetry.tracing.samplingFraction`](#obj-spectelemetrytracingsamplingfraction)
+        * [`fn withDenominator(denominator)`](#fn-spectelemetrytracingsamplingfractionwithdenominator)
+        * [`fn withNumerator(numerator)`](#fn-spectelemetrytracingsamplingfractionwithnumerator)
+      * [`obj spec.telemetry.tracing.spanName`](#obj-spectelemetrytracingspanname)
+        * [`fn withClient(client)`](#fn-spectelemetrytracingspannamewithclient)
+        * [`fn withServer(server)`](#fn-spectelemetrytracingspannamewithserver)
   * [`obj spec.timeout`](#obj-spectimeout)
     * [`obj spec.timeout.http`](#obj-spectimeouthttp)
       * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-spectimeouthttpwithconnectionidletimeout)
       * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-spectimeouthttpwithmaxconnectionduration)
+      * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-spectimeouthttpwithmaxstreamduration)
       * [`fn withRequestTimeout(requestTimeout)`](#fn-spectimeouthttpwithrequesttimeout)
     * [`obj spec.timeout.tcp`](#obj-spectimeouttcp)
       * [`fn withConnectTimeout(connectTimeout)`](#fn-spectimeouttcpwithconnecttimeout)
@@ -432,7 +566,7 @@ withUid(uid)
 withCompression(compression)
 ```
 
-"The compression config for the http streams."
+"The compression config for the http streams.\nDeprecated: Use Compressor instead."
 
 ### fn spec.withCompressionMixin
 
@@ -440,9 +574,53 @@ withCompression(compression)
 withCompressionMixin(compression)
 ```
 
-"The compression config for the http streams."
+"The compression config for the http streams.\nDeprecated: Use Compressor instead."
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.withCompressor
+
+```ts
+withCompressor(compressor)
+```
+
+"The compressor config for the http streams.\nThis provides more granular control over compression configuration.\nOrder matters: The first compressor in the list is preferred when q-values in Accept-Encoding are equal."
+
+### fn spec.withCompressorMixin
+
+```ts
+withCompressorMixin(compressor)
+```
+
+"The compressor config for the http streams.\nThis provides more granular control over compression configuration.\nOrder matters: The first compressor in the list is preferred when q-values in Accept-Encoding are equal."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.withHttpUpgrade
+
+```ts
+withHttpUpgrade(httpUpgrade)
+```
+
+"HTTPUpgrade defines the configuration for HTTP protocol upgrades.\nIf not specified, the default upgrade configuration(websocket) will be used."
+
+### fn spec.withHttpUpgradeMixin
+
+```ts
+withHttpUpgradeMixin(httpUpgrade)
+```
+
+"HTTPUpgrade defines the configuration for HTTP protocol upgrades.\nIf not specified, the default upgrade configuration(websocket) will be used."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.withMergeType
+
+```ts
+withMergeType(mergeType)
+```
+
+"MergeType determines how this configuration is merged with existing BackendTrafficPolicy\nconfigurations targeting a parent resource. When set, this configuration will be merged\ninto a parent BackendTrafficPolicy (i.e. the one targeting a Gateway or Listener).\nThis field cannot be set when targeting a parent resource (Gateway).\nIf unset, no merging occurs, and only the most specific configuration takes effect."
 
 ### fn spec.withResponseOverride
 
@@ -461,6 +639,14 @@ withResponseOverrideMixin(responseOverride)
 "ResponseOverride defines the configuration to override specific responses with a custom one.\nIf multiple configurations are specified, the first one to match wins."
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.withRoutingType
+
+```ts
+withRoutingType(routingType)
+```
+
+"RoutingType can be set to \"Service\" to use the Service Cluster IP for routing to the backend,\nor it can be set to \"Endpoint\" to use Endpoint routing.\nWhen specified, this overrides the EnvoyProxy-level setting for the relevant targeRefs.\nIf not specified, the EnvoyProxy-level setting is used."
 
 ### fn spec.withTargetRefs
 
@@ -550,9 +736,21 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.compression
 
-"The compression config for the http streams."
+"The compression config for the http streams.\nDeprecated: Use Compressor instead."
 
 ### fn spec.compression.withBrotli
 
@@ -590,6 +788,14 @@ withGzipMixin(gzip)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.compression.withMinContentLength
+
+```ts
+withMinContentLength(minContentLength)
+```
+
+"MinContentLength defines the minimum response size in bytes to apply compression.\nResponses smaller than this threshold will not be compressed.\nMust be at least 30 bytes as enforced by Envoy Proxy.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 30 bytes"
+
 ### fn spec.compression.withType
 
 ```ts
@@ -597,6 +803,98 @@ withType(type)
 ```
 
 "CompressorType defines the compressor type to use for compression."
+
+### fn spec.compression.withZstd
+
+```ts
+withZstd(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+### fn spec.compression.withZstdMixin
+
+```ts
+withZstdMixin(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.compressor
+
+"The compressor config for the http streams.\nThis provides more granular control over compression configuration.\nOrder matters: The first compressor in the list is preferred when q-values in Accept-Encoding are equal."
+
+### fn spec.compressor.withBrotli
+
+```ts
+withBrotli(brotli)
+```
+
+"The configuration for Brotli compressor."
+
+### fn spec.compressor.withBrotliMixin
+
+```ts
+withBrotliMixin(brotli)
+```
+
+"The configuration for Brotli compressor."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.compressor.withGzip
+
+```ts
+withGzip(gzip)
+```
+
+"The configuration for GZIP compressor."
+
+### fn spec.compressor.withGzipMixin
+
+```ts
+withGzipMixin(gzip)
+```
+
+"The configuration for GZIP compressor."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.compressor.withMinContentLength
+
+```ts
+withMinContentLength(minContentLength)
+```
+
+"MinContentLength defines the minimum response size in bytes to apply compression.\nResponses smaller than this threshold will not be compressed.\nMust be at least 30 bytes as enforced by Envoy Proxy.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 30 bytes"
+
+### fn spec.compressor.withType
+
+```ts
+withType(type)
+```
+
+"CompressorType defines the compressor type to use for compression."
+
+### fn spec.compressor.withZstd
+
+```ts
+withZstd(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+### fn spec.compressor.withZstdMixin
+
+```ts
+withZstdMixin(zstd)
+```
+
+"The configuration for Zstd compressor."
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.connection
 
@@ -618,6 +916,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.dns
 
 "DNS includes dns resolution settings."
@@ -629,6 +947,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.dns.withRespectDnsTtl
 
@@ -694,6 +1020,14 @@ withPercentage(percentage)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.healthCheck.active
 
 "Active health check configuration"
@@ -705,6 +1039,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.healthCheck.active.withInterval
 
@@ -771,6 +1113,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.healthCheck.active.http.withMethod
 
@@ -912,6 +1262,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.healthCheck.passive.withInterval
 
 ```ts
@@ -972,6 +1330,30 @@ withOnInvalidMessage(onInvalidMessage)
 
 "OnInvalidMessage determines if Envoy will terminate the connection or just the offending stream in the event of HTTP messaging error\nIt's recommended for L2 Envoy deployments to set this value to TerminateStream.\nhttps://www.envoyproxy.io/docs/envoy/latest/configuration/best_practices/level_two\nDefault: TerminateConnection"
 
+## obj spec.httpUpgrade
+
+"HTTPUpgrade defines the configuration for HTTP protocol upgrades.\nIf not specified, the default upgrade configuration(websocket) will be used."
+
+### fn spec.httpUpgrade.withType
+
+```ts
+withType(type)
+```
+
+"Type is the case-insensitive type of protocol upgrade.\ne.g. `websocket`, `CONNECT`, `spdy/3.1` etc."
+
+## obj spec.httpUpgrade.connect
+
+"Connect specifies the configuration for the CONNECT config.\nThis is allowed only when type is CONNECT."
+
+### fn spec.httpUpgrade.connect.withTerminate
+
+```ts
+withTerminate(terminate)
+```
+
+"Terminate the CONNECT request, and forwards the payload as raw TCP data."
+
 ## obj spec.loadBalancer
 
 "LoadBalancer policy to apply when routing traffic from the gateway to\nthe backend endpoints. Defaults to `LeastRequest`."
@@ -988,6 +1370,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -1002,7 +1420,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.loadBalancer.consistentHash.cookie
 
@@ -1044,7 +1462,7 @@ withTtl(ttl)
 
 ## obj spec.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.loadBalancer.consistentHash.header.withName
 
@@ -1053,6 +1471,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.loadBalancer.slowStart
 
@@ -1065,6 +1541,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.proxyProtocol
 
@@ -1088,7 +1600,7 @@ withVersion(version)
 withType(type)
 ```
 
-"Type decides the scope for the RateLimits.\nValid RateLimitType values are \"Global\" or \"Local\"."
+"Type decides the scope for the RateLimits.\nValid RateLimitType values are \"Global\" or \"Local\".\n\nDeprecated: Use Global and/or Local fields directly instead. Both can be specified simultaneously for combined rate limiting."
 
 ## obj spec.rateLimit.global
 
@@ -1134,6 +1646,22 @@ withClientSelectorsMixin(clientSelectors)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.rateLimit.global.rules.withShadowMode
+
+```ts
+withShadowMode(shadowMode)
+```
+
+"ShadowMode indicates whether this rate-limit rule runs in shadow mode.\nWhen enabled, all rate-limiting operations are performed (cache lookups,\ncounter updates, telemetry generation), but the outcome is never enforced.\nThe request always succeeds, even if the configured limit is exceeded.\n\nOnly supported for Global Rate Limits."
+
+### fn spec.rateLimit.global.rules.withShared
+
+```ts
+withShared(shared)
+```
+
+"Shared determines whether this rate limit rule applies across all the policy targets.\nIf set to true, the rule is treated as a common bucket and is shared across all policy targets (xRoutes).\nDefault: false."
+
 ## obj spec.rateLimit.global.rules.clientSelectors
 
 "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit."
@@ -1144,7 +1672,7 @@ withClientSelectorsMixin(clientSelectors)
 withHeaders(headers)
 ```
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
 
 ### fn spec.rateLimit.global.rules.clientSelectors.withHeadersMixin
 
@@ -1152,13 +1680,49 @@ withHeaders(headers)
 withHeadersMixin(headers)
 ```
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.rateLimit.global.rules.clientSelectors.withMethods
+
+```ts
+withMethods(methods)
+```
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+### fn spec.rateLimit.global.rules.clientSelectors.withMethodsMixin
+
+```ts
+withMethodsMixin(methods)
+```
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.rateLimit.global.rules.clientSelectors.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
+
+### fn spec.rateLimit.global.rules.clientSelectors.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
 
 **Note:** This function appends passed data to existing values
 
 ## obj spec.rateLimit.global.rules.clientSelectors.headers
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
 
 ### fn spec.rateLimit.global.rules.clientSelectors.headers.withInvert
 
@@ -1174,7 +1738,7 @@ withInvert(invert)
 withName(name)
 ```
 
-"Name of the HTTP header."
+"Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header."
 
 ### fn spec.rateLimit.global.rules.clientSelectors.headers.withType
 
@@ -1190,11 +1754,95 @@ withType(type)
 withValue(value)
 ```
 
-"Value within the HTTP header. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered equivalent.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header."
+"Value within the HTTP header.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header."
+
+## obj spec.rateLimit.global.rules.clientSelectors.methods
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+### fn spec.rateLimit.global.rules.clientSelectors.methods.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted."
+
+### fn spec.rateLimit.global.rules.clientSelectors.methods.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the HTTP method."
+
+## obj spec.rateLimit.global.rules.clientSelectors.path
+
+"Path is the request path to match.\nSupport Exact, PathPrefix and RegularExpression match types."
+
+### fn spec.rateLimit.global.rules.clientSelectors.path.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted."
+
+### fn spec.rateLimit.global.rules.clientSelectors.path.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against the value of the path."
+
+### fn spec.rateLimit.global.rules.clientSelectors.path.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the HTTP path."
+
+## obj spec.rateLimit.global.rules.clientSelectors.queryParams
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
+
+### fn spec.rateLimit.global.rules.clientSelectors.queryParams.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the query parameter."
+
+### fn spec.rateLimit.global.rules.clientSelectors.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query parameter."
+
+### fn spec.rateLimit.global.rules.clientSelectors.queryParams.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against the value of the query parameter."
+
+### fn spec.rateLimit.global.rules.clientSelectors.queryParams.withValue
+
+```ts
+withValue(value)
+```
+
+"Value of the query parameter.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the query parameter."
 
 ## obj spec.rateLimit.global.rules.clientSelectors.sourceCIDR
 
-"SourceCIDR is the client IP Address range to match on.\nAt least one of headers or sourceCIDR condition must be specified."
+"SourceCIDR is the client IP Address range to match on."
 
 ### fn spec.rateLimit.global.rules.clientSelectors.sourceCIDR.withType
 
@@ -1314,7 +1962,7 @@ withRequests(requests)
 withUnit(unit)
 ```
 
-"RateLimitUnit specifies the intervals for setting rate limits.\nValid RateLimitUnit values are \"Second\", \"Minute\", \"Hour\", and \"Day\"."
+"RateLimitUnit specifies the intervals for setting rate limits.\nValid RateLimitUnit values are \"Second\", \"Minute\", \"Hour\", \"Day\", \"Month\" and \"Year\"."
 
 ## obj spec.rateLimit.local
 
@@ -1360,6 +2008,22 @@ withClientSelectorsMixin(clientSelectors)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.rateLimit.local.rules.withShadowMode
+
+```ts
+withShadowMode(shadowMode)
+```
+
+"ShadowMode indicates whether this rate-limit rule runs in shadow mode.\nWhen enabled, all rate-limiting operations are performed (cache lookups,\ncounter updates, telemetry generation), but the outcome is never enforced.\nThe request always succeeds, even if the configured limit is exceeded.\n\nOnly supported for Global Rate Limits."
+
+### fn spec.rateLimit.local.rules.withShared
+
+```ts
+withShared(shared)
+```
+
+"Shared determines whether this rate limit rule applies across all the policy targets.\nIf set to true, the rule is treated as a common bucket and is shared across all policy targets (xRoutes).\nDefault: false."
+
 ## obj spec.rateLimit.local.rules.clientSelectors
 
 "ClientSelectors holds the list of select conditions to select\nspecific clients using attributes from the traffic flow.\nAll individual select conditions must hold True for this rule\nand its limit to be applied.\n\nIf no client selectors are specified, the rule applies to all traffic of\nthe targeted Route.\n\nIf the policy targets a Gateway, the rule applies to each Route of the Gateway.\nPlease note that each Route has its own rate limit counters. For example,\nif a Gateway has two Routes, and the policy has a rule with limit 10rps,\neach Route will have its own 10rps limit."
@@ -1370,7 +2034,7 @@ withClientSelectorsMixin(clientSelectors)
 withHeaders(headers)
 ```
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
 
 ### fn spec.rateLimit.local.rules.clientSelectors.withHeadersMixin
 
@@ -1378,13 +2042,49 @@ withHeaders(headers)
 withHeadersMixin(headers)
 ```
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.rateLimit.local.rules.clientSelectors.withMethods
+
+```ts
+withMethods(methods)
+```
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+### fn spec.rateLimit.local.rules.clientSelectors.withMethodsMixin
+
+```ts
+withMethodsMixin(methods)
+```
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.rateLimit.local.rules.clientSelectors.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
+
+### fn spec.rateLimit.local.rules.clientSelectors.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
 
 **Note:** This function appends passed data to existing values
 
 ## obj spec.rateLimit.local.rules.clientSelectors.headers
 
-"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers.\nAt least one of headers or sourceCIDR condition must be specified."
+"Headers is a list of request headers to match. Multiple header values are ANDed together,\nmeaning, a request MUST match all the specified headers."
 
 ### fn spec.rateLimit.local.rules.clientSelectors.headers.withInvert
 
@@ -1400,7 +2100,7 @@ withInvert(invert)
 withName(name)
 ```
 
-"Name of the HTTP header."
+"Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header."
 
 ### fn spec.rateLimit.local.rules.clientSelectors.headers.withType
 
@@ -1416,11 +2116,95 @@ withType(type)
 withValue(value)
 ```
 
-"Value within the HTTP header. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered equivalent.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header."
+"Value within the HTTP header.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the header."
+
+## obj spec.rateLimit.local.rules.clientSelectors.methods
+
+"Methods is a list of request methods to match. Multiple method values are ORed together,\nmeaning, a request can match any one of the specified methods. If not specified, it matches all methods."
+
+### fn spec.rateLimit.local.rules.clientSelectors.methods.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted."
+
+### fn spec.rateLimit.local.rules.clientSelectors.methods.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the HTTP method."
+
+## obj spec.rateLimit.local.rules.clientSelectors.path
+
+"Path is the request path to match.\nSupport Exact, PathPrefix and RegularExpression match types."
+
+### fn spec.rateLimit.local.rules.clientSelectors.path.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted."
+
+### fn spec.rateLimit.local.rules.clientSelectors.path.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against the value of the path."
+
+### fn spec.rateLimit.local.rules.clientSelectors.path.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the HTTP path."
+
+## obj spec.rateLimit.local.rules.clientSelectors.queryParams
+
+"QueryParams is a list of query parameters to match. Multiple query parameter values are ANDed together,\nmeaning, a request MUST match all the specified query parameters."
+
+### fn spec.rateLimit.local.rules.clientSelectors.queryParams.withInvert
+
+```ts
+withInvert(invert)
+```
+
+"Invert specifies whether the value match result will be inverted.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the query parameter."
+
+### fn spec.rateLimit.local.rules.clientSelectors.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query parameter."
+
+### fn spec.rateLimit.local.rules.clientSelectors.queryParams.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against the value of the query parameter."
+
+### fn spec.rateLimit.local.rules.clientSelectors.queryParams.withValue
+
+```ts
+withValue(value)
+```
+
+"Value of the query parameter.\nDo not set this field when Type=\"Distinct\", implying matching on any/all unique\nvalues within the query parameter."
 
 ## obj spec.rateLimit.local.rules.clientSelectors.sourceCIDR
 
-"SourceCIDR is the client IP Address range to match on.\nAt least one of headers or sourceCIDR condition must be specified."
+"SourceCIDR is the client IP Address range to match on."
 
 ### fn spec.rateLimit.local.rules.clientSelectors.sourceCIDR.withType
 
@@ -1540,7 +2324,19 @@ withRequests(requests)
 withUnit(unit)
 ```
 
-"RateLimitUnit specifies the intervals for setting rate limits.\nValid RateLimitUnit values are \"Second\", \"Minute\", \"Hour\", and \"Day\"."
+"RateLimitUnit specifies the intervals for setting rate limits.\nValid RateLimitUnit values are \"Second\", \"Minute\", \"Hour\", \"Day\", \"Month\" and \"Year\"."
+
+## obj spec.requestBuffer
+
+"RequestBuffer allows the gateway to buffer and fully receive each request from a client before continuing to send the request\nupstream to the backends. This can be helpful to shield your backend servers from slow clients, and also to enforce a maximum size per request\nas any requests larger than the buffer size will be rejected.\n\nThis can have a negative performance impact so should only be enabled when necessary.\n\nWhen enabling this option, you should also configure your connection buffer size to account for these request buffers. There will also be an\nincrease in memory usage for Envoy that should be accounted for in your deployment settings."
+
+### fn spec.requestBuffer.withLimit
+
+```ts
+withLimit(limit)
+```
+
+"Limit specifies the maximum allowed size in bytes for each incoming request buffer.\nIf exceeded, the request will be rejected with HTTP 413 Content Too Large.\n\nAccepts values in resource.Quantity format (e.g., \"10Mi\", \"500Ki\")."
 
 ## obj spec.responseOverride
 
@@ -1608,6 +2404,70 @@ withStart(start)
 
 "Start of the range, including the start value."
 
+## obj spec.responseOverride.redirect
+
+"Redirect configuration"
+
+### fn spec.responseOverride.redirect.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname is the hostname to be used in the value of the `Location`\nheader in the response.\nWhen empty, the hostname in the `Host` header of the request is used."
+
+### fn spec.responseOverride.redirect.withPort
+
+```ts
+withPort(port)
+```
+
+"Port is the port to be used in the value of the `Location`\nheader in the response.\n\nIf redirect scheme is not-empty, the well-known port associated with the redirect scheme will be used.\nSpecifically \"http\" to port 80 and \"https\" to port 443. If the redirect scheme does not have a\nwell-known port or redirect scheme is empty, the listener port of the Gateway will be used.\n\nPort will not be added in the 'Location' header if scheme is HTTP and port is 80\nor scheme is HTTPS and port is 443."
+
+### fn spec.responseOverride.redirect.withScheme
+
+```ts
+withScheme(scheme)
+```
+
+"Scheme is the scheme to be used in the value of the `Location` header in\nthe response. When empty, the scheme of the request is used."
+
+### fn spec.responseOverride.redirect.withStatusCode
+
+```ts
+withStatusCode(statusCode)
+```
+
+"StatusCode is the HTTP status code to be used in response."
+
+## obj spec.responseOverride.redirect.path
+
+"Path defines parameters used to modify the path of the incoming request.\nThe modified path is then used to construct the `Location` header. When\nempty, the request path is used as-is.\nOnly ReplaceFullPath path modifier is supported currently."
+
+### fn spec.responseOverride.redirect.path.withReplaceFullPath
+
+```ts
+withReplaceFullPath(replaceFullPath)
+```
+
+"ReplaceFullPath specifies the value with which to replace the full path\nof a request during a rewrite or redirect."
+
+### fn spec.responseOverride.redirect.path.withReplacePrefixMatch
+
+```ts
+withReplacePrefixMatch(replacePrefixMatch)
+```
+
+"ReplacePrefixMatch specifies the value with which to replace the prefix\nmatch of a request during a rewrite or redirect. For example, a request\nto \"/foo/bar\" with a prefix match of \"/foo\" and a ReplacePrefixMatch\nof \"/xyz\" would be modified to \"/xyz/bar\".\n\nNote that this matches the behavior of the PathPrefix match type. This\nmatches full path elements. A path element refers to the list of labels\nin the path split by the `/` separator. When specified, a trailing `/` is\nignored. For example, the paths `/abc`, `/abc/`, and `/abc/def` would all\nmatch the prefix `/abc`, but the path `/abcd` would not.\n\nReplacePrefixMatch is only compatible with a `PathPrefix` HTTPRouteMatch.\nUsing any other HTTPRouteMatch type on the same HTTPRouteRule will result in\nthe implementation setting the Accepted Condition for the Route to `status: False`.\n\nRequest Path | Prefix Match | Replace Prefix | Modified Path"
+
+### fn spec.responseOverride.redirect.path.withType
+
+```ts
+withType(type)
+```
+
+"Type defines the type of path modifier. Additional types may be\nadded in a future release of the API.\n\nNote that values may be added to this enum, implementations\nmust ensure that unknown values will not cause a crash.\n\nUnknown values here must result in the implementation setting the\nAccepted Condition for the Route to `status: False`, with a\nReason of `UnsupportedValue`."
+
 ## obj spec.responseOverride.response
 
 "Response configuration."
@@ -1630,7 +2490,7 @@ withStatusCode(statusCode)
 
 ## obj spec.responseOverride.response.body
 
-"Body of the Custom Response"
+"Body of the Custom Response\nSupports Envoy command operators for dynamic content (see https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators)."
 
 ### fn spec.responseOverride.response.body.withInline
 
@@ -1676,9 +2536,115 @@ withName(name)
 
 "Name is the name of the referent."
 
+## obj spec.responseOverride.response.header
+
+"Header defines headers to add, set or remove from the response.\nThis allows the response policy to append, add or override headers\nof the final response before it is sent to a downstream client.\nNote: Header removal is not supported for responseOverride."
+
+### fn spec.responseOverride.response.header.withAdd
+
+```ts
+withAdd(add)
+```
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+### fn spec.responseOverride.response.header.withAddMixin
+
+```ts
+withAddMixin(add)
+```
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.responseOverride.response.header.withRemove
+
+```ts
+withRemove(remove)
+```
+
+"Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar"
+
+### fn spec.responseOverride.response.header.withRemoveMixin
+
+```ts
+withRemoveMixin(remove)
+```
+
+"Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.responseOverride.response.header.withSet
+
+```ts
+withSet(set)
+```
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+### fn spec.responseOverride.response.header.withSetMixin
+
+```ts
+withSetMixin(set)
+```
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.responseOverride.response.header.add
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+### fn spec.responseOverride.response.header.add.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.responseOverride.response.header.add.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.responseOverride.response.header.set
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+### fn spec.responseOverride.response.header.set.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.responseOverride.response.header.set.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
 ## obj spec.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.retry.withNumRetries
 
@@ -1852,6 +2818,24 @@ withKind(kind)
 
 "Kind is the resource kind that this selector targets."
 
+### fn spec.targetSelectors.withMatchExpressions
+
+```ts
+withMatchExpressions(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.withMatchExpressionsMixin
+
+```ts
+withMatchExpressionsMixin(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.targetSelectors.withMatchLabels
 
 ```ts
@@ -1867,6 +2851,44 @@ withMatchLabelsMixin(matchLabels)
 ```
 
 "MatchLabels are the set of label selectors for identifying the targeted resource"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.targetSelectors.matchExpressions
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.matchExpressions.withKey
+
+```ts
+withKey(key)
+```
+
+"key is the label key that the selector applies to."
+
+### fn spec.targetSelectors.matchExpressions.withOperator
+
+```ts
+withOperator(operator)
+```
+
+"operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+
+### fn spec.targetSelectors.matchExpressions.withValues
+
+```ts
+withValues(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
+
+### fn spec.targetSelectors.matchExpressions.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
 
 **Note:** This function appends passed data to existing values
 
@@ -1898,6 +2920,102 @@ withProbes(probes)
 
 "The total number of unacknowledged probes to send before deciding\nthe connection is dead.\nDefaults to 9."
 
+## obj spec.telemetry
+
+"Telemetry configures the telemetry settings for the policy target (Gateway or xRoute).\nThis will override the telemetry settings in the EnvoyProxy resource."
+
+## obj spec.telemetry.metrics
+
+"Metrics defines metrics configuration for the backend or Route."
+
+### fn spec.telemetry.metrics.withRouteStatName
+
+```ts
+withRouteStatName(routeStatName)
+```
+
+"RouteStatName defines the value of the Route stat_prefix, determining how the route stats are named.\nFor more details, see envoy docs: https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto#config-route-v3-route\nThe supported operators for this pattern are:\n%ROUTE_NAME%: name of Gateway API xRoute resource\n%ROUTE_NAMESPACE%: namespace of Gateway API xRoute resource\n%ROUTE_KIND%: kind of Gateway API xRoute resource\nExample: %ROUTE_KIND%/%ROUTE_NAMESPACE%/%ROUTE_NAME% => httproute/my-ns/my-route\nDisabled by default."
+
+## obj spec.telemetry.tracing
+
+"Tracing configures the tracing settings for the backend or HTTPRoute.\n\nThis takes precedence over EnvoyProxy tracing when set."
+
+### fn spec.telemetry.tracing.withCustomTags
+
+```ts
+withCustomTags(customTags)
+```
+
+"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nDeprecated: Use Tags instead."
+
+### fn spec.telemetry.tracing.withCustomTagsMixin
+
+```ts
+withCustomTagsMixin(customTags)
+```
+
+"CustomTags defines the custom tags to add to each span.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nDeprecated: Use Tags instead."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.telemetry.tracing.withTags
+
+```ts
+withTags(tags)
+```
+
+"Tags defines the custom tags to add to each span.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nSame keys take precedence over CustomTags."
+
+### fn spec.telemetry.tracing.withTagsMixin
+
+```ts
+withTagsMixin(tags)
+```
+
+"Tags defines the custom tags to add to each span.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\nIf provider is kubernetes, pod name and namespace are added by default.\n\nSame keys take precedence over CustomTags."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.telemetry.tracing.samplingFraction
+
+"SamplingFraction represents the fraction of requests that should be\nselected for tracing if no prior sampling decision has been made."
+
+### fn spec.telemetry.tracing.samplingFraction.withDenominator
+
+```ts
+withDenominator(denominator)
+```
+
+
+
+### fn spec.telemetry.tracing.samplingFraction.withNumerator
+
+```ts
+withNumerator(numerator)
+```
+
+
+
+## obj spec.telemetry.tracing.spanName
+
+"SpanName defines the name of the span which will be used for tracing.\nEnvoy [command operators](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators) may be used in the value.\nThe [format string documentation](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#config-access-log-format-strings) provides more information.\n\nIf not set, the span name is provider specific.\ne.g. Datadog use `ingress` as the default client span name,\nand `router <UPSTREAM_CLUSTER> egress` as the server span name."
+
+### fn spec.telemetry.tracing.spanName.withClient
+
+```ts
+withClient(client)
+```
+
+"Client defines operation name of the span which will be used for tracing."
+
+### fn spec.telemetry.tracing.spanName.withServer
+
+```ts
+withServer(server)
+```
+
+"Server defines the operation name of the upstream span which will be used for tracing."
+
 ## obj spec.timeout
 
 "Timeout settings for the backend connections."
@@ -1921,6 +3039,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 ```
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
+
+### fn spec.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
 
 ### fn spec.timeout.http.withRequestTimeout
 

@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
+permalink: /v1.7.0/gateway/v1alpha1/clientTrafficPolicy/
 ---
 
 # gateway.v1alpha1.clientTrafficPolicy
@@ -33,6 +33,7 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
   * [`fn withEnableProxyProtocol(enableProxyProtocol)`](#fn-specwithenableproxyprotocol)
   * [`fn withHttp3(http3)`](#fn-specwithhttp3)
   * [`fn withHttp3Mixin(http3)`](#fn-specwithhttp3mixin)
+  * [`fn withScheme(scheme)`](#fn-specwithscheme)
   * [`fn withTargetRefs(targetRefs)`](#fn-specwithtargetrefs)
   * [`fn withTargetRefsMixin(targetRefs)`](#fn-specwithtargetrefsmixin)
   * [`fn withTargetSelectors(targetSelectors)`](#fn-specwithtargetselectors)
@@ -47,28 +48,66 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
       * [`fn withTrustedCIDRsMixin(trustedCIDRs)`](#fn-specclientipdetectionxforwardedforwithtrustedcidrsmixin)
   * [`obj spec.connection`](#obj-specconnection)
     * [`fn withBufferLimit(bufferLimit)`](#fn-specconnectionwithbufferlimit)
+    * [`fn withMaxAcceptPerSocketEvent(maxAcceptPerSocketEvent)`](#fn-specconnectionwithmaxacceptpersocketevent)
     * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specconnectionwithsocketbufferlimit)
     * [`obj spec.connection.connectionLimit`](#obj-specconnectionconnectionlimit)
       * [`fn withCloseDelay(closeDelay)`](#fn-specconnectionconnectionlimitwithclosedelay)
+      * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specconnectionconnectionlimitwithmaxconnectionduration)
+      * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specconnectionconnectionlimitwithmaxrequestsperconnection)
+      * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specconnectionconnectionlimitwithmaxstreamduration)
       * [`fn withValue(value)`](#fn-specconnectionconnectionlimitwithvalue)
   * [`obj spec.headers`](#obj-specheaders)
     * [`fn withDisableRateLimitHeaders(disableRateLimitHeaders)`](#fn-specheaderswithdisableratelimitheaders)
     * [`fn withEnableEnvoyHeaders(enableEnvoyHeaders)`](#fn-specheaderswithenableenvoyheaders)
     * [`fn withPreserveXRequestID(preserveXRequestID)`](#fn-specheaderswithpreservexrequestid)
+    * [`fn withRequestID(requestID)`](#fn-specheaderswithrequestid)
     * [`fn withWithUnderscoresAction(withUnderscoresAction)`](#fn-specheaderswithwithunderscoresaction)
     * [`obj spec.headers.earlyRequestHeaders`](#obj-specheadersearlyrequestheaders)
       * [`fn withAdd(add)`](#fn-specheadersearlyrequestheaderswithadd)
+      * [`fn withAddIfAbsent(addIfAbsent)`](#fn-specheadersearlyrequestheaderswithaddifabsent)
+      * [`fn withAddIfAbsentMixin(addIfAbsent)`](#fn-specheadersearlyrequestheaderswithaddifabsentmixin)
       * [`fn withAddMixin(add)`](#fn-specheadersearlyrequestheaderswithaddmixin)
       * [`fn withRemove(remove)`](#fn-specheadersearlyrequestheaderswithremove)
       * [`fn withRemoveMixin(remove)`](#fn-specheadersearlyrequestheaderswithremovemixin)
+      * [`fn withRemoveOnMatch(removeOnMatch)`](#fn-specheadersearlyrequestheaderswithremoveonmatch)
+      * [`fn withRemoveOnMatchMixin(removeOnMatch)`](#fn-specheadersearlyrequestheaderswithremoveonmatchmixin)
       * [`fn withSet(set)`](#fn-specheadersearlyrequestheaderswithset)
       * [`fn withSetMixin(set)`](#fn-specheadersearlyrequestheaderswithsetmixin)
       * [`obj spec.headers.earlyRequestHeaders.add`](#obj-specheadersearlyrequestheadersadd)
         * [`fn withName(name)`](#fn-specheadersearlyrequestheadersaddwithname)
         * [`fn withValue(value)`](#fn-specheadersearlyrequestheadersaddwithvalue)
+      * [`obj spec.headers.earlyRequestHeaders.addIfAbsent`](#obj-specheadersearlyrequestheadersaddifabsent)
+        * [`fn withName(name)`](#fn-specheadersearlyrequestheadersaddifabsentwithname)
+        * [`fn withValue(value)`](#fn-specheadersearlyrequestheadersaddifabsentwithvalue)
+      * [`obj spec.headers.earlyRequestHeaders.removeOnMatch`](#obj-specheadersearlyrequestheadersremoveonmatch)
+        * [`fn withType(type)`](#fn-specheadersearlyrequestheadersremoveonmatchwithtype)
+        * [`fn withValue(value)`](#fn-specheadersearlyrequestheadersremoveonmatchwithvalue)
       * [`obj spec.headers.earlyRequestHeaders.set`](#obj-specheadersearlyrequestheadersset)
         * [`fn withName(name)`](#fn-specheadersearlyrequestheaderssetwithname)
         * [`fn withValue(value)`](#fn-specheadersearlyrequestheaderssetwithvalue)
+    * [`obj spec.headers.lateResponseHeaders`](#obj-specheaderslateresponseheaders)
+      * [`fn withAdd(add)`](#fn-specheaderslateresponseheaderswithadd)
+      * [`fn withAddIfAbsent(addIfAbsent)`](#fn-specheaderslateresponseheaderswithaddifabsent)
+      * [`fn withAddIfAbsentMixin(addIfAbsent)`](#fn-specheaderslateresponseheaderswithaddifabsentmixin)
+      * [`fn withAddMixin(add)`](#fn-specheaderslateresponseheaderswithaddmixin)
+      * [`fn withRemove(remove)`](#fn-specheaderslateresponseheaderswithremove)
+      * [`fn withRemoveMixin(remove)`](#fn-specheaderslateresponseheaderswithremovemixin)
+      * [`fn withRemoveOnMatch(removeOnMatch)`](#fn-specheaderslateresponseheaderswithremoveonmatch)
+      * [`fn withRemoveOnMatchMixin(removeOnMatch)`](#fn-specheaderslateresponseheaderswithremoveonmatchmixin)
+      * [`fn withSet(set)`](#fn-specheaderslateresponseheaderswithset)
+      * [`fn withSetMixin(set)`](#fn-specheaderslateresponseheaderswithsetmixin)
+      * [`obj spec.headers.lateResponseHeaders.add`](#obj-specheaderslateresponseheadersadd)
+        * [`fn withName(name)`](#fn-specheaderslateresponseheadersaddwithname)
+        * [`fn withValue(value)`](#fn-specheaderslateresponseheadersaddwithvalue)
+      * [`obj spec.headers.lateResponseHeaders.addIfAbsent`](#obj-specheaderslateresponseheadersaddifabsent)
+        * [`fn withName(name)`](#fn-specheaderslateresponseheadersaddifabsentwithname)
+        * [`fn withValue(value)`](#fn-specheaderslateresponseheadersaddifabsentwithvalue)
+      * [`obj spec.headers.lateResponseHeaders.removeOnMatch`](#obj-specheaderslateresponseheadersremoveonmatch)
+        * [`fn withType(type)`](#fn-specheaderslateresponseheadersremoveonmatchwithtype)
+        * [`fn withValue(value)`](#fn-specheaderslateresponseheadersremoveonmatchwithvalue)
+      * [`obj spec.headers.lateResponseHeaders.set`](#obj-specheaderslateresponseheadersset)
+        * [`fn withName(name)`](#fn-specheaderslateresponseheaderssetwithname)
+        * [`fn withValue(value)`](#fn-specheaderslateresponseheaderssetwithvalue)
     * [`obj spec.headers.xForwardedClientCert`](#obj-specheadersxforwardedclientcert)
       * [`fn withCertDetailsToAdd(certDetailsToAdd)`](#fn-specheadersxforwardedclientcertwithcertdetailstoadd)
       * [`fn withCertDetailsToAddMixin(certDetailsToAdd)`](#fn-specheadersxforwardedclientcertwithcertdetailstoaddmixin)
@@ -76,6 +115,7 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
   * [`obj spec.healthCheck`](#obj-spechealthcheck)
     * [`fn withPath(path)`](#fn-spechealthcheckwithpath)
   * [`obj spec.http1`](#obj-spechttp1)
+    * [`fn withDisableSafeMaxConnectionDuration(disableSafeMaxConnectionDuration)`](#fn-spechttp1withdisablesafemaxconnectionduration)
     * [`fn withEnableTrailers(enableTrailers)`](#fn-spechttp1withenabletrailers)
     * [`fn withPreserveHeaderCase(preserveHeaderCase)`](#fn-spechttp1withpreserveheadercase)
     * [`obj spec.http1.http10`](#obj-spechttp1http10)
@@ -88,6 +128,8 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
   * [`obj spec.path`](#obj-specpath)
     * [`fn withDisableMergeSlashes(disableMergeSlashes)`](#fn-specpathwithdisablemergeslashes)
     * [`fn withEscapedSlashesAction(escapedSlashesAction)`](#fn-specpathwithescapedslashesaction)
+  * [`obj spec.proxyProtocol`](#obj-specproxyprotocol)
+    * [`fn withOptional(optional)`](#fn-specproxyprotocolwithoptional)
   * [`obj spec.targetRef`](#obj-spectargetref)
     * [`fn withGroup(group)`](#fn-spectargetrefwithgroup)
     * [`fn withKind(kind)`](#fn-spectargetrefwithkind)
@@ -101,8 +143,15 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
   * [`obj spec.targetSelectors`](#obj-spectargetselectors)
     * [`fn withGroup(group)`](#fn-spectargetselectorswithgroup)
     * [`fn withKind(kind)`](#fn-spectargetselectorswithkind)
+    * [`fn withMatchExpressions(matchExpressions)`](#fn-spectargetselectorswithmatchexpressions)
+    * [`fn withMatchExpressionsMixin(matchExpressions)`](#fn-spectargetselectorswithmatchexpressionsmixin)
     * [`fn withMatchLabels(matchLabels)`](#fn-spectargetselectorswithmatchlabels)
     * [`fn withMatchLabelsMixin(matchLabels)`](#fn-spectargetselectorswithmatchlabelsmixin)
+    * [`obj spec.targetSelectors.matchExpressions`](#obj-spectargetselectorsmatchexpressions)
+      * [`fn withKey(key)`](#fn-spectargetselectorsmatchexpressionswithkey)
+      * [`fn withOperator(operator)`](#fn-spectargetselectorsmatchexpressionswithoperator)
+      * [`fn withValues(values)`](#fn-spectargetselectorsmatchexpressionswithvalues)
+      * [`fn withValuesMixin(values)`](#fn-spectargetselectorsmatchexpressionswithvaluesmixin)
   * [`obj spec.tcpKeepalive`](#obj-spectcpkeepalive)
     * [`fn withIdleTime(idleTime)`](#fn-spectcpkeepalivewithidletime)
     * [`fn withInterval(interval)`](#fn-spectcpkeepalivewithinterval)
@@ -111,6 +160,7 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
     * [`obj spec.timeout.http`](#obj-spectimeouthttp)
       * [`fn withIdleTimeout(idleTimeout)`](#fn-spectimeouthttpwithidletimeout)
       * [`fn withRequestReceivedTimeout(requestReceivedTimeout)`](#fn-spectimeouthttpwithrequestreceivedtimeout)
+      * [`fn withStreamIdleTimeout(streamIdleTimeout)`](#fn-spectimeouthttpwithstreamidletimeout)
     * [`obj spec.timeout.tcp`](#obj-spectimeouttcp)
       * [`fn withIdleTimeout(idleTimeout)`](#fn-spectimeouttcpwithidletimeout)
   * [`obj spec.tls`](#obj-spectls)
@@ -127,12 +177,52 @@ permalink: /v1.3.0/gateway/v1alpha1/clientTrafficPolicy/
     * [`obj spec.tls.clientValidation`](#obj-spectlsclientvalidation)
       * [`fn withCaCertificateRefs(caCertificateRefs)`](#fn-spectlsclientvalidationwithcacertificaterefs)
       * [`fn withCaCertificateRefsMixin(caCertificateRefs)`](#fn-spectlsclientvalidationwithcacertificaterefsmixin)
+      * [`fn withCertificateHashes(certificateHashes)`](#fn-spectlsclientvalidationwithcertificatehashes)
+      * [`fn withCertificateHashesMixin(certificateHashes)`](#fn-spectlsclientvalidationwithcertificatehashesmixin)
       * [`fn withOptional(optional)`](#fn-spectlsclientvalidationwithoptional)
+      * [`fn withSpkiHashes(spkiHashes)`](#fn-spectlsclientvalidationwithspkihashes)
+      * [`fn withSpkiHashesMixin(spkiHashes)`](#fn-spectlsclientvalidationwithspkihashesmixin)
       * [`obj spec.tls.clientValidation.caCertificateRefs`](#obj-spectlsclientvalidationcacertificaterefs)
         * [`fn withGroup(group)`](#fn-spectlsclientvalidationcacertificaterefswithgroup)
         * [`fn withKind(kind)`](#fn-spectlsclientvalidationcacertificaterefswithkind)
         * [`fn withName(name)`](#fn-spectlsclientvalidationcacertificaterefswithname)
         * [`fn withNamespace(namespace)`](#fn-spectlsclientvalidationcacertificaterefswithnamespace)
+      * [`obj spec.tls.clientValidation.crl`](#obj-spectlsclientvalidationcrl)
+        * [`fn withOnlyVerifyLeafCertificate(onlyVerifyLeafCertificate)`](#fn-spectlsclientvalidationcrlwithonlyverifyleafcertificate)
+        * [`fn withRefs(refs)`](#fn-spectlsclientvalidationcrlwithrefs)
+        * [`fn withRefsMixin(refs)`](#fn-spectlsclientvalidationcrlwithrefsmixin)
+        * [`obj spec.tls.clientValidation.crl.refs`](#obj-spectlsclientvalidationcrlrefs)
+          * [`fn withGroup(group)`](#fn-spectlsclientvalidationcrlrefswithgroup)
+          * [`fn withKind(kind)`](#fn-spectlsclientvalidationcrlrefswithkind)
+          * [`fn withName(name)`](#fn-spectlsclientvalidationcrlrefswithname)
+          * [`fn withNamespace(namespace)`](#fn-spectlsclientvalidationcrlrefswithnamespace)
+      * [`obj spec.tls.clientValidation.subjectAltNames`](#obj-spectlsclientvalidationsubjectaltnames)
+        * [`fn withDnsNames(dnsNames)`](#fn-spectlsclientvalidationsubjectaltnameswithdnsnames)
+        * [`fn withDnsNamesMixin(dnsNames)`](#fn-spectlsclientvalidationsubjectaltnameswithdnsnamesmixin)
+        * [`fn withEmailAddresses(emailAddresses)`](#fn-spectlsclientvalidationsubjectaltnameswithemailaddresses)
+        * [`fn withEmailAddressesMixin(emailAddresses)`](#fn-spectlsclientvalidationsubjectaltnameswithemailaddressesmixin)
+        * [`fn withIpAddresses(ipAddresses)`](#fn-spectlsclientvalidationsubjectaltnameswithipaddresses)
+        * [`fn withIpAddressesMixin(ipAddresses)`](#fn-spectlsclientvalidationsubjectaltnameswithipaddressesmixin)
+        * [`fn withOtherNames(otherNames)`](#fn-spectlsclientvalidationsubjectaltnameswithothernames)
+        * [`fn withOtherNamesMixin(otherNames)`](#fn-spectlsclientvalidationsubjectaltnameswithothernamesmixin)
+        * [`fn withUris(uris)`](#fn-spectlsclientvalidationsubjectaltnameswithuris)
+        * [`fn withUrisMixin(uris)`](#fn-spectlsclientvalidationsubjectaltnameswithurismixin)
+        * [`obj spec.tls.clientValidation.subjectAltNames.dnsNames`](#obj-spectlsclientvalidationsubjectaltnamesdnsnames)
+          * [`fn withType(type)`](#fn-spectlsclientvalidationsubjectaltnamesdnsnameswithtype)
+          * [`fn withValue(value)`](#fn-spectlsclientvalidationsubjectaltnamesdnsnameswithvalue)
+        * [`obj spec.tls.clientValidation.subjectAltNames.emailAddresses`](#obj-spectlsclientvalidationsubjectaltnamesemailaddresses)
+          * [`fn withType(type)`](#fn-spectlsclientvalidationsubjectaltnamesemailaddresseswithtype)
+          * [`fn withValue(value)`](#fn-spectlsclientvalidationsubjectaltnamesemailaddresseswithvalue)
+        * [`obj spec.tls.clientValidation.subjectAltNames.ipAddresses`](#obj-spectlsclientvalidationsubjectaltnamesipaddresses)
+          * [`fn withType(type)`](#fn-spectlsclientvalidationsubjectaltnamesipaddresseswithtype)
+          * [`fn withValue(value)`](#fn-spectlsclientvalidationsubjectaltnamesipaddresseswithvalue)
+        * [`obj spec.tls.clientValidation.subjectAltNames.otherNames`](#obj-spectlsclientvalidationsubjectaltnamesothernames)
+          * [`fn withOid(oid)`](#fn-spectlsclientvalidationsubjectaltnamesothernameswithoid)
+          * [`fn withType(type)`](#fn-spectlsclientvalidationsubjectaltnamesothernameswithtype)
+          * [`fn withValue(value)`](#fn-spectlsclientvalidationsubjectaltnamesothernameswithvalue)
+        * [`obj spec.tls.clientValidation.subjectAltNames.uris`](#obj-spectlsclientvalidationsubjectaltnamesuris)
+          * [`fn withType(type)`](#fn-spectlsclientvalidationsubjectaltnamesuriswithtype)
+          * [`fn withValue(value)`](#fn-spectlsclientvalidationsubjectaltnamesuriswithvalue)
     * [`obj spec.tls.session`](#obj-spectlssession)
       * [`obj spec.tls.session.resumption`](#obj-spectlssessionresumption)
         * [`fn withStateful(stateful)`](#fn-spectlssessionresumptionwithstateful)
@@ -324,7 +414,7 @@ withUid(uid)
 withEnableProxyProtocol(enableProxyProtocol)
 ```
 
-"EnableProxyProtocol interprets the ProxyProtocol header and adds the\nClient Address into the X-Forwarded-For header.\nNote Proxy Protocol must be present when this field is set, else the connection\nis closed."
+"EnableProxyProtocol interprets the ProxyProtocol header and adds the\nClient Address into the X-Forwarded-For header.\nNote Proxy Protocol must be present when this field is set, else the connection\nis closed.\n\nDeprecated: Use ProxyProtocol instead."
 
 ### fn spec.withHttp3
 
@@ -343,6 +433,14 @@ withHttp3Mixin(http3)
 "HTTP3 provides HTTP/3 configuration on the listener."
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.withScheme
+
+```ts
+withScheme(scheme)
+```
+
+"Scheme configures how the :scheme pseudo-header is set for requests forwarded to backends.\n\n- Preserve (default): Preserves the :scheme from the original client request.\n  Use this when backends need to know the original client scheme for URL generation or redirects.\n\n- MatchBackend: Sets the :scheme to match the backend transport protocol.\n  If the backend uses TLS, the scheme is \"https\", otherwise \"http\".\n  Use this when backends require the scheme to match the actual transport protocol,\n  such as strictly HTTPS services that validate the :scheme header."
 
 ### fn spec.withTargetRefs
 
@@ -414,7 +512,7 @@ withName(name)
 withNumTrustedHops(numTrustedHops)
 ```
 
-"NumTrustedHops controls the number of additional ingress proxy hops from the right side of XFF HTTP\nheaders to trust when determining the origin client's IP address.\nOnly one of NumTrustedHops and TrustedCIDRs must be set."
+"NumTrustedHops specifies how many trusted hops to count from the rightmost side of\nthe X-Forwarded-For (XFF) header when determining the original client’s IP address.\n\nIf NumTrustedHops is set to N, the client IP is taken from the Nth address from the\nright end of the XFF header.\n\nExample:\n  XFF = \"203.0.113.128, 203.0.113.10, 203.0.113.1\"\n  NumTrustedHops = 2\n  → Trusted client address = 203.0.113.10\n\nOnly one of NumTrustedHops or TrustedCIDRs should be configured."
 
 ### fn spec.clientIPDetection.xForwardedFor.withTrustedCIDRs
 
@@ -446,6 +544,14 @@ withBufferLimit(bufferLimit)
 
 "BufferLimit provides configuration for the maximum buffer size in bytes for each incoming connection.\nBufferLimit applies to connection streaming (maybe non-streaming) channel between processes, it's in user space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes.\nDefault: 32768 bytes."
 
+### fn spec.connection.withMaxAcceptPerSocketEvent
+
+```ts
+withMaxAcceptPerSocketEvent(maxAcceptPerSocketEvent)
+```
+
+"MaxAcceptPerSocketEvent provides configuration for the maximum number of connections to accept from the kernel\nper socket event. If there are more than MaxAcceptPerSocketEvent connections pending accept, connections over\nthis threshold will be accepted in later event loop iterations.\nDefaults to 1 and can be disabled by setting to 0 for allowing unlimited accepted connections."
+
 ### fn spec.connection.withSocketBufferLimit
 
 ```ts
@@ -465,6 +571,30 @@ withCloseDelay(closeDelay)
 ```
 
 "CloseDelay defines the delay to use before closing connections that are rejected\nonce the limit value is reached.\nDefault: none."
+
+### fn spec.connection.connectionLimit.withMaxConnectionDuration
+
+```ts
+withMaxConnectionDuration(maxConnectionDuration)
+```
+
+"MaxConnectionDuration is the maximum amount of time a connection can remain established\n(usually via TCP/HTTP Keepalive packets) before being drained and/or closed.\nIf not specified, there is no limit."
+
+### fn spec.connection.connectionLimit.withMaxRequestsPerConnection
+
+```ts
+withMaxRequestsPerConnection(maxRequestsPerConnection)
+```
+
+"MaxRequestsPerConnection defines the maximum number of requests allowed over a single connection.\nIf not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive."
+
+### fn spec.connection.connectionLimit.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum amount of time to keep alive an http stream. When the limit is reached\nthe stream will be reset independent of any other timeouts. If not specified, no value is set."
 
 ### fn spec.connection.connectionLimit.withValue
 
@@ -500,7 +630,15 @@ withEnableEnvoyHeaders(enableEnvoyHeaders)
 withPreserveXRequestID(preserveXRequestID)
 ```
 
-"PreserveXRequestID configures Envoy to keep the X-Request-ID header if passed for a request that is edge\n(Edge request is the request from external clients to front Envoy) and not reset it, which is the current Envoy behaviour.\nIt defaults to false."
+"PreserveXRequestID configures Envoy to keep the X-Request-ID header if passed for a request that is edge\n(Edge request is the request from external clients to front Envoy) and not reset it, which is the current Envoy behaviour.\nDefaults to false and cannot be combined with RequestID.\nDeprecated: use RequestID=PreserveOrGenerate instead"
+
+### fn spec.headers.withRequestID
+
+```ts
+withRequestID(requestID)
+```
+
+"RequestID configures Envoy's behavior for handling the `X-Request-ID` header.\nWhen omitted default behavior is `Generate` which builds the `X-Request-ID` for every request\n and ignores pre-existing values from the edge.\n(An \"edge request\" refers to a request from an external client to the Envoy entrypoint.)"
 
 ### fn spec.headers.withWithUnderscoresAction
 
@@ -521,6 +659,24 @@ withAdd(add)
 ```
 
 "Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+### fn spec.headers.earlyRequestHeaders.withAddIfAbsent
+
+```ts
+withAddIfAbsent(addIfAbsent)
+```
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+### fn spec.headers.earlyRequestHeaders.withAddIfAbsentMixin
+
+```ts
+withAddIfAbsentMixin(addIfAbsent)
+```
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+**Note:** This function appends passed data to existing values
 
 ### fn spec.headers.earlyRequestHeaders.withAddMixin
 
@@ -547,6 +703,24 @@ withRemoveMixin(remove)
 ```
 
 "Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.headers.earlyRequestHeaders.withRemoveOnMatch
+
+```ts
+withRemoveOnMatch(removeOnMatch)
+```
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
+
+### fn spec.headers.earlyRequestHeaders.withRemoveOnMatchMixin
+
+```ts
+withRemoveOnMatchMixin(removeOnMatch)
+```
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
 
 **Note:** This function appends passed data to existing values
 
@@ -578,7 +752,7 @@ withSetMixin(set)
 withName(name)
 ```
 
-"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
 
 ### fn spec.headers.earlyRequestHeaders.add.withValue
 
@@ -587,6 +761,46 @@ withValue(value)
 ```
 
 "Value is the value of HTTP Header to be matched."
+
+## obj spec.headers.earlyRequestHeaders.addIfAbsent
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+### fn spec.headers.earlyRequestHeaders.addIfAbsent.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.headers.earlyRequestHeaders.addIfAbsent.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.headers.earlyRequestHeaders.removeOnMatch
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
+
+### fn spec.headers.earlyRequestHeaders.removeOnMatch.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.headers.earlyRequestHeaders.removeOnMatch.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
 
 ## obj spec.headers.earlyRequestHeaders.set
 
@@ -598,9 +812,183 @@ withValue(value)
 withName(name)
 ```
 
-"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
 
 ### fn spec.headers.earlyRequestHeaders.set.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.headers.lateResponseHeaders
+
+"LateResponseHeaders defines settings for global response header modification."
+
+### fn spec.headers.lateResponseHeaders.withAdd
+
+```ts
+withAdd(add)
+```
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+### fn spec.headers.lateResponseHeaders.withAddIfAbsent
+
+```ts
+withAddIfAbsent(addIfAbsent)
+```
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+### fn spec.headers.lateResponseHeaders.withAddIfAbsentMixin
+
+```ts
+withAddIfAbsentMixin(addIfAbsent)
+```
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.headers.lateResponseHeaders.withAddMixin
+
+```ts
+withAddMixin(add)
+```
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.headers.lateResponseHeaders.withRemove
+
+```ts
+withRemove(remove)
+```
+
+"Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar"
+
+### fn spec.headers.lateResponseHeaders.withRemoveMixin
+
+```ts
+withRemoveMixin(remove)
+```
+
+"Remove the given header(s) from the HTTP request before the action. The\nvalue of Remove is a list of HTTP header names. Note that the header\nnames are case-insensitive (see\nhttps://datatracker.ietf.org/doc/html/rfc2616#section-4.2).\n\nInput:\n  GET /foo HTTP/1.1\n  my-header1: foo\n  my-header2: bar\n  my-header3: baz\n\nConfig:\n  remove: [\"my-header1\", \"my-header3\"]\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header2: bar"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.headers.lateResponseHeaders.withRemoveOnMatch
+
+```ts
+withRemoveOnMatch(removeOnMatch)
+```
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
+
+### fn spec.headers.lateResponseHeaders.withRemoveOnMatchMixin
+
+```ts
+withRemoveOnMatchMixin(removeOnMatch)
+```
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.headers.lateResponseHeaders.withSet
+
+```ts
+withSet(set)
+```
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+### fn spec.headers.lateResponseHeaders.withSetMixin
+
+```ts
+withSetMixin(set)
+```
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.headers.lateResponseHeaders.add
+
+"Add adds the given header(s) (name, value) to the request\nbefore the action. It appends to any existing values associated\nwith the header name.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  add:\n  - name: \"my-header\"\n    value: \"bar,baz\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo,bar,baz"
+
+### fn spec.headers.lateResponseHeaders.add.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.headers.lateResponseHeaders.add.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.headers.lateResponseHeaders.addIfAbsent
+
+"AddIfAbsent adds the given header(s) (name, value) to the request/response\nonly if the header does not already exist. Unlike Add which appends to\nexisting values, this is a no-op if the header is already present.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  addIfAbsent:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: foo"
+
+### fn spec.headers.lateResponseHeaders.addIfAbsent.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.headers.lateResponseHeaders.addIfAbsent.withValue
+
+```ts
+withValue(value)
+```
+
+"Value is the value of HTTP Header to be matched."
+
+## obj spec.headers.lateResponseHeaders.removeOnMatch
+
+"RemoveOnMatch removes headers whose names match the specified string matchers.\nMatching is performed on the header name (case-insensitive)."
+
+### fn spec.headers.lateResponseHeaders.removeOnMatch.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.headers.lateResponseHeaders.removeOnMatch.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
+
+## obj spec.headers.lateResponseHeaders.set
+
+"Set overwrites the request with the given header (name, value)\nbefore the action.\n\nInput:\n  GET /foo HTTP/1.1\n  my-header: foo\n\nConfig:\n  set:\n  - name: \"my-header\"\n    value: \"bar\"\n\nOutput:\n  GET /foo HTTP/1.1\n  my-header: bar"
+
+### fn spec.headers.lateResponseHeaders.set.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the HTTP Header to be matched. Name matching MUST be\ncase-insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).\n\nIf multiple entries specify equivalent header names, the first entry with\nan equivalent name MUST be considered for a match. Subsequent entries\nwith an equivalent header name MUST be ignored. Due to the\ncase-insensitivity of header names, \"foo\" and \"Foo\" are considered\nequivalent."
+
+### fn spec.headers.lateResponseHeaders.set.withValue
 
 ```ts
 withValue(value)
@@ -654,6 +1042,14 @@ withPath(path)
 
 "HTTP1 provides HTTP/1 configuration on the listener."
 
+### fn spec.http1.withDisableSafeMaxConnectionDuration
+
+```ts
+withDisableSafeMaxConnectionDuration(disableSafeMaxConnectionDuration)
+```
+
+"DisableSafeMaxConnectionDuration controls the close behavior for HTTP/1 connections.\nBy default, connection closure is delayed until the next request arrives after maxConnectionDuration is exceeded.\nIt then adds a Connection: close header and gracefully closes the connection after the response completes.\nWhen set to true (disabled), Envoy uses its default drain behavior, closing the connection shortly after maxConnectionDuration elapses.\nHas no effect unless maxConnectionDuration is set."
+
 ### fn spec.http1.withEnableTrailers
 
 ```ts
@@ -680,7 +1076,7 @@ withPreserveHeaderCase(preserveHeaderCase)
 withUseDefaultHost(useDefaultHost)
 ```
 
-"UseDefaultHost defines if the HTTP/1.0 request is missing the Host header,\nthen the hostname associated with the listener should be injected into the\nrequest.\nIf this is not set and an HTTP/1.0 request arrives without a host, then\nit will be rejected."
+"UseDefaultHost specifies whether a default Host header should be injected\ninto HTTP/1.0 requests that do not include one.\n\nWhen set to true, Envoy Gateway injects the hostname associated with the\nlistener or route into the request, in the following order:\n\n  1. If the targeted listener has a non-wildcard hostname, use that hostname.\n  2. If there is exactly one HTTPRoute with a non-wildcard hostname under\n     the targeted listener, use that hostname.\n\n Note: Setting this field to true without a non-wildcard hostname makes the\nClientTrafficPolicy invalid."
 
 ## obj spec.http2
 
@@ -737,6 +1133,18 @@ withEscapedSlashesAction(escapedSlashesAction)
 ```
 
 "EscapedSlashesAction determines how %2f, %2F, %5c, or %5C sequences in the path URI\nshould be handled.\nThe default is UnescapeAndRedirect."
+
+## obj spec.proxyProtocol
+
+"ProxyProtocol configures the Proxy Protocol settings. When configured,\nthe Proxy Protocol header will be interpreted and the Client Address\nwill be added into the X-Forwarded-For header.\nIf both EnableProxyProtocol and ProxyProtocol are set, ProxyProtocol takes precedence."
+
+### fn spec.proxyProtocol.withOptional
+
+```ts
+withOptional(optional)
+```
+
+"Optional allows requests without a Proxy Protocol header to be proxied.\nIf set to true, the listener will accept requests without a Proxy Protocol header.\nIf set to false, the listener will reject requests without a Proxy Protocol header.\nIf not set, the default behavior is to reject requests without a Proxy Protocol header.\nWarning: Optional breaks conformance with the specification. Only enable if ALL traffic to the listener comes from a trusted source.\nFor more information on security implications, see haproxy.org/download/2.1/doc/proxy-protocol.txt"
 
 ## obj spec.targetRef
 
@@ -830,6 +1238,24 @@ withKind(kind)
 
 "Kind is the resource kind that this selector targets."
 
+### fn spec.targetSelectors.withMatchExpressions
+
+```ts
+withMatchExpressions(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.withMatchExpressionsMixin
+
+```ts
+withMatchExpressionsMixin(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.targetSelectors.withMatchLabels
 
 ```ts
@@ -845,6 +1271,44 @@ withMatchLabelsMixin(matchLabels)
 ```
 
 "MatchLabels are the set of label selectors for identifying the targeted resource"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.targetSelectors.matchExpressions
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.matchExpressions.withKey
+
+```ts
+withKey(key)
+```
+
+"key is the label key that the selector applies to."
+
+### fn spec.targetSelectors.matchExpressions.withOperator
+
+```ts
+withOperator(operator)
+```
+
+"operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+
+### fn spec.targetSelectors.matchExpressions.withValues
+
+```ts
+withValues(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
+
+### fn spec.targetSelectors.matchExpressions.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
 
 **Note:** This function appends passed data to existing values
 
@@ -900,6 +1364,14 @@ withRequestReceivedTimeout(requestReceivedTimeout)
 
 "RequestReceivedTimeout is the duration envoy waits for the complete request reception. This timer starts upon request\ninitiation and stops when either the last byte of the request is sent upstream or when the response begins."
 
+### fn spec.timeout.http.withStreamIdleTimeout
+
+```ts
+withStreamIdleTimeout(streamIdleTimeout)
+```
+
+" The stream idle timeout defines the amount of time a stream can exist without any upstream or downstream activity.\n Default: 5 minutes."
+
 ## obj spec.timeout.tcp
 
 "Timeout settings for TCP."
@@ -922,7 +1394,7 @@ withIdleTimeout(idleTimeout)
 withAlpnProtocols(alpnProtocols)
 ```
 
-"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2"
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
 
 ### fn spec.tls.withAlpnProtocolsMixin
 
@@ -930,7 +1402,7 @@ withAlpnProtocols(alpnProtocols)
 withAlpnProtocolsMixin(alpnProtocols)
 ```
 
-"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\nSupported values are:\n- http/1.0\n- http/1.1\n- h2"
+"ALPNProtocols supplies the list of ALPN protocols that should be\nexposed by the listener or used by the proxy to connect to the backend.\nDefaults:\n1. HTTPS Routes: h2 and http/1.1 are enabled in listener context.\n2. Other Routes: ALPN is disabled.\n3. Backends: proxy uses the appropriate ALPN options for the backend protocol.\nWhen an empty list is provided, the ALPN TLS extension is disabled.\n\nDefaults to [h2, http/1.1] if not specified.\n\nTypical Supported values are:\n- http/1.0\n- http/1.1\n- h2"
 
 **Note:** This function appends passed data to existing values
 
@@ -1026,6 +1498,24 @@ withCaCertificateRefsMixin(caCertificateRefs)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.tls.clientValidation.withCertificateHashes
+
+```ts
+withCertificateHashes(certificateHashes)
+```
+
+"An optional list of hex-encoded SHA-256 hashes. If specified, Envoy will\nverify that the SHA-256 of the DER-encoded presented certificate matches\none of the specified values."
+
+### fn spec.tls.clientValidation.withCertificateHashesMixin
+
+```ts
+withCertificateHashesMixin(certificateHashes)
+```
+
+"An optional list of hex-encoded SHA-256 hashes. If specified, Envoy will\nverify that the SHA-256 of the DER-encoded presented certificate matches\none of the specified values."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.tls.clientValidation.withOptional
 
 ```ts
@@ -1033,6 +1523,24 @@ withOptional(optional)
 ```
 
 "Optional set to true accepts connections even when a client doesn't present a certificate.\nDefaults to false, which rejects connections without a valid client certificate."
+
+### fn spec.tls.clientValidation.withSpkiHashes
+
+```ts
+withSpkiHashes(spkiHashes)
+```
+
+"An optional list of base64-encoded SHA-256 hashes. If specified, Envoy will\nverify that the SHA-256 of the DER-encoded Subject Public Key Information\n(SPKI) of the presented certificate matches one of the specified values."
+
+### fn spec.tls.clientValidation.withSpkiHashesMixin
+
+```ts
+withSpkiHashesMixin(spkiHashes)
+```
+
+"An optional list of base64-encoded SHA-256 hashes. If specified, Envoy will\nverify that the SHA-256 of the DER-encoded Subject Public Key Information\n(SPKI) of the presented certificate matches one of the specified values."
+
+**Note:** This function appends passed data to existing values
 
 ## obj spec.tls.clientValidation.caCertificateRefs
 
@@ -1069,6 +1577,274 @@ withNamespace(namespace)
 ```
 
 "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
+
+## obj spec.tls.clientValidation.crl
+
+"Crl specifies the crl configuration that can be used to validate the client initiating the TLS connection"
+
+### fn spec.tls.clientValidation.crl.withOnlyVerifyLeafCertificate
+
+```ts
+withOnlyVerifyLeafCertificate(onlyVerifyLeafCertificate)
+```
+
+"If this option is set to true,  Envoy will only verify the certificate at the end of the certificate chain against the CRL.\nDefaults to false, which will verify the entire certificate chain against the CRL."
+
+### fn spec.tls.clientValidation.crl.withRefs
+
+```ts
+withRefs(refs)
+```
+
+"Refs contains one or more references to a Kubernetes ConfigMap or a Kubernetes Secret,\ncontaining the certificate revocation list in PEM format\nExpects the content in a key named `ca.crl`.\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the crl\nto be attached."
+
+### fn spec.tls.clientValidation.crl.withRefsMixin
+
+```ts
+withRefsMixin(refs)
+```
+
+"Refs contains one or more references to a Kubernetes ConfigMap or a Kubernetes Secret,\ncontaining the certificate revocation list in PEM format\nExpects the content in a key named `ca.crl`.\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the crl\nto be attached."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.tls.clientValidation.crl.refs
+
+"Refs contains one or more references to a Kubernetes ConfigMap or a Kubernetes Secret,\ncontaining the certificate revocation list in PEM format\nExpects the content in a key named `ca.crl`.\n\nReferences to a resource in different namespace are invalid UNLESS there\nis a ReferenceGrant in the target namespace that allows the crl\nto be attached."
+
+### fn spec.tls.clientValidation.crl.refs.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.tls.clientValidation.crl.refs.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.tls.clientValidation.crl.refs.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.tls.clientValidation.crl.refs.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
+
+## obj spec.tls.clientValidation.subjectAltNames
+
+"An optional list of Subject Alternative name matchers. If specified, Envoy\nwill verify that the Subject Alternative Name of the presented certificate\nmatches one of the specified matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withDnsNames
+
+```ts
+withDnsNames(dnsNames)
+```
+
+"DNS names matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withDnsNamesMixin
+
+```ts
+withDnsNamesMixin(dnsNames)
+```
+
+"DNS names matchers"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.clientValidation.subjectAltNames.withEmailAddresses
+
+```ts
+withEmailAddresses(emailAddresses)
+```
+
+"Email addresses matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withEmailAddressesMixin
+
+```ts
+withEmailAddressesMixin(emailAddresses)
+```
+
+"Email addresses matchers"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.clientValidation.subjectAltNames.withIpAddresses
+
+```ts
+withIpAddresses(ipAddresses)
+```
+
+"IP addresses matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withIpAddressesMixin
+
+```ts
+withIpAddressesMixin(ipAddresses)
+```
+
+"IP addresses matchers"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.clientValidation.subjectAltNames.withOtherNames
+
+```ts
+withOtherNames(otherNames)
+```
+
+"Other names matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withOtherNamesMixin
+
+```ts
+withOtherNamesMixin(otherNames)
+```
+
+"Other names matchers"
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.tls.clientValidation.subjectAltNames.withUris
+
+```ts
+withUris(uris)
+```
+
+"URIs matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.withUrisMixin
+
+```ts
+withUrisMixin(uris)
+```
+
+"URIs matchers"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.tls.clientValidation.subjectAltNames.dnsNames
+
+"DNS names matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.dnsNames.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.tls.clientValidation.subjectAltNames.dnsNames.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
+
+## obj spec.tls.clientValidation.subjectAltNames.emailAddresses
+
+"Email addresses matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.emailAddresses.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.tls.clientValidation.subjectAltNames.emailAddresses.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
+
+## obj spec.tls.clientValidation.subjectAltNames.ipAddresses
+
+"IP addresses matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.ipAddresses.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.tls.clientValidation.subjectAltNames.ipAddresses.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
+
+## obj spec.tls.clientValidation.subjectAltNames.otherNames
+
+"Other names matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.otherNames.withOid
+
+```ts
+withOid(oid)
+```
+
+"OID Value"
+
+### fn spec.tls.clientValidation.subjectAltNames.otherNames.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.tls.clientValidation.subjectAltNames.otherNames.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
+
+## obj spec.tls.clientValidation.subjectAltNames.uris
+
+"URIs matchers"
+
+### fn spec.tls.clientValidation.subjectAltNames.uris.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.tls.clientValidation.subjectAltNames.uris.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
 
 ## obj spec.tls.session
 

@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
+permalink: /v1.7.0/gateway/v1alpha1/securityPolicy/
 ---
 
 # gateway.v1alpha1.securityPolicy
@@ -39,6 +39,8 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
     * [`fn withCredentialRefsMixin(credentialRefs)`](#fn-specapikeyauthwithcredentialrefsmixin)
     * [`fn withExtractFrom(extractFrom)`](#fn-specapikeyauthwithextractfrom)
     * [`fn withExtractFromMixin(extractFrom)`](#fn-specapikeyauthwithextractfrommixin)
+    * [`fn withForwardClientIDHeader(forwardClientIDHeader)`](#fn-specapikeyauthwithforwardclientidheader)
+    * [`fn withSanitize(sanitize)`](#fn-specapikeyauthwithsanitize)
     * [`obj spec.apiKeyAuth.credentialRefs`](#obj-specapikeyauthcredentialrefs)
       * [`fn withGroup(group)`](#fn-specapikeyauthcredentialrefswithgroup)
       * [`fn withKind(kind)`](#fn-specapikeyauthcredentialrefswithkind)
@@ -58,9 +60,20 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
     * [`obj spec.authorization.rules`](#obj-specauthorizationrules)
       * [`fn withAction(action)`](#fn-specauthorizationruleswithaction)
       * [`fn withName(name)`](#fn-specauthorizationruleswithname)
+      * [`obj spec.authorization.rules.operation`](#obj-specauthorizationrulesoperation)
+        * [`fn withMethods(methods)`](#fn-specauthorizationrulesoperationwithmethods)
+        * [`fn withMethodsMixin(methods)`](#fn-specauthorizationrulesoperationwithmethodsmixin)
       * [`obj spec.authorization.rules.principal`](#obj-specauthorizationrulesprincipal)
         * [`fn withClientCIDRs(clientCIDRs)`](#fn-specauthorizationrulesprincipalwithclientcidrs)
         * [`fn withClientCIDRsMixin(clientCIDRs)`](#fn-specauthorizationrulesprincipalwithclientcidrsmixin)
+        * [`fn withHeaders(headers)`](#fn-specauthorizationrulesprincipalwithheaders)
+        * [`fn withHeadersMixin(headers)`](#fn-specauthorizationrulesprincipalwithheadersmixin)
+        * [`fn withSourceCIDRs(sourceCIDRs)`](#fn-specauthorizationrulesprincipalwithsourcecidrs)
+        * [`fn withSourceCIDRsMixin(sourceCIDRs)`](#fn-specauthorizationrulesprincipalwithsourcecidrsmixin)
+        * [`obj spec.authorization.rules.principal.headers`](#obj-specauthorizationrulesprincipalheaders)
+          * [`fn withName(name)`](#fn-specauthorizationrulesprincipalheaderswithname)
+          * [`fn withValues(values)`](#fn-specauthorizationrulesprincipalheaderswithvalues)
+          * [`fn withValuesMixin(values)`](#fn-specauthorizationrulesprincipalheaderswithvaluesmixin)
         * [`obj spec.authorization.rules.principal.jwt`](#obj-specauthorizationrulesprincipaljwt)
           * [`fn withClaims(claims)`](#fn-specauthorizationrulesprincipaljwtwithclaims)
           * [`fn withClaimsMixin(claims)`](#fn-specauthorizationrulesprincipaljwtwithclaimsmixin)
@@ -73,6 +86,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`fn withValues(values)`](#fn-specauthorizationrulesprincipaljwtclaimswithvalues)
             * [`fn withValuesMixin(values)`](#fn-specauthorizationrulesprincipaljwtclaimswithvaluesmixin)
   * [`obj spec.basicAuth`](#obj-specbasicauth)
+    * [`fn withForwardUsernameHeader(forwardUsernameHeader)`](#fn-specbasicauthwithforwardusernameheader)
     * [`obj spec.basicAuth.users`](#obj-specbasicauthusers)
       * [`fn withGroup(group)`](#fn-specbasicauthuserswithgroup)
       * [`fn withKind(kind)`](#fn-specbasicauthuserswithkind)
@@ -90,12 +104,24 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
     * [`fn withExposeHeadersMixin(exposeHeaders)`](#fn-speccorswithexposeheadersmixin)
     * [`fn withMaxAge(maxAge)`](#fn-speccorswithmaxage)
   * [`obj spec.extAuth`](#obj-specextauth)
+    * [`fn withContextExtensions(contextExtensions)`](#fn-specextauthwithcontextextensions)
+    * [`fn withContextExtensionsMixin(contextExtensions)`](#fn-specextauthwithcontextextensionsmixin)
     * [`fn withFailOpen(failOpen)`](#fn-specextauthwithfailopen)
     * [`fn withHeadersToExtAuth(headersToExtAuth)`](#fn-specextauthwithheaderstoextauth)
     * [`fn withHeadersToExtAuthMixin(headersToExtAuth)`](#fn-specextauthwithheaderstoextauthmixin)
     * [`fn withRecomputeRoute(recomputeRoute)`](#fn-specextauthwithrecomputeroute)
+    * [`fn withTimeout(timeout)`](#fn-specextauthwithtimeout)
     * [`obj spec.extAuth.bodyToExtAuth`](#obj-specextauthbodytoextauth)
       * [`fn withMaxRequestBytes(maxRequestBytes)`](#fn-specextauthbodytoextauthwithmaxrequestbytes)
+    * [`obj spec.extAuth.contextExtensions`](#obj-specextauthcontextextensions)
+      * [`fn withName(name)`](#fn-specextauthcontextextensionswithname)
+      * [`fn withType(type)`](#fn-specextauthcontextextensionswithtype)
+      * [`fn withValue(value)`](#fn-specextauthcontextextensionswithvalue)
+      * [`obj spec.extAuth.contextExtensions.valueRef`](#obj-specextauthcontextextensionsvalueref)
+        * [`fn withGroup(group)`](#fn-specextauthcontextextensionsvaluerefwithgroup)
+        * [`fn withKey(key)`](#fn-specextauthcontextextensionsvaluerefwithkey)
+        * [`fn withKind(kind)`](#fn-specextauthcontextextensionsvaluerefwithkind)
+        * [`fn withName(name)`](#fn-specextauthcontextextensionsvaluerefwithname)
     * [`obj spec.extAuth.grpc`](#obj-specextauthgrpc)
       * [`fn withBackendRefs(backendRefs)`](#fn-specextauthgrpcwithbackendrefs)
       * [`fn withBackendRefsMixin(backendRefs)`](#fn-specextauthgrpcwithbackendrefsmixin)
@@ -112,6 +138,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`fn withName(name)`](#fn-specextauthgrpcbackendrefswithname)
         * [`fn withNamespace(namespace)`](#fn-specextauthgrpcbackendrefswithnamespace)
         * [`fn withPort(port)`](#fn-specextauthgrpcbackendrefswithport)
+        * [`fn withWeight(weight)`](#fn-specextauthgrpcbackendrefswithweight)
       * [`obj spec.extAuth.grpc.backendSettings`](#obj-specextauthgrpcbackendsettings)
         * [`obj spec.extAuth.grpc.backendSettings.circuitBreaker`](#obj-specextauthgrpcbackendsettingscircuitbreaker)
           * [`fn withMaxConnections(maxConnections)`](#fn-specextauthgrpcbackendsettingscircuitbreakerwithmaxconnections)
@@ -119,15 +146,23 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-specextauthgrpcbackendsettingscircuitbreakerwithmaxparallelretries)
           * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-specextauthgrpcbackendsettingscircuitbreakerwithmaxpendingrequests)
           * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specextauthgrpcbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+          * [`obj spec.extAuth.grpc.backendSettings.circuitBreaker.perEndpoint`](#obj-specextauthgrpcbackendsettingscircuitbreakerperendpoint)
+            * [`fn withMaxConnections(maxConnections)`](#fn-specextauthgrpcbackendsettingscircuitbreakerperendpointwithmaxconnections)
         * [`obj spec.extAuth.grpc.backendSettings.connection`](#obj-specextauthgrpcbackendsettingsconnection)
           * [`fn withBufferLimit(bufferLimit)`](#fn-specextauthgrpcbackendsettingsconnectionwithbufferlimit)
           * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specextauthgrpcbackendsettingsconnectionwithsocketbufferlimit)
+          * [`obj spec.extAuth.grpc.backendSettings.connection.preconnect`](#obj-specextauthgrpcbackendsettingsconnectionpreconnect)
+            * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specextauthgrpcbackendsettingsconnectionpreconnectwithperendpointpercent)
+            * [`fn withPredictivePercent(predictivePercent)`](#fn-specextauthgrpcbackendsettingsconnectionpreconnectwithpredictivepercent)
         * [`obj spec.extAuth.grpc.backendSettings.dns`](#obj-specextauthgrpcbackendsettingsdns)
           * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specextauthgrpcbackendsettingsdnswithdnsrefreshrate)
+          * [`fn withLookupFamily(lookupFamily)`](#fn-specextauthgrpcbackendsettingsdnswithlookupfamily)
           * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specextauthgrpcbackendsettingsdnswithrespectdnsttl)
         * [`obj spec.extAuth.grpc.backendSettings.healthCheck`](#obj-specextauthgrpcbackendsettingshealthcheck)
+          * [`fn withPanicThreshold(panicThreshold)`](#fn-specextauthgrpcbackendsettingshealthcheckwithpanicthreshold)
           * [`obj spec.extAuth.grpc.backendSettings.healthCheck.active`](#obj-specextauthgrpcbackendsettingshealthcheckactive)
             * [`fn withHealthyThreshold(healthyThreshold)`](#fn-specextauthgrpcbackendsettingshealthcheckactivewithhealthythreshold)
+            * [`fn withInitialJitter(initialJitter)`](#fn-specextauthgrpcbackendsettingshealthcheckactivewithinitialjitter)
             * [`fn withInterval(interval)`](#fn-specextauthgrpcbackendsettingshealthcheckactivewithinterval)
             * [`fn withTimeout(timeout)`](#fn-specextauthgrpcbackendsettingshealthcheckactivewithtimeout)
             * [`fn withType(type)`](#fn-specextauthgrpcbackendsettingshealthcheckactivewithtype)
@@ -137,6 +172,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`obj spec.extAuth.grpc.backendSettings.healthCheck.active.http`](#obj-specextauthgrpcbackendsettingshealthcheckactivehttp)
               * [`fn withExpectedStatuses(expectedStatuses)`](#fn-specextauthgrpcbackendsettingshealthcheckactivehttpwithexpectedstatuses)
               * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-specextauthgrpcbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+              * [`fn withHostname(hostname)`](#fn-specextauthgrpcbackendsettingshealthcheckactivehttpwithhostname)
               * [`fn withMethod(method)`](#fn-specextauthgrpcbackendsettingshealthcheckactivehttpwithmethod)
               * [`fn withPath(path)`](#fn-specextauthgrpcbackendsettingshealthcheckactivehttpwithpath)
               * [`obj spec.extAuth.grpc.backendSettings.healthCheck.active.http.expectedResponse`](#obj-specextauthgrpcbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -157,6 +193,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
             * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
             * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+            * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
             * [`fn withInterval(interval)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithinterval)
             * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithmaxejectionpercent)
             * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-specextauthgrpcbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -168,6 +205,10 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`obj spec.extAuth.grpc.backendSettings.loadBalancer`](#obj-specextauthgrpcbackendsettingsloadbalancer)
           * [`fn withType(type)`](#fn-specextauthgrpcbackendsettingsloadbalancerwithtype)
           * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash`](#obj-specextauthgrpcbackendsettingsloadbalancerconsistenthash)
+            * [`fn withHeaders(headers)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithheaders)
+            * [`fn withHeadersMixin(headers)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+            * [`fn withQueryParams(queryParams)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithqueryparams)
+            * [`fn withQueryParamsMixin(queryParams)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
             * [`fn withTableSize(tableSize)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithtablesize)
             * [`fn withType(type)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashwithtype)
             * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.cookie`](#obj-specextauthgrpcbackendsettingsloadbalancerconsistenthashcookie)
@@ -177,11 +218,27 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
               * [`fn withTtl(ttl)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashcookiewithttl)
             * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.header`](#obj-specextauthgrpcbackendsettingsloadbalancerconsistenthashheader)
               * [`fn withName(name)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashheaderwithname)
+            * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.headers`](#obj-specextauthgrpcbackendsettingsloadbalancerconsistenthashheaders)
+              * [`fn withName(name)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashheaderswithname)
+            * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-specextauthgrpcbackendsettingsloadbalancerconsistenthashqueryparams)
+              * [`fn withName(name)`](#fn-specextauthgrpcbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+          * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride`](#obj-specextauthgrpcbackendsettingsloadbalancerendpointoverride)
+            * [`fn withExtractFrom(extractFrom)`](#fn-specextauthgrpcbackendsettingsloadbalancerendpointoverridewithextractfrom)
+            * [`fn withExtractFromMixin(extractFrom)`](#fn-specextauthgrpcbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+            * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-specextauthgrpcbackendsettingsloadbalancerendpointoverrideextractfrom)
+              * [`fn withHeader(header)`](#fn-specextauthgrpcbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
           * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.slowStart`](#obj-specextauthgrpcbackendsettingsloadbalancerslowstart)
             * [`fn withWindow(window)`](#fn-specextauthgrpcbackendsettingsloadbalancerslowstartwithwindow)
+          * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware`](#obj-specextauthgrpcbackendsettingsloadbalancerzoneaware)
+            * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-specextauthgrpcbackendsettingsloadbalancerzoneawarepreferlocal)
+              * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specextauthgrpcbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+              * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specextauthgrpcbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+              * [`obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-specextauthgrpcbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specextauthgrpcbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
         * [`obj spec.extAuth.grpc.backendSettings.proxyProtocol`](#obj-specextauthgrpcbackendsettingsproxyprotocol)
           * [`fn withVersion(version)`](#fn-specextauthgrpcbackendsettingsproxyprotocolwithversion)
         * [`obj spec.extAuth.grpc.backendSettings.retry`](#obj-specextauthgrpcbackendsettingsretry)
+          * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specextauthgrpcbackendsettingsretrywithnumattemptsperpriority)
           * [`fn withNumRetries(numRetries)`](#fn-specextauthgrpcbackendsettingsretrywithnumretries)
           * [`obj spec.extAuth.grpc.backendSettings.retry.perRetry`](#obj-specextauthgrpcbackendsettingsretryperretry)
             * [`fn withTimeout(timeout)`](#fn-specextauthgrpcbackendsettingsretryperretrywithtimeout)
@@ -201,6 +258,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`obj spec.extAuth.grpc.backendSettings.timeout.http`](#obj-specextauthgrpcbackendsettingstimeouthttp)
             * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-specextauthgrpcbackendsettingstimeouthttpwithconnectionidletimeout)
             * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specextauthgrpcbackendsettingstimeouthttpwithmaxconnectionduration)
+            * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specextauthgrpcbackendsettingstimeouthttpwithmaxstreamduration)
             * [`fn withRequestTimeout(requestTimeout)`](#fn-specextauthgrpcbackendsettingstimeouthttpwithrequesttimeout)
           * [`obj spec.extAuth.grpc.backendSettings.timeout.tcp`](#obj-specextauthgrpcbackendsettingstimeouttcp)
             * [`fn withConnectTimeout(connectTimeout)`](#fn-specextauthgrpcbackendsettingstimeouttcpwithconnecttimeout)
@@ -223,6 +281,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`fn withName(name)`](#fn-specextauthhttpbackendrefswithname)
         * [`fn withNamespace(namespace)`](#fn-specextauthhttpbackendrefswithnamespace)
         * [`fn withPort(port)`](#fn-specextauthhttpbackendrefswithport)
+        * [`fn withWeight(weight)`](#fn-specextauthhttpbackendrefswithweight)
       * [`obj spec.extAuth.http.backendSettings`](#obj-specextauthhttpbackendsettings)
         * [`obj spec.extAuth.http.backendSettings.circuitBreaker`](#obj-specextauthhttpbackendsettingscircuitbreaker)
           * [`fn withMaxConnections(maxConnections)`](#fn-specextauthhttpbackendsettingscircuitbreakerwithmaxconnections)
@@ -230,15 +289,23 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-specextauthhttpbackendsettingscircuitbreakerwithmaxparallelretries)
           * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-specextauthhttpbackendsettingscircuitbreakerwithmaxpendingrequests)
           * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specextauthhttpbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+          * [`obj spec.extAuth.http.backendSettings.circuitBreaker.perEndpoint`](#obj-specextauthhttpbackendsettingscircuitbreakerperendpoint)
+            * [`fn withMaxConnections(maxConnections)`](#fn-specextauthhttpbackendsettingscircuitbreakerperendpointwithmaxconnections)
         * [`obj spec.extAuth.http.backendSettings.connection`](#obj-specextauthhttpbackendsettingsconnection)
           * [`fn withBufferLimit(bufferLimit)`](#fn-specextauthhttpbackendsettingsconnectionwithbufferlimit)
           * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specextauthhttpbackendsettingsconnectionwithsocketbufferlimit)
+          * [`obj spec.extAuth.http.backendSettings.connection.preconnect`](#obj-specextauthhttpbackendsettingsconnectionpreconnect)
+            * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specextauthhttpbackendsettingsconnectionpreconnectwithperendpointpercent)
+            * [`fn withPredictivePercent(predictivePercent)`](#fn-specextauthhttpbackendsettingsconnectionpreconnectwithpredictivepercent)
         * [`obj spec.extAuth.http.backendSettings.dns`](#obj-specextauthhttpbackendsettingsdns)
           * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specextauthhttpbackendsettingsdnswithdnsrefreshrate)
+          * [`fn withLookupFamily(lookupFamily)`](#fn-specextauthhttpbackendsettingsdnswithlookupfamily)
           * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specextauthhttpbackendsettingsdnswithrespectdnsttl)
         * [`obj spec.extAuth.http.backendSettings.healthCheck`](#obj-specextauthhttpbackendsettingshealthcheck)
+          * [`fn withPanicThreshold(panicThreshold)`](#fn-specextauthhttpbackendsettingshealthcheckwithpanicthreshold)
           * [`obj spec.extAuth.http.backendSettings.healthCheck.active`](#obj-specextauthhttpbackendsettingshealthcheckactive)
             * [`fn withHealthyThreshold(healthyThreshold)`](#fn-specextauthhttpbackendsettingshealthcheckactivewithhealthythreshold)
+            * [`fn withInitialJitter(initialJitter)`](#fn-specextauthhttpbackendsettingshealthcheckactivewithinitialjitter)
             * [`fn withInterval(interval)`](#fn-specextauthhttpbackendsettingshealthcheckactivewithinterval)
             * [`fn withTimeout(timeout)`](#fn-specextauthhttpbackendsettingshealthcheckactivewithtimeout)
             * [`fn withType(type)`](#fn-specextauthhttpbackendsettingshealthcheckactivewithtype)
@@ -248,6 +315,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`obj spec.extAuth.http.backendSettings.healthCheck.active.http`](#obj-specextauthhttpbackendsettingshealthcheckactivehttp)
               * [`fn withExpectedStatuses(expectedStatuses)`](#fn-specextauthhttpbackendsettingshealthcheckactivehttpwithexpectedstatuses)
               * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-specextauthhttpbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+              * [`fn withHostname(hostname)`](#fn-specextauthhttpbackendsettingshealthcheckactivehttpwithhostname)
               * [`fn withMethod(method)`](#fn-specextauthhttpbackendsettingshealthcheckactivehttpwithmethod)
               * [`fn withPath(path)`](#fn-specextauthhttpbackendsettingshealthcheckactivehttpwithpath)
               * [`obj spec.extAuth.http.backendSettings.healthCheck.active.http.expectedResponse`](#obj-specextauthhttpbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -268,6 +336,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
             * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
             * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+            * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
             * [`fn withInterval(interval)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithinterval)
             * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithmaxejectionpercent)
             * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-specextauthhttpbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -279,6 +348,10 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`obj spec.extAuth.http.backendSettings.loadBalancer`](#obj-specextauthhttpbackendsettingsloadbalancer)
           * [`fn withType(type)`](#fn-specextauthhttpbackendsettingsloadbalancerwithtype)
           * [`obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash`](#obj-specextauthhttpbackendsettingsloadbalancerconsistenthash)
+            * [`fn withHeaders(headers)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithheaders)
+            * [`fn withHeadersMixin(headers)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+            * [`fn withQueryParams(queryParams)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithqueryparams)
+            * [`fn withQueryParamsMixin(queryParams)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
             * [`fn withTableSize(tableSize)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithtablesize)
             * [`fn withType(type)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashwithtype)
             * [`obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.cookie`](#obj-specextauthhttpbackendsettingsloadbalancerconsistenthashcookie)
@@ -288,11 +361,27 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
               * [`fn withTtl(ttl)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashcookiewithttl)
             * [`obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.header`](#obj-specextauthhttpbackendsettingsloadbalancerconsistenthashheader)
               * [`fn withName(name)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashheaderwithname)
+            * [`obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.headers`](#obj-specextauthhttpbackendsettingsloadbalancerconsistenthashheaders)
+              * [`fn withName(name)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashheaderswithname)
+            * [`obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-specextauthhttpbackendsettingsloadbalancerconsistenthashqueryparams)
+              * [`fn withName(name)`](#fn-specextauthhttpbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+          * [`obj spec.extAuth.http.backendSettings.loadBalancer.endpointOverride`](#obj-specextauthhttpbackendsettingsloadbalancerendpointoverride)
+            * [`fn withExtractFrom(extractFrom)`](#fn-specextauthhttpbackendsettingsloadbalancerendpointoverridewithextractfrom)
+            * [`fn withExtractFromMixin(extractFrom)`](#fn-specextauthhttpbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+            * [`obj spec.extAuth.http.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-specextauthhttpbackendsettingsloadbalancerendpointoverrideextractfrom)
+              * [`fn withHeader(header)`](#fn-specextauthhttpbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
           * [`obj spec.extAuth.http.backendSettings.loadBalancer.slowStart`](#obj-specextauthhttpbackendsettingsloadbalancerslowstart)
             * [`fn withWindow(window)`](#fn-specextauthhttpbackendsettingsloadbalancerslowstartwithwindow)
+          * [`obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware`](#obj-specextauthhttpbackendsettingsloadbalancerzoneaware)
+            * [`obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-specextauthhttpbackendsettingsloadbalancerzoneawarepreferlocal)
+              * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specextauthhttpbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+              * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specextauthhttpbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+              * [`obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-specextauthhttpbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specextauthhttpbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
         * [`obj spec.extAuth.http.backendSettings.proxyProtocol`](#obj-specextauthhttpbackendsettingsproxyprotocol)
           * [`fn withVersion(version)`](#fn-specextauthhttpbackendsettingsproxyprotocolwithversion)
         * [`obj spec.extAuth.http.backendSettings.retry`](#obj-specextauthhttpbackendsettingsretry)
+          * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specextauthhttpbackendsettingsretrywithnumattemptsperpriority)
           * [`fn withNumRetries(numRetries)`](#fn-specextauthhttpbackendsettingsretrywithnumretries)
           * [`obj spec.extAuth.http.backendSettings.retry.perRetry`](#obj-specextauthhttpbackendsettingsretryperretry)
             * [`fn withTimeout(timeout)`](#fn-specextauthhttpbackendsettingsretryperretrywithtimeout)
@@ -312,6 +401,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`obj spec.extAuth.http.backendSettings.timeout.http`](#obj-specextauthhttpbackendsettingstimeouthttp)
             * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-specextauthhttpbackendsettingstimeouthttpwithconnectionidletimeout)
             * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specextauthhttpbackendsettingstimeouthttpwithmaxconnectionduration)
+            * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specextauthhttpbackendsettingstimeouthttpwithmaxstreamduration)
             * [`fn withRequestTimeout(requestTimeout)`](#fn-specextauthhttpbackendsettingstimeouthttpwithrequesttimeout)
           * [`obj spec.extAuth.http.backendSettings.timeout.tcp`](#obj-specextauthhttpbackendsettingstimeouttcp)
             * [`fn withConnectTimeout(connectTimeout)`](#fn-specextauthhttpbackendsettingstimeouttcpwithconnecttimeout)
@@ -340,9 +430,17 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`obj spec.jwt.providers.extractFrom.headers`](#obj-specjwtprovidersextractfromheaders)
           * [`fn withName(name)`](#fn-specjwtprovidersextractfromheaderswithname)
           * [`fn withValuePrefix(valuePrefix)`](#fn-specjwtprovidersextractfromheaderswithvalueprefix)
+      * [`obj spec.jwt.providers.localJWKS`](#obj-specjwtproviderslocaljwks)
+        * [`fn withInline(inline)`](#fn-specjwtproviderslocaljwkswithinline)
+        * [`fn withType(type)`](#fn-specjwtproviderslocaljwkswithtype)
+        * [`obj spec.jwt.providers.localJWKS.valueRef`](#obj-specjwtproviderslocaljwksvalueref)
+          * [`fn withGroup(group)`](#fn-specjwtproviderslocaljwksvaluerefwithgroup)
+          * [`fn withKind(kind)`](#fn-specjwtproviderslocaljwksvaluerefwithkind)
+          * [`fn withName(name)`](#fn-specjwtproviderslocaljwksvaluerefwithname)
       * [`obj spec.jwt.providers.remoteJWKS`](#obj-specjwtprovidersremotejwks)
         * [`fn withBackendRefs(backendRefs)`](#fn-specjwtprovidersremotejwkswithbackendrefs)
         * [`fn withBackendRefsMixin(backendRefs)`](#fn-specjwtprovidersremotejwkswithbackendrefsmixin)
+        * [`fn withCacheDuration(cacheDuration)`](#fn-specjwtprovidersremotejwkswithcacheduration)
         * [`fn withUri(uri)`](#fn-specjwtprovidersremotejwkswithuri)
         * [`obj spec.jwt.providers.remoteJWKS.backendRef`](#obj-specjwtprovidersremotejwksbackendref)
           * [`fn withGroup(group)`](#fn-specjwtprovidersremotejwksbackendrefwithgroup)
@@ -357,6 +455,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`fn withName(name)`](#fn-specjwtprovidersremotejwksbackendrefswithname)
           * [`fn withNamespace(namespace)`](#fn-specjwtprovidersremotejwksbackendrefswithnamespace)
           * [`fn withPort(port)`](#fn-specjwtprovidersremotejwksbackendrefswithport)
+          * [`fn withWeight(weight)`](#fn-specjwtprovidersremotejwksbackendrefswithweight)
         * [`obj spec.jwt.providers.remoteJWKS.backendSettings`](#obj-specjwtprovidersremotejwksbackendsettings)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.circuitBreaker`](#obj-specjwtprovidersremotejwksbackendsettingscircuitbreaker)
             * [`fn withMaxConnections(maxConnections)`](#fn-specjwtprovidersremotejwksbackendsettingscircuitbreakerwithmaxconnections)
@@ -364,15 +463,23 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-specjwtprovidersremotejwksbackendsettingscircuitbreakerwithmaxparallelretries)
             * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-specjwtprovidersremotejwksbackendsettingscircuitbreakerwithmaxpendingrequests)
             * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specjwtprovidersremotejwksbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+            * [`obj spec.jwt.providers.remoteJWKS.backendSettings.circuitBreaker.perEndpoint`](#obj-specjwtprovidersremotejwksbackendsettingscircuitbreakerperendpoint)
+              * [`fn withMaxConnections(maxConnections)`](#fn-specjwtprovidersremotejwksbackendsettingscircuitbreakerperendpointwithmaxconnections)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.connection`](#obj-specjwtprovidersremotejwksbackendsettingsconnection)
             * [`fn withBufferLimit(bufferLimit)`](#fn-specjwtprovidersremotejwksbackendsettingsconnectionwithbufferlimit)
             * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specjwtprovidersremotejwksbackendsettingsconnectionwithsocketbufferlimit)
+            * [`obj spec.jwt.providers.remoteJWKS.backendSettings.connection.preconnect`](#obj-specjwtprovidersremotejwksbackendsettingsconnectionpreconnect)
+              * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specjwtprovidersremotejwksbackendsettingsconnectionpreconnectwithperendpointpercent)
+              * [`fn withPredictivePercent(predictivePercent)`](#fn-specjwtprovidersremotejwksbackendsettingsconnectionpreconnectwithpredictivepercent)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.dns`](#obj-specjwtprovidersremotejwksbackendsettingsdns)
             * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specjwtprovidersremotejwksbackendsettingsdnswithdnsrefreshrate)
+            * [`fn withLookupFamily(lookupFamily)`](#fn-specjwtprovidersremotejwksbackendsettingsdnswithlookupfamily)
             * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specjwtprovidersremotejwksbackendsettingsdnswithrespectdnsttl)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.healthCheck`](#obj-specjwtprovidersremotejwksbackendsettingshealthcheck)
+            * [`fn withPanicThreshold(panicThreshold)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckwithpanicthreshold)
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active`](#obj-specjwtprovidersremotejwksbackendsettingshealthcheckactive)
               * [`fn withHealthyThreshold(healthyThreshold)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivewithhealthythreshold)
+              * [`fn withInitialJitter(initialJitter)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivewithinitialjitter)
               * [`fn withInterval(interval)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivewithinterval)
               * [`fn withTimeout(timeout)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivewithtimeout)
               * [`fn withType(type)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivewithtype)
@@ -382,6 +489,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
               * [`obj spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.http`](#obj-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttp)
                 * [`fn withExpectedStatuses(expectedStatuses)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpwithexpectedstatuses)
                 * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+                * [`fn withHostname(hostname)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpwithhostname)
                 * [`fn withMethod(method)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpwithmethod)
                 * [`fn withPath(path)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpwithpath)
                 * [`obj spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.http.expectedResponse`](#obj-specjwtprovidersremotejwksbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -402,6 +510,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
               * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
               * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
               * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+              * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
               * [`fn withInterval(interval)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithinterval)
               * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithmaxejectionpercent)
               * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-specjwtprovidersremotejwksbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -413,6 +522,10 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancer)
             * [`fn withType(type)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerwithtype)
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthash)
+              * [`fn withHeaders(headers)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithheaders)
+              * [`fn withHeadersMixin(headers)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+              * [`fn withQueryParams(queryParams)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithqueryparams)
+              * [`fn withQueryParamsMixin(queryParams)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
               * [`fn withTableSize(tableSize)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithtablesize)
               * [`fn withType(type)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashwithtype)
               * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.cookie`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashcookie)
@@ -422,11 +535,27 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
                 * [`fn withTtl(ttl)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashcookiewithttl)
               * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.header`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashheader)
                 * [`fn withName(name)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashheaderwithname)
+              * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.headers`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashheaders)
+                * [`fn withName(name)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashheaderswithname)
+              * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashqueryparams)
+                * [`fn withName(name)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+            * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerendpointoverride)
+              * [`fn withExtractFrom(extractFrom)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerendpointoverridewithextractfrom)
+              * [`fn withExtractFromMixin(extractFrom)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+              * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerendpointoverrideextractfrom)
+                * [`fn withHeader(header)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.slowStart`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerslowstart)
               * [`fn withWindow(window)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerslowstartwithwindow)
+            * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneaware)
+              * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneawarepreferlocal)
+                * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+                * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+                * [`obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                  * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specjwtprovidersremotejwksbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.proxyProtocol`](#obj-specjwtprovidersremotejwksbackendsettingsproxyprotocol)
             * [`fn withVersion(version)`](#fn-specjwtprovidersremotejwksbackendsettingsproxyprotocolwithversion)
           * [`obj spec.jwt.providers.remoteJWKS.backendSettings.retry`](#obj-specjwtprovidersremotejwksbackendsettingsretry)
+            * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specjwtprovidersremotejwksbackendsettingsretrywithnumattemptsperpriority)
             * [`fn withNumRetries(numRetries)`](#fn-specjwtprovidersremotejwksbackendsettingsretrywithnumretries)
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.retry.perRetry`](#obj-specjwtprovidersremotejwksbackendsettingsretryperretry)
               * [`fn withTimeout(timeout)`](#fn-specjwtprovidersremotejwksbackendsettingsretryperretrywithtimeout)
@@ -446,34 +575,53 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.timeout.http`](#obj-specjwtprovidersremotejwksbackendsettingstimeouthttp)
               * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-specjwtprovidersremotejwksbackendsettingstimeouthttpwithconnectionidletimeout)
               * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specjwtprovidersremotejwksbackendsettingstimeouthttpwithmaxconnectionduration)
+              * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specjwtprovidersremotejwksbackendsettingstimeouthttpwithmaxstreamduration)
               * [`fn withRequestTimeout(requestTimeout)`](#fn-specjwtprovidersremotejwksbackendsettingstimeouthttpwithrequesttimeout)
             * [`obj spec.jwt.providers.remoteJWKS.backendSettings.timeout.tcp`](#obj-specjwtprovidersremotejwksbackendsettingstimeouttcp)
               * [`fn withConnectTimeout(connectTimeout)`](#fn-specjwtprovidersremotejwksbackendsettingstimeouttcpwithconnecttimeout)
   * [`obj spec.oidc`](#obj-specoidc)
     * [`fn withClientID(clientID)`](#fn-specoidcwithclientid)
     * [`fn withCookieDomain(cookieDomain)`](#fn-specoidcwithcookiedomain)
+    * [`fn withCsrfTokenTTL(csrfTokenTTL)`](#fn-specoidcwithcsrftokenttl)
     * [`fn withDefaultRefreshTokenTTL(defaultRefreshTokenTTL)`](#fn-specoidcwithdefaultrefreshtokenttl)
     * [`fn withDefaultTokenTTL(defaultTokenTTL)`](#fn-specoidcwithdefaulttokenttl)
+    * [`fn withDisableTokenEncryption(disableTokenEncryption)`](#fn-specoidcwithdisabletokenencryption)
     * [`fn withForwardAccessToken(forwardAccessToken)`](#fn-specoidcwithforwardaccesstoken)
     * [`fn withLogoutPath(logoutPath)`](#fn-specoidcwithlogoutpath)
+    * [`fn withPassThroughAuthHeader(passThroughAuthHeader)`](#fn-specoidcwithpassthroughauthheader)
     * [`fn withRedirectURL(redirectURL)`](#fn-specoidcwithredirecturl)
     * [`fn withRefreshToken(refreshToken)`](#fn-specoidcwithrefreshtoken)
     * [`fn withResources(resources)`](#fn-specoidcwithresources)
     * [`fn withResourcesMixin(resources)`](#fn-specoidcwithresourcesmixin)
     * [`fn withScopes(scopes)`](#fn-specoidcwithscopes)
     * [`fn withScopesMixin(scopes)`](#fn-specoidcwithscopesmixin)
+    * [`obj spec.oidc.clientIDRef`](#obj-specoidcclientidref)
+      * [`fn withGroup(group)`](#fn-specoidcclientidrefwithgroup)
+      * [`fn withKind(kind)`](#fn-specoidcclientidrefwithkind)
+      * [`fn withName(name)`](#fn-specoidcclientidrefwithname)
+      * [`fn withNamespace(namespace)`](#fn-specoidcclientidrefwithnamespace)
     * [`obj spec.oidc.clientSecret`](#obj-specoidcclientsecret)
       * [`fn withGroup(group)`](#fn-specoidcclientsecretwithgroup)
       * [`fn withKind(kind)`](#fn-specoidcclientsecretwithkind)
       * [`fn withName(name)`](#fn-specoidcclientsecretwithname)
       * [`fn withNamespace(namespace)`](#fn-specoidcclientsecretwithnamespace)
+    * [`obj spec.oidc.cookieConfig`](#obj-specoidccookieconfig)
+      * [`fn withSameSite(sameSite)`](#fn-specoidccookieconfigwithsamesite)
     * [`obj spec.oidc.cookieNames`](#obj-specoidccookienames)
       * [`fn withAccessToken(accessToken)`](#fn-specoidccookienameswithaccesstoken)
       * [`fn withIdToken(idToken)`](#fn-specoidccookienameswithidtoken)
+    * [`obj spec.oidc.denyRedirect`](#obj-specoidcdenyredirect)
+      * [`fn withHeaders(headers)`](#fn-specoidcdenyredirectwithheaders)
+      * [`fn withHeadersMixin(headers)`](#fn-specoidcdenyredirectwithheadersmixin)
+      * [`obj spec.oidc.denyRedirect.headers`](#obj-specoidcdenyredirectheaders)
+        * [`fn withName(name)`](#fn-specoidcdenyredirectheaderswithname)
+        * [`fn withType(type)`](#fn-specoidcdenyredirectheaderswithtype)
+        * [`fn withValue(value)`](#fn-specoidcdenyredirectheaderswithvalue)
     * [`obj spec.oidc.provider`](#obj-specoidcprovider)
       * [`fn withAuthorizationEndpoint(authorizationEndpoint)`](#fn-specoidcproviderwithauthorizationendpoint)
       * [`fn withBackendRefs(backendRefs)`](#fn-specoidcproviderwithbackendrefs)
       * [`fn withBackendRefsMixin(backendRefs)`](#fn-specoidcproviderwithbackendrefsmixin)
+      * [`fn withEndSessionEndpoint(endSessionEndpoint)`](#fn-specoidcproviderwithendsessionendpoint)
       * [`fn withIssuer(issuer)`](#fn-specoidcproviderwithissuer)
       * [`fn withTokenEndpoint(tokenEndpoint)`](#fn-specoidcproviderwithtokenendpoint)
       * [`obj spec.oidc.provider.backendRef`](#obj-specoidcproviderbackendref)
@@ -489,6 +637,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`fn withName(name)`](#fn-specoidcproviderbackendrefswithname)
         * [`fn withNamespace(namespace)`](#fn-specoidcproviderbackendrefswithnamespace)
         * [`fn withPort(port)`](#fn-specoidcproviderbackendrefswithport)
+        * [`fn withWeight(weight)`](#fn-specoidcproviderbackendrefswithweight)
       * [`obj spec.oidc.provider.backendSettings`](#obj-specoidcproviderbackendsettings)
         * [`obj spec.oidc.provider.backendSettings.circuitBreaker`](#obj-specoidcproviderbackendsettingscircuitbreaker)
           * [`fn withMaxConnections(maxConnections)`](#fn-specoidcproviderbackendsettingscircuitbreakerwithmaxconnections)
@@ -496,15 +645,23 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`fn withMaxParallelRetries(maxParallelRetries)`](#fn-specoidcproviderbackendsettingscircuitbreakerwithmaxparallelretries)
           * [`fn withMaxPendingRequests(maxPendingRequests)`](#fn-specoidcproviderbackendsettingscircuitbreakerwithmaxpendingrequests)
           * [`fn withMaxRequestsPerConnection(maxRequestsPerConnection)`](#fn-specoidcproviderbackendsettingscircuitbreakerwithmaxrequestsperconnection)
+          * [`obj spec.oidc.provider.backendSettings.circuitBreaker.perEndpoint`](#obj-specoidcproviderbackendsettingscircuitbreakerperendpoint)
+            * [`fn withMaxConnections(maxConnections)`](#fn-specoidcproviderbackendsettingscircuitbreakerperendpointwithmaxconnections)
         * [`obj spec.oidc.provider.backendSettings.connection`](#obj-specoidcproviderbackendsettingsconnection)
           * [`fn withBufferLimit(bufferLimit)`](#fn-specoidcproviderbackendsettingsconnectionwithbufferlimit)
           * [`fn withSocketBufferLimit(socketBufferLimit)`](#fn-specoidcproviderbackendsettingsconnectionwithsocketbufferlimit)
+          * [`obj spec.oidc.provider.backendSettings.connection.preconnect`](#obj-specoidcproviderbackendsettingsconnectionpreconnect)
+            * [`fn withPerEndpointPercent(perEndpointPercent)`](#fn-specoidcproviderbackendsettingsconnectionpreconnectwithperendpointpercent)
+            * [`fn withPredictivePercent(predictivePercent)`](#fn-specoidcproviderbackendsettingsconnectionpreconnectwithpredictivepercent)
         * [`obj spec.oidc.provider.backendSettings.dns`](#obj-specoidcproviderbackendsettingsdns)
           * [`fn withDnsRefreshRate(dnsRefreshRate)`](#fn-specoidcproviderbackendsettingsdnswithdnsrefreshrate)
+          * [`fn withLookupFamily(lookupFamily)`](#fn-specoidcproviderbackendsettingsdnswithlookupfamily)
           * [`fn withRespectDnsTtl(respectDnsTtl)`](#fn-specoidcproviderbackendsettingsdnswithrespectdnsttl)
         * [`obj spec.oidc.provider.backendSettings.healthCheck`](#obj-specoidcproviderbackendsettingshealthcheck)
+          * [`fn withPanicThreshold(panicThreshold)`](#fn-specoidcproviderbackendsettingshealthcheckwithpanicthreshold)
           * [`obj spec.oidc.provider.backendSettings.healthCheck.active`](#obj-specoidcproviderbackendsettingshealthcheckactive)
             * [`fn withHealthyThreshold(healthyThreshold)`](#fn-specoidcproviderbackendsettingshealthcheckactivewithhealthythreshold)
+            * [`fn withInitialJitter(initialJitter)`](#fn-specoidcproviderbackendsettingshealthcheckactivewithinitialjitter)
             * [`fn withInterval(interval)`](#fn-specoidcproviderbackendsettingshealthcheckactivewithinterval)
             * [`fn withTimeout(timeout)`](#fn-specoidcproviderbackendsettingshealthcheckactivewithtimeout)
             * [`fn withType(type)`](#fn-specoidcproviderbackendsettingshealthcheckactivewithtype)
@@ -514,6 +671,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`obj spec.oidc.provider.backendSettings.healthCheck.active.http`](#obj-specoidcproviderbackendsettingshealthcheckactivehttp)
               * [`fn withExpectedStatuses(expectedStatuses)`](#fn-specoidcproviderbackendsettingshealthcheckactivehttpwithexpectedstatuses)
               * [`fn withExpectedStatusesMixin(expectedStatuses)`](#fn-specoidcproviderbackendsettingshealthcheckactivehttpwithexpectedstatusesmixin)
+              * [`fn withHostname(hostname)`](#fn-specoidcproviderbackendsettingshealthcheckactivehttpwithhostname)
               * [`fn withMethod(method)`](#fn-specoidcproviderbackendsettingshealthcheckactivehttpwithmethod)
               * [`fn withPath(path)`](#fn-specoidcproviderbackendsettingshealthcheckactivehttpwithpath)
               * [`obj spec.oidc.provider.backendSettings.healthCheck.active.http.expectedResponse`](#obj-specoidcproviderbackendsettingshealthcheckactivehttpexpectedresponse)
@@ -534,6 +692,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
             * [`fn withConsecutive5XxErrors(consecutive5XxErrors)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithconsecutive5xxerrors)
             * [`fn withConsecutiveGatewayErrors(consecutiveGatewayErrors)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithconsecutivegatewayerrors)
             * [`fn withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithconsecutivelocaloriginfailures)
+            * [`fn withFailurePercentageThreshold(failurePercentageThreshold)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithfailurepercentagethreshold)
             * [`fn withInterval(interval)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithinterval)
             * [`fn withMaxEjectionPercent(maxEjectionPercent)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithmaxejectionpercent)
             * [`fn withSplitExternalLocalOriginErrors(splitExternalLocalOriginErrors)`](#fn-specoidcproviderbackendsettingshealthcheckpassivewithsplitexternallocaloriginerrors)
@@ -545,6 +704,10 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
         * [`obj spec.oidc.provider.backendSettings.loadBalancer`](#obj-specoidcproviderbackendsettingsloadbalancer)
           * [`fn withType(type)`](#fn-specoidcproviderbackendsettingsloadbalancerwithtype)
           * [`obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash`](#obj-specoidcproviderbackendsettingsloadbalancerconsistenthash)
+            * [`fn withHeaders(headers)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithheaders)
+            * [`fn withHeadersMixin(headers)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithheadersmixin)
+            * [`fn withQueryParams(queryParams)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithqueryparams)
+            * [`fn withQueryParamsMixin(queryParams)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithqueryparamsmixin)
             * [`fn withTableSize(tableSize)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithtablesize)
             * [`fn withType(type)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashwithtype)
             * [`obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.cookie`](#obj-specoidcproviderbackendsettingsloadbalancerconsistenthashcookie)
@@ -554,11 +717,27 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
               * [`fn withTtl(ttl)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashcookiewithttl)
             * [`obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.header`](#obj-specoidcproviderbackendsettingsloadbalancerconsistenthashheader)
               * [`fn withName(name)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashheaderwithname)
+            * [`obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.headers`](#obj-specoidcproviderbackendsettingsloadbalancerconsistenthashheaders)
+              * [`fn withName(name)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashheaderswithname)
+            * [`obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.queryParams`](#obj-specoidcproviderbackendsettingsloadbalancerconsistenthashqueryparams)
+              * [`fn withName(name)`](#fn-specoidcproviderbackendsettingsloadbalancerconsistenthashqueryparamswithname)
+          * [`obj spec.oidc.provider.backendSettings.loadBalancer.endpointOverride`](#obj-specoidcproviderbackendsettingsloadbalancerendpointoverride)
+            * [`fn withExtractFrom(extractFrom)`](#fn-specoidcproviderbackendsettingsloadbalancerendpointoverridewithextractfrom)
+            * [`fn withExtractFromMixin(extractFrom)`](#fn-specoidcproviderbackendsettingsloadbalancerendpointoverridewithextractfrommixin)
+            * [`obj spec.oidc.provider.backendSettings.loadBalancer.endpointOverride.extractFrom`](#obj-specoidcproviderbackendsettingsloadbalancerendpointoverrideextractfrom)
+              * [`fn withHeader(header)`](#fn-specoidcproviderbackendsettingsloadbalancerendpointoverrideextractfromwithheader)
           * [`obj spec.oidc.provider.backendSettings.loadBalancer.slowStart`](#obj-specoidcproviderbackendsettingsloadbalancerslowstart)
             * [`fn withWindow(window)`](#fn-specoidcproviderbackendsettingsloadbalancerslowstartwithwindow)
+          * [`obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware`](#obj-specoidcproviderbackendsettingsloadbalancerzoneaware)
+            * [`obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal`](#obj-specoidcproviderbackendsettingsloadbalancerzoneawarepreferlocal)
+              * [`fn withMinEndpointsThreshold(minEndpointsThreshold)`](#fn-specoidcproviderbackendsettingsloadbalancerzoneawarepreferlocalwithminendpointsthreshold)
+              * [`fn withPercentageEnabled(percentageEnabled)`](#fn-specoidcproviderbackendsettingsloadbalancerzoneawarepreferlocalwithpercentageenabled)
+              * [`obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force`](#obj-specoidcproviderbackendsettingsloadbalancerzoneawarepreferlocalforce)
+                * [`fn withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)`](#fn-specoidcproviderbackendsettingsloadbalancerzoneawarepreferlocalforcewithminendpointsinzonethreshold)
         * [`obj spec.oidc.provider.backendSettings.proxyProtocol`](#obj-specoidcproviderbackendsettingsproxyprotocol)
           * [`fn withVersion(version)`](#fn-specoidcproviderbackendsettingsproxyprotocolwithversion)
         * [`obj spec.oidc.provider.backendSettings.retry`](#obj-specoidcproviderbackendsettingsretry)
+          * [`fn withNumAttemptsPerPriority(numAttemptsPerPriority)`](#fn-specoidcproviderbackendsettingsretrywithnumattemptsperpriority)
           * [`fn withNumRetries(numRetries)`](#fn-specoidcproviderbackendsettingsretrywithnumretries)
           * [`obj spec.oidc.provider.backendSettings.retry.perRetry`](#obj-specoidcproviderbackendsettingsretryperretry)
             * [`fn withTimeout(timeout)`](#fn-specoidcproviderbackendsettingsretryperretrywithtimeout)
@@ -578,6 +757,7 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
           * [`obj spec.oidc.provider.backendSettings.timeout.http`](#obj-specoidcproviderbackendsettingstimeouthttp)
             * [`fn withConnectionIdleTimeout(connectionIdleTimeout)`](#fn-specoidcproviderbackendsettingstimeouthttpwithconnectionidletimeout)
             * [`fn withMaxConnectionDuration(maxConnectionDuration)`](#fn-specoidcproviderbackendsettingstimeouthttpwithmaxconnectionduration)
+            * [`fn withMaxStreamDuration(maxStreamDuration)`](#fn-specoidcproviderbackendsettingstimeouthttpwithmaxstreamduration)
             * [`fn withRequestTimeout(requestTimeout)`](#fn-specoidcproviderbackendsettingstimeouthttpwithrequesttimeout)
           * [`obj spec.oidc.provider.backendSettings.timeout.tcp`](#obj-specoidcproviderbackendsettingstimeouttcp)
             * [`fn withConnectTimeout(connectTimeout)`](#fn-specoidcproviderbackendsettingstimeouttcpwithconnecttimeout)
@@ -594,8 +774,15 @@ permalink: /v1.3.0/gateway/v1alpha1/securityPolicy/
   * [`obj spec.targetSelectors`](#obj-spectargetselectors)
     * [`fn withGroup(group)`](#fn-spectargetselectorswithgroup)
     * [`fn withKind(kind)`](#fn-spectargetselectorswithkind)
+    * [`fn withMatchExpressions(matchExpressions)`](#fn-spectargetselectorswithmatchexpressions)
+    * [`fn withMatchExpressionsMixin(matchExpressions)`](#fn-spectargetselectorswithmatchexpressionsmixin)
     * [`fn withMatchLabels(matchLabels)`](#fn-spectargetselectorswithmatchlabels)
     * [`fn withMatchLabelsMixin(matchLabels)`](#fn-spectargetselectorswithmatchlabelsmixin)
+    * [`obj spec.targetSelectors.matchExpressions`](#obj-spectargetselectorsmatchexpressions)
+      * [`fn withKey(key)`](#fn-spectargetselectorsmatchexpressionswithkey)
+      * [`fn withOperator(operator)`](#fn-spectargetselectorsmatchexpressionswithoperator)
+      * [`fn withValues(values)`](#fn-spectargetselectorsmatchexpressionswithvalues)
+      * [`fn withValuesMixin(values)`](#fn-spectargetselectorsmatchexpressionswithvaluesmixin)
 
 ## Fields
 
@@ -851,6 +1038,22 @@ withExtractFromMixin(extractFrom)
 
 **Note:** This function appends passed data to existing values
 
+### fn spec.apiKeyAuth.withForwardClientIDHeader
+
+```ts
+withForwardClientIDHeader(forwardClientIDHeader)
+```
+
+"ForwardClientIDHeader is the name of the header to forward the client identity to the backend\nservice. The header will be added to the request with the client id as the value."
+
+### fn spec.apiKeyAuth.withSanitize
+
+```ts
+withSanitize(sanitize)
+```
+
+"Sanitize indicates whether to remove the API key from the request before forwarding it to the backend service."
+
 ## obj spec.apiKeyAuth.credentialRefs
 
 "CredentialRefs is the Kubernetes secret which contains the API keys.\nThis is an Opaque secret.\nEach API key is stored in the key representing the client id.\nIf the secrets have a key for a duplicated client, the first one will be used."
@@ -995,6 +1198,28 @@ withName(name)
 
 "Name is a user-friendly name for the rule.\nIf not specified, Envoy Gateway will generate a unique name for the rule."
 
+## obj spec.authorization.rules.operation
+
+"Operation specifies the operation of a request, such as HTTP methods.\nIf not specified, all operations are matched on."
+
+### fn spec.authorization.rules.operation.withMethods
+
+```ts
+withMethods(methods)
+```
+
+"Methods are the HTTP methods of the request.\nIf multiple methods are specified, all specified methods are allowed or denied, based on the action of the rule."
+
+### fn spec.authorization.rules.operation.withMethodsMixin
+
+```ts
+withMethodsMixin(methods)
+```
+
+"Methods are the HTTP methods of the request.\nIf multiple methods are specified, all specified methods are allowed or denied, based on the action of the rule."
+
+**Note:** This function appends passed data to existing values
+
 ## obj spec.authorization.rules.principal
 
 "Principal specifies the client identity of a request.\nIf there are multiple principal types, all principals must match for the rule to match.\nFor example, if there are two principals: one for client IP and one for JWT claim,\nthe rule will match only if both the client IP and the JWT claim match."
@@ -1005,7 +1230,7 @@ withName(name)
 withClientCIDRs(clientCIDRs)
 ```
 
-"ClientCIDRs are the IP CIDR ranges of the client.\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe client IP for the rule to match.\n\nThe client IP is inferred from the X-Forwarded-For header, a custom header,\nor the proxy protocol.\nYou can use the `ClientIPDetection` or the `EnableProxyProtocol` field in\nthe `ClientTrafficPolicy` to configure how the client IP is detected."
+"ClientCIDRs are the IP CIDR ranges of the client.\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe client IP for the rule to match.\n\nThe client IP is inferred from the X-Forwarded-For header, a custom header,\nor the proxy protocol.\nYou can use the `ClientIPDetection` or the `ProxyProtocol` field in\nthe `ClientTrafficPolicy` to configure how the client IP is detected.\n\nFor TCPRoute targets (raw TCP connections), HTTP headers such as\nX-Forwarded-For are not available. The client IP is obtained from the\nTCP connection's peer address. If intermediaries (load balancers, NAT)\nterminate or proxy TCP, the original client IP will only be available\nif the intermediary preserves the source address (for example by\nenabling the PROXY protocol or avoiding SNAT). Ensure your L4 proxy is\nconfigured to preserve the source IP to enable correct client-IP\nmatching for TCPRoute targets."
 
 ### fn spec.authorization.rules.principal.withClientCIDRsMixin
 
@@ -1013,7 +1238,73 @@ withClientCIDRs(clientCIDRs)
 withClientCIDRsMixin(clientCIDRs)
 ```
 
-"ClientCIDRs are the IP CIDR ranges of the client.\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe client IP for the rule to match.\n\nThe client IP is inferred from the X-Forwarded-For header, a custom header,\nor the proxy protocol.\nYou can use the `ClientIPDetection` or the `EnableProxyProtocol` field in\nthe `ClientTrafficPolicy` to configure how the client IP is detected."
+"ClientCIDRs are the IP CIDR ranges of the client.\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe client IP for the rule to match.\n\nThe client IP is inferred from the X-Forwarded-For header, a custom header,\nor the proxy protocol.\nYou can use the `ClientIPDetection` or the `ProxyProtocol` field in\nthe `ClientTrafficPolicy` to configure how the client IP is detected.\n\nFor TCPRoute targets (raw TCP connections), HTTP headers such as\nX-Forwarded-For are not available. The client IP is obtained from the\nTCP connection's peer address. If intermediaries (load balancers, NAT)\nterminate or proxy TCP, the original client IP will only be available\nif the intermediary preserves the source address (for example by\nenabling the PROXY protocol or avoiding SNAT). Ensure your L4 proxy is\nconfigured to preserve the source IP to enable correct client-IP\nmatching for TCPRoute targets."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.authorization.rules.principal.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers authorize the request based on user identity extracted from custom headers.\nIf multiple headers are specified, all headers must match for the rule to match."
+
+### fn spec.authorization.rules.principal.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers authorize the request based on user identity extracted from custom headers.\nIf multiple headers are specified, all headers must match for the rule to match."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.authorization.rules.principal.withSourceCIDRs
+
+```ts
+withSourceCIDRs(sourceCIDRs)
+```
+
+"SourceCIDRs are the IP CIDR ranges of the source (L4 peer IP).\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe source IP for the rule to match.\n\nThe source IP is the IP address of the peer that connected to Envoy.\nThis IP is obtained from the TCP connection's peer address and is not\naffected by X-Forwarded-For or other IP detection headers.\nIf intermediaries (load balancers, NAT) terminate or proxy TCP,\nthe original client IP will only be available if the intermediary\npreserves the source address (for example by enabling the PROXY protocol\nor avoiding SNAT)."
+
+### fn spec.authorization.rules.principal.withSourceCIDRsMixin
+
+```ts
+withSourceCIDRsMixin(sourceCIDRs)
+```
+
+"SourceCIDRs are the IP CIDR ranges of the source (L4 peer IP).\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\n\nIf multiple CIDR ranges are specified, one of the CIDR ranges must match\nthe source IP for the rule to match.\n\nThe source IP is the IP address of the peer that connected to Envoy.\nThis IP is obtained from the TCP connection's peer address and is not\naffected by X-Forwarded-For or other IP detection headers.\nIf intermediaries (load balancers, NAT) terminate or proxy TCP,\nthe original client IP will only be available if the intermediary\npreserves the source address (for example by enabling the PROXY protocol\nor avoiding SNAT)."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.authorization.rules.principal.headers
+
+"Headers authorize the request based on user identity extracted from custom headers.\nIf multiple headers are specified, all headers must match for the rule to match."
+
+### fn spec.authorization.rules.principal.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the HTTP header.\nThe header name is case-insensitive unless PreserveHeaderCase is set to true.\nFor example, \"Foo\" and \"foo\" are considered the same header."
+
+### fn spec.authorization.rules.principal.headers.withValues
+
+```ts
+withValues(values)
+```
+
+"Values are the values that the header must match.\nIf multiple values are specified, the rule will match if any of the values match."
+
+### fn spec.authorization.rules.principal.headers.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"Values are the values that the header must match.\nIf multiple values are specified, the rule will match if any of the values match."
 
 **Note:** This function appends passed data to existing values
 
@@ -1053,7 +1344,7 @@ withProvider(provider)
 withScopes(scopes)
 ```
 
-"Scopes are a special type of claim in a JWT token that represents the permissions of the client.\n\nThe value of the scopes field should be a space delimited string that is expected in the scope parameter,\nas defined in RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749#page-23.\n\nIf multiple scopes are specified, all scopes must match for the rule to match."
+"Scopes are a special type of claim in a JWT token that represents the permissions of the client.\n\nThe value of the scopes field should be a space delimited string that is expected in the\nscope (or scp) claim, as defined in RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749#page-23.\n\nIf multiple scopes are specified, all scopes must match for the rule to match."
 
 ### fn spec.authorization.rules.principal.jwt.withScopesMixin
 
@@ -1061,7 +1352,7 @@ withScopes(scopes)
 withScopesMixin(scopes)
 ```
 
-"Scopes are a special type of claim in a JWT token that represents the permissions of the client.\n\nThe value of the scopes field should be a space delimited string that is expected in the scope parameter,\nas defined in RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749#page-23.\n\nIf multiple scopes are specified, all scopes must match for the rule to match."
+"Scopes are a special type of claim in a JWT token that represents the permissions of the client.\n\nThe value of the scopes field should be a space delimited string that is expected in the\nscope (or scp) claim, as defined in RFC 6749: https://datatracker.ietf.org/doc/html/rfc6749#page-23.\n\nIf multiple scopes are specified, all scopes must match for the rule to match."
 
 **Note:** This function appends passed data to existing values
 
@@ -1106,6 +1397,14 @@ withValuesMixin(values)
 ## obj spec.basicAuth
 
 "BasicAuth defines the configuration for the HTTP Basic Authentication."
+
+### fn spec.basicAuth.withForwardUsernameHeader
+
+```ts
+withForwardUsernameHeader(forwardUsernameHeader)
+```
+
+"This field specifies the header name to forward a successfully authenticated user to\nthe backend. The header will be added to the request with the username as the value.\n\nIf it is not specified, the username will not be forwarded."
 
 ## obj spec.basicAuth.users
 
@@ -1239,13 +1538,31 @@ withMaxAge(maxAge)
 
 "ExtAuth defines the configuration for External Authorization."
 
+### fn spec.extAuth.withContextExtensions
+
+```ts
+withContextExtensions(contextExtensions)
+```
+
+"ContextExtensions are analogous to http_request.headers, however these\ncontents will not be sent to the upstream server. This provides an\nextension mechanism for sending additional information to the auth server\nwithout modifying the proto definition. It maps to the internal opaque\ncontext in the filter chain."
+
+### fn spec.extAuth.withContextExtensionsMixin
+
+```ts
+withContextExtensionsMixin(contextExtensions)
+```
+
+"ContextExtensions are analogous to http_request.headers, however these\ncontents will not be sent to the upstream server. This provides an\nextension mechanism for sending additional information to the auth server\nwithout modifying the proto definition. It maps to the internal opaque\ncontext in the filter chain."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.extAuth.withFailOpen
 
 ```ts
 withFailOpen(failOpen)
 ```
 
-"FailOpen is a switch used to control the behavior when a response from the External Authorization service cannot be obtained.\nIf FailOpen is set to true, the system allows the traffic to pass through.\nOtherwise, if it is set to false or not set (defaulting to false),\nthe system blocks the traffic and returns a HTTP 5xx error, reflecting a fail-closed approach.\nThis setting determines whether to prioritize accessibility over strict security in case of authorization service failure."
+"FailOpen is a switch used to control the behavior when a response from the External Authorization service cannot be obtained.\nIf FailOpen is set to true, the system allows the traffic to pass through.\nOtherwise, if it is set to false or not set (defaulting to false),\nthe system blocks the traffic and returns a HTTP 5xx error, reflecting a fail-closed approach.\nThis setting determines whether to prioritize accessibility over strict security in case of authorization service failure.\n\nIf set to true, the External Authorization will also be bypassed if its configuration is invalid."
 
 ### fn spec.extAuth.withHeadersToExtAuth
 
@@ -1273,6 +1590,14 @@ withRecomputeRoute(recomputeRoute)
 
 "RecomputeRoute clears the route cache and recalculates the routing decision.\nThis field must be enabled if the headers added or modified by the ExtAuth are used for\nroute matching decisions. If the recomputation selects a new route, features targeting\nthe new matched route will be applied."
 
+### fn spec.extAuth.withTimeout
+
+```ts
+withTimeout(timeout)
+```
+
+"Timeout defines the timeout for requests to the external authorization service.\nIf not specified, defaults to 10 seconds."
+
 ## obj spec.extAuth.bodyToExtAuth
 
 "BodyToExtAuth defines the Body to Ext Auth configuration."
@@ -1284,6 +1609,70 @@ withMaxRequestBytes(maxRequestBytes)
 ```
 
 "MaxRequestBytes is the maximum size of a message body that the filter will hold in memory.\nEnvoy will return HTTP 413 and will not initiate the authorization process when buffer\nreaches the number set in this field.\nNote that this setting will have precedence over failOpen mode."
+
+## obj spec.extAuth.contextExtensions
+
+"ContextExtensions are analogous to http_request.headers, however these\ncontents will not be sent to the upstream server. This provides an\nextension mechanism for sending additional information to the auth server\nwithout modifying the proto definition. It maps to the internal opaque\ncontext in the filter chain."
+
+### fn spec.extAuth.contextExtensions.withName
+
+```ts
+withName(name)
+```
+
+"Name of the context extension."
+
+### fn spec.extAuth.contextExtensions.withType
+
+```ts
+withType(type)
+```
+
+"Type is the type of method to use to read the ContextExtension value.\nValid values are Value and ValueRef, default is Value."
+
+### fn spec.extAuth.contextExtensions.withValue
+
+```ts
+withValue(value)
+```
+
+"Value of the context extension."
+
+## obj spec.extAuth.contextExtensions.valueRef
+
+"ValueRef for the context extension's value."
+
+### fn spec.extAuth.contextExtensions.valueRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.extAuth.contextExtensions.valueRef.withKey
+
+```ts
+withKey(key)
+```
+
+"The key to select."
+
+### fn spec.extAuth.contextExtensions.valueRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\"."
+
+### fn spec.extAuth.contextExtensions.valueRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
 
 ## obj spec.extAuth.grpc
 
@@ -1403,6 +1792,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.extAuth.grpc.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.extAuth.grpc.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -1451,6 +1848,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.extAuth.grpc.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.extAuth.grpc.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.extAuth.grpc.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -1471,6 +1880,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.extAuth.grpc.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.extAuth.grpc.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.extAuth.grpc.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.extAuth.grpc.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -1482,6 +1911,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.extAuth.grpc.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.extAuth.grpc.backendSettings.dns.withRespectDnsTtl
 
@@ -1495,6 +1932,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.extAuth.grpc.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.extAuth.grpc.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -1506,6 +1951,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.extAuth.grpc.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.extAuth.grpc.backendSettings.healthCheck.active.withInterval
 
@@ -1572,6 +2025,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.extAuth.grpc.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.extAuth.grpc.backendSettings.healthCheck.active.http.withMethod
 
@@ -1713,6 +2174,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.extAuth.grpc.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.extAuth.grpc.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -1789,6 +2258,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -1803,7 +2308,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -1845,7 +2350,7 @@ withTtl(ttl)
 
 ## obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -1854,6 +2359,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.extAuth.grpc.backendSettings.loadBalancer.slowStart
 
@@ -1866,6 +2429,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.extAuth.grpc.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.extAuth.grpc.backendSettings.proxyProtocol
 
@@ -1882,6 +2481,14 @@ withVersion(version)
 ## obj spec.extAuth.grpc.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.extAuth.grpc.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.extAuth.grpc.backendSettings.retry.withNumRetries
 
@@ -2015,6 +2622,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.extAuth.grpc.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.extAuth.grpc.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -2081,7 +2696,7 @@ withHeadersToBackendMixin(headersToBackend)
 withPath(path)
 ```
 
-"Path is the path of the HTTP External Authorization service.\nIf path is specified, the authorization request will be sent to that path,\nor else the authorization request will be sent to the root path."
+"Path is the path of the HTTP External Authorization service.\nIf path is specified, the authorization request will be sent to that path,\nor else the authorization request will use the path of the original request.\n\nPlease note that the original request path will be appended to the path specified here.\nFor example, if the original request path is \"/hello\", and the path specified here is \"/auth\",\nthen the path of the authorization request will be \"/auth/hello\". If the path is not specified,\nthe path of the authorization request will be \"/hello\"."
 
 ## obj spec.extAuth.http.backendRef
 
@@ -2179,6 +2794,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.extAuth.http.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.extAuth.http.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -2227,6 +2850,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.extAuth.http.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.extAuth.http.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.extAuth.http.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -2247,6 +2882,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.extAuth.http.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.extAuth.http.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.extAuth.http.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.extAuth.http.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -2258,6 +2913,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.extAuth.http.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.extAuth.http.backendSettings.dns.withRespectDnsTtl
 
@@ -2271,6 +2934,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.extAuth.http.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.extAuth.http.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -2282,6 +2953,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.extAuth.http.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.extAuth.http.backendSettings.healthCheck.active.withInterval
 
@@ -2348,6 +3027,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.extAuth.http.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.extAuth.http.backendSettings.healthCheck.active.http.withMethod
 
@@ -2489,6 +3176,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.extAuth.http.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.extAuth.http.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -2565,6 +3260,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -2579,7 +3310,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -2621,7 +3352,7 @@ withTtl(ttl)
 
 ## obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -2630,6 +3361,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.extAuth.http.backendSettings.loadBalancer.slowStart
 
@@ -2642,6 +3431,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.extAuth.http.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.extAuth.http.backendSettings.proxyProtocol
 
@@ -2658,6 +3483,14 @@ withVersion(version)
 ## obj spec.extAuth.http.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.extAuth.http.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.extAuth.http.backendSettings.retry.withNumRetries
 
@@ -2790,6 +3623,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 ```
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
+
+### fn spec.extAuth.http.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
 
 ### fn spec.extAuth.http.backendSettings.timeout.http.withRequestTimeout
 
@@ -3003,6 +3844,54 @@ withValuePrefix(valuePrefix)
 
 "ValuePrefix is the prefix that should be stripped before extracting the token.\nThe format would be used by Envoy like \"{ValuePrefix}<TOKEN>\".\nFor example, \"Authorization: Bearer <TOKEN>\", then the ValuePrefix=\"Bearer \" with a space at the end."
 
+## obj spec.jwt.providers.localJWKS
+
+"LocalJWKS defines how to get the JSON Web Key Sets (JWKS) from a local source."
+
+### fn spec.jwt.providers.localJWKS.withInline
+
+```ts
+withInline(inline)
+```
+
+"Inline contains the value as an inline string."
+
+### fn spec.jwt.providers.localJWKS.withType
+
+```ts
+withType(type)
+```
+
+"Type is the type of method to use to read the body value.\nValid values are Inline and ValueRef, default is Inline."
+
+## obj spec.jwt.providers.localJWKS.valueRef
+
+"ValueRef is a reference to a local ConfigMap that contains the JSON Web Key Sets (JWKS).\n\nThe value of key `jwks` in the ConfigMap will be used.\nIf the key is not found, the first value in the ConfigMap will be used."
+
+### fn spec.jwt.providers.localJWKS.valueRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.jwt.providers.localJWKS.valueRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"HTTPRoute\" or \"Service\"."
+
+### fn spec.jwt.providers.localJWKS.valueRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
 ## obj spec.jwt.providers.remoteJWKS
 
 "RemoteJWKS defines how to fetch and cache JSON Web Key Sets (JWKS) from a remote\nHTTP/HTTPS endpoint."
@@ -3024,6 +3913,14 @@ withBackendRefsMixin(backendRefs)
 "BackendRefs references a Kubernetes object that represents the\nbackend server to which the authorization request will be sent."
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.jwt.providers.remoteJWKS.withCacheDuration
+
+```ts
+withCacheDuration(cacheDuration)
+```
+
+"Duration is a string value representing a duration in time. The format is as specified\nin GEP-2257, a strict subset of the syntax parsed by Golang time.ParseDuration."
 
 ### fn spec.jwt.providers.remoteJWKS.withUri
 
@@ -3129,6 +4026,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.jwt.providers.remoteJWKS.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.jwt.providers.remoteJWKS.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -3177,6 +4082,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.jwt.providers.remoteJWKS.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -3197,6 +4114,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.jwt.providers.remoteJWKS.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -3208,6 +4145,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.dns.withRespectDnsTtl
 
@@ -3221,6 +4166,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -3232,6 +4185,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.withInterval
 
@@ -3298,6 +4259,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.active.http.withMethod
 
@@ -3439,6 +4408,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -3515,6 +4492,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -3529,7 +4542,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -3571,7 +4584,7 @@ withTtl(ttl)
 
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -3580,6 +4593,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.slowStart
 
@@ -3592,6 +4663,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.proxyProtocol
 
@@ -3608,6 +4715,14 @@ withVersion(version)
 ## obj spec.jwt.providers.remoteJWKS.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.jwt.providers.remoteJWKS.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.retry.withNumRetries
 
@@ -3741,6 +4856,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.jwt.providers.remoteJWKS.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.jwt.providers.remoteJWKS.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -3771,7 +4894,7 @@ withConnectTimeout(connectTimeout)
 withClientID(clientID)
 ```
 
-"The client ID to be used in the OIDC\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)."
+"The client ID to be used in the OIDC\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).\n\nOnly one of clientID or clientIDRef must be set."
 
 ### fn spec.oidc.withCookieDomain
 
@@ -3780,6 +4903,14 @@ withCookieDomain(cookieDomain)
 ```
 
 "The optional domain to set the access and ID token cookies on.\nIf not set, the cookies will default to the host of the request, not including the subdomains.\nIf set, the cookies will be set on the specified domain and all subdomains.\nThis means that requests to any subdomain will not require reauthentication after users log in to the parent domain."
+
+### fn spec.oidc.withCsrfTokenTTL
+
+```ts
+withCsrfTokenTTL(csrfTokenTTL)
+```
+
+"CSRFTokenTTL defines how long the CSRF token generated during the OAuth2 authorization flow remains valid.\n\nThis duration determines the lifetime of the CSRF cookie, which is validated against the CSRF token\nin the \"state\" parameter when the provider redirects back to the callback endpoint.\n\nIf omitted, Envoy Gateway defaults the token expiration to 10 minutes."
 
 ### fn spec.oidc.withDefaultRefreshTokenTTL
 
@@ -3797,6 +4928,14 @@ withDefaultTokenTTL(defaultTokenTTL)
 
 "DefaultTokenTTL is the default lifetime of the id token and access token.\nPlease note that Envoy will always use the expiry time from the response\nof the authorization server if it is provided. This field is only used when\nthe expiry time is not provided by the authorization.\n\nIf not specified, defaults to 0. In this case, the \"expires_in\" field in\nthe authorization response must be set by the authorization server, or the\nOAuth flow will fail."
 
+### fn spec.oidc.withDisableTokenEncryption
+
+```ts
+withDisableTokenEncryption(disableTokenEncryption)
+```
+
+"Disable token encryption. When set to true, both the access token and the ID token will be stored in plain text.\nThis option should only be used in secure environments where token encryption is not required.\nDefault is false (tokens are encrypted)."
+
 ### fn spec.oidc.withForwardAccessToken
 
 ```ts
@@ -3813,6 +4952,14 @@ withLogoutPath(logoutPath)
 
 "The path to log a user out, clearing their credential cookies.\n\nIf not specified, uses a default logout path \"/logout\
 
+### fn spec.oidc.withPassThroughAuthHeader
+
+```ts
+withPassThroughAuthHeader(passThroughAuthHeader)
+```
+
+"Skips OIDC authentication when the request contains a header that will be extracted by the JWT filter. Unless\nexplicitly stated otherwise in the extractFrom field, this will be the \"Authorization: Bearer ...\" header.\n\nThe passThroughAuthHeader option is typically used for non-browser clients that may not be able to handle OIDC\nredirects and wish to directly supply a token instead.\n\nIf not specified, defaults to false."
+
 ### fn spec.oidc.withRedirectURL
 
 ```ts
@@ -3827,7 +4974,7 @@ withRedirectURL(redirectURL)
 withRefreshToken(refreshToken)
 ```
 
-"RefreshToken indicates whether the Envoy should automatically refresh the\nid token and access token when they expire.\nWhen set to true, the Envoy will use the refresh token to get a new id token\nand access token when they expire.\n\nIf not specified, defaults to false."
+"RefreshToken indicates whether the Envoy should automatically refresh the\nid token and access token when they expire.\nWhen set to true, the Envoy will use the refresh token to get a new id token\nand access token when they expire.\n\nIf not specified, defaults to true."
 
 ### fn spec.oidc.withResources
 
@@ -3865,6 +5012,42 @@ withScopesMixin(scopes)
 
 **Note:** This function appends passed data to existing values
 
+## obj spec.oidc.clientIDRef
+
+"The Kubernetes secret which contains the client ID to be used in the\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).\nExactly one of clientID or clientIDRef must be set.\nThis is an Opaque secret. The client ID should be stored in the key \"client-id\".\n\nOnly one of clientID or clientIDRef must be set."
+
+### fn spec.oidc.clientIDRef.withGroup
+
+```ts
+withGroup(group)
+```
+
+"Group is the group of the referent. For example, \"gateway.networking.k8s.io\".\nWhen unspecified or empty string, core API group is inferred."
+
+### fn spec.oidc.clientIDRef.withKind
+
+```ts
+withKind(kind)
+```
+
+"Kind is kind of the referent. For example \"Secret\"."
+
+### fn spec.oidc.clientIDRef.withName
+
+```ts
+withName(name)
+```
+
+"Name is the name of the referent."
+
+### fn spec.oidc.clientIDRef.withNamespace
+
+```ts
+withNamespace(namespace)
+```
+
+"Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
+
 ## obj spec.oidc.clientSecret
 
 "The Kubernetes secret which contains the OIDC client secret to be used in the\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).\n\nThis is an Opaque secret. The client secret should be stored in the key\n\"client-secret\"."
@@ -3901,6 +5084,18 @@ withNamespace(namespace)
 
 "Namespace is the namespace of the referenced object. When unspecified, the local\nnamespace is inferred.\n\nNote that when a namespace different than the local namespace is specified,\na ReferenceGrant object is required in the referent namespace to allow that\nnamespace's owner to accept the reference. See the ReferenceGrant\ndocumentation for details.\n\nSupport: Core"
 
+## obj spec.oidc.cookieConfig
+
+"CookieConfigs allows setting the SameSite attribute for OIDC cookies.\nBy default, its unset."
+
+### fn spec.oidc.cookieConfig.withSameSite
+
+```ts
+withSameSite(sameSite)
+```
+
+
+
 ## obj spec.oidc.cookieNames
 
 "The optional cookie name overrides to be used for Bearer and IdToken cookies in the\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).\nIf not specified, uses a randomly generated suffix"
@@ -3920,6 +5115,56 @@ withIdToken(idToken)
 ```
 
 "The name of the cookie used to store the IdToken in the\n[Authentication Request](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).\nIf not specified, defaults to \"IdToken-(randomly generated uid)\
+
+## obj spec.oidc.denyRedirect
+
+"Any request that matches any of the provided matchers (with either tokens that are expired or missing tokens) will not be redirected to the OIDC Provider.\nThis behavior can be useful for AJAX or machine requests."
+
+### fn spec.oidc.denyRedirect.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Defines the headers to match against the request to deny redirect to the OIDC Provider."
+
+### fn spec.oidc.denyRedirect.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Defines the headers to match against the request to deny redirect to the OIDC Provider."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.oidc.denyRedirect.headers
+
+"Defines the headers to match against the request to deny redirect to the OIDC Provider."
+
+### fn spec.oidc.denyRedirect.headers.withName
+
+```ts
+withName(name)
+```
+
+"Specifies the name of the header in the request."
+
+### fn spec.oidc.denyRedirect.headers.withType
+
+```ts
+withType(type)
+```
+
+"Type specifies how to match against a string."
+
+### fn spec.oidc.denyRedirect.headers.withValue
+
+```ts
+withValue(value)
+```
+
+"Value specifies the string value that the match must have."
 
 ## obj spec.oidc.provider
 
@@ -3950,6 +5195,14 @@ withBackendRefsMixin(backendRefs)
 "BackendRefs references a Kubernetes object that represents the\nbackend server to which the authorization request will be sent."
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.oidc.provider.withEndSessionEndpoint
+
+```ts
+withEndSessionEndpoint(endSessionEndpoint)
+```
+
+"The OIDC Provider's [end session endpoint](https://openid.net/specs/openid-connect-core-1_0.html#RPLogout).\n\nIf the end session endpoint is provided, EG will use it to log out the user from the OIDC Provider when the user accesses the logout path.\nEG will also try to discover the end session endpoint from the provider's [Well-Known Configuration Endpoint](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse) when authorizationEndpoint or tokenEndpoint is not provided."
 
 ### fn spec.oidc.provider.withIssuer
 
@@ -4063,6 +5316,14 @@ withPort(port)
 
 "Port specifies the destination port number to use for this resource.\nPort is required when the referent is a Kubernetes Service. In this\ncase, the port number is the service port number, not the target port.\nFor other resources, destination port might be derived from the referent\nresource or this field."
 
+### fn spec.oidc.provider.backendRefs.withWeight
+
+```ts
+withWeight(weight)
+```
+
+"Weight specifies the proportion of requests forwarded to the referenced\nbackend. This is computed as weight/(sum of all weights in this\nBackendRefs list). For non-zero values, there may be some epsilon from\nthe exact proportion defined here depending on the precision an\nimplementation supports. Weight is not a percentage and the sum of\nweights does not need to equal 100.\n\nIf only one backend is specified and it has a weight greater than 0, 100%\nof the traffic is forwarded to that backend. If weight is set to 0, no\ntraffic should be forwarded for this entry. If unspecified, weight\ndefaults to 1.\n\nSupport for this field varies based on the context where used."
+
 ## obj spec.oidc.provider.backendSettings
 
 "BackendSettings holds configuration for managing the connection\nto the backend."
@@ -4111,6 +5372,18 @@ withMaxRequestsPerConnection(maxRequestsPerConnection)
 
 "The maximum number of requests that Envoy will make over a single connection to the referenced backend defined within a xRoute rule.\nDefault: unlimited."
 
+## obj spec.oidc.provider.backendSettings.circuitBreaker.perEndpoint
+
+"PerEndpoint defines Circuit Breakers that will apply per-endpoint for an upstream cluster"
+
+### fn spec.oidc.provider.backendSettings.circuitBreaker.perEndpoint.withMaxConnections
+
+```ts
+withMaxConnections(maxConnections)
+```
+
+"MaxConnections configures the maximum number of connections that Envoy will establish per-endpoint to the referenced backend defined within a xRoute rule."
+
 ## obj spec.oidc.provider.backendSettings.connection
 
 "Connection includes backend connection settings."
@@ -4131,6 +5404,26 @@ withSocketBufferLimit(socketBufferLimit)
 
 "SocketBufferLimit provides configuration for the maximum buffer size in bytes for each socket\nto backend.\nSocketBufferLimit applies to socket streaming channel between TCP/IP stacks, it's in kernel space.\nFor example, 20Mi, 1Gi, 256Ki etc.\nNote that when the suffix is not provided, the value is interpreted as bytes."
 
+## obj spec.oidc.provider.backendSettings.connection.preconnect
+
+"Preconnect configures proactive upstream connections to reduce latency by establishing\nconnections before they’re needed and avoiding connection establishment overhead.\n\nIf unset, Envoy will fetch connections as needed to serve in-flight requests."
+
+### fn spec.oidc.provider.backendSettings.connection.preconnect.withPerEndpointPercent
+
+```ts
+withPerEndpointPercent(perEndpointPercent)
+```
+
+"PerEndpointPercent configures how many additional connections to maintain per\nupstream endpoint, useful for high-QPS or latency sensitive services. Expressed as a\npercentage of the connections required by active streams\n(e.g. 100 = preconnect disabled, 105 = 1.05x connections per-endpoint, 200 = 2.00×).\n\nAllowed value range is between 100-300. When both PerEndpointPercent and\nPredictivePercent are set, Envoy ensures both are satisfied (max of the two)."
+
+### fn spec.oidc.provider.backendSettings.connection.preconnect.withPredictivePercent
+
+```ts
+withPredictivePercent(predictivePercent)
+```
+
+"PredictivePercent configures how many additional connections to maintain\nacross the cluster by anticipating which upstream endpoint the load balancer\nwill select next, useful for low-QPS services. Relies on deterministic\nloadbalancing and is only supported with Random or RoundRobin.\nExpressed as a percentage of the connections required by active streams\n(e.g. 100 = 1.0 (no preconnect), 105 = 1.05× connections across the cluster, 200 = 2.00×).\n\nMinimum allowed value is 100. When both PerEndpointPercent and PredictivePercent are\nset Envoy ensures both are satisfied per host (max of the two)."
+
 ## obj spec.oidc.provider.backendSettings.dns
 
 "DNS includes dns resolution settings."
@@ -4142,6 +5435,14 @@ withDnsRefreshRate(dnsRefreshRate)
 ```
 
 "DNSRefreshRate specifies the rate at which DNS records should be refreshed.\nDefaults to 30 seconds."
+
+### fn spec.oidc.provider.backendSettings.dns.withLookupFamily
+
+```ts
+withLookupFamily(lookupFamily)
+```
+
+"LookupFamily determines how Envoy would resolve DNS for Routes where the backend is specified as a fully qualified domain name (FQDN).\nIf set, this configuration overrides other defaults."
 
 ### fn spec.oidc.provider.backendSettings.dns.withRespectDnsTtl
 
@@ -4155,6 +5456,14 @@ withRespectDnsTtl(respectDnsTtl)
 
 "HealthCheck allows gateway to perform active health checking on backends."
 
+### fn spec.oidc.provider.backendSettings.healthCheck.withPanicThreshold
+
+```ts
+withPanicThreshold(panicThreshold)
+```
+
+"When number of unhealthy endpoints for a backend reaches this threshold\nEnvoy will disregard health status and balance across all endpoints.\nIt's designed to prevent a situation in which host failures cascade throughout the cluster\nas load increases. If not set, the default value is 50%. To disable panic mode, set value to `0`."
+
 ## obj spec.oidc.provider.backendSettings.healthCheck.active
 
 "Active health check configuration"
@@ -4166,6 +5475,14 @@ withHealthyThreshold(healthyThreshold)
 ```
 
 "HealthyThreshold defines the number of healthy health checks required before a backend host is marked healthy."
+
+### fn spec.oidc.provider.backendSettings.healthCheck.active.withInitialJitter
+
+```ts
+withInitialJitter(initialJitter)
+```
+
+"InitialJitter defines the maximum time Envoy will wait before the first health check.\nEnvoy will randomly select a value between 0 and the initial jitter value."
 
 ### fn spec.oidc.provider.backendSettings.healthCheck.active.withInterval
 
@@ -4232,6 +5549,14 @@ withExpectedStatusesMixin(expectedStatuses)
 "ExpectedStatuses defines a list of HTTP response statuses considered healthy.\nDefaults to 200 only"
 
 **Note:** This function appends passed data to existing values
+
+### fn spec.oidc.provider.backendSettings.healthCheck.active.http.withHostname
+
+```ts
+withHostname(hostname)
+```
+
+"Hostname defines the HTTP host that will be requested during health checking.\nDefault: HTTPRoute or GRPCRoute hostname."
 
 ### fn spec.oidc.provider.backendSettings.healthCheck.active.http.withMethod
 
@@ -4373,6 +5698,14 @@ withConsecutiveLocalOriginFailures(consecutiveLocalOriginFailures)
 
 "ConsecutiveLocalOriginFailures sets the number of consecutive local origin failures triggering ejection.\nParameter takes effect only when split_external_local_origin_errors is set to true."
 
+### fn spec.oidc.provider.backendSettings.healthCheck.passive.withFailurePercentageThreshold
+
+```ts
+withFailurePercentageThreshold(failurePercentageThreshold)
+```
+
+"FailurePercentageThreshold sets the failure percentage threshold for outlier detection.\nIf the failure percentage of a given host is greater than or equal to this value, it will be ejected.\nDefaults to 85."
+
 ### fn spec.oidc.provider.backendSettings.healthCheck.passive.withInterval
 
 ```ts
@@ -4449,6 +5782,42 @@ withType(type)
 
 "ConsistentHash defines the configuration when the load balancer type is\nset to ConsistentHash"
 
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.withHeaders
+
+```ts
+withHeaders(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.withHeadersMixin
+
+```ts
+withHeadersMixin(headers)
+```
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+**Note:** This function appends passed data to existing values
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.withQueryParams
+
+```ts
+withQueryParams(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.withQueryParamsMixin
+
+```ts
+withQueryParamsMixin(queryParams)
+```
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.withTableSize
 
 ```ts
@@ -4463,7 +5832,7 @@ withTableSize(tableSize)
 withType(type)
 ```
 
-"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Cookie\"."
+"ConsistentHashType defines the type of input to hash on. Valid Type values are\n\"SourceIP\",\n\"Header\",\n\"Headers\",\n\"Cookie\".\n\"QueryParams\"."
 
 ## obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.cookie
 
@@ -4505,7 +5874,7 @@ withTtl(ttl)
 
 ## obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.header
 
-"Header configures the header hash policy when the consistent hash type is set to Header."
+"Header configures the header hash policy when the consistent hash type is set to Header.\n\nDeprecated: use Headers instead"
 
 ### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.header.withName
 
@@ -4514,6 +5883,64 @@ withName(name)
 ```
 
 "Name of the header to hash."
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.headers
+
+"Headers configures the header hash policy for each header, when the consistent hash type is set to Headers."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.headers.withName
+
+```ts
+withName(name)
+```
+
+"Name of the header to hash."
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.consistentHash.queryParams
+
+"QueryParams configures the query parameter hash policy when the consistent hash type is set to QueryParams."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.consistentHash.queryParams.withName
+
+```ts
+withName(name)
+```
+
+"Name of the query param to hash."
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.endpointOverride
+
+"EndpointOverride defines the configuration for endpoint override.\nWhen specified, the load balancer will attempt to route requests to endpoints\nbased on the override information extracted from request headers or metadata.\n If the override endpoints are not available, the configured load balancer policy will be used as fallback."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.endpointOverride.withExtractFrom
+
+```ts
+withExtractFrom(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.endpointOverride.withExtractFromMixin
+
+```ts
+withExtractFromMixin(extractFrom)
+```
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.endpointOverride.extractFrom
+
+"ExtractFrom defines the sources to extract endpoint override information from."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.endpointOverride.extractFrom.withHeader
+
+```ts
+withHeader(header)
+```
+
+"Header defines the header to get the override endpoint addresses.\nThe header value must specify at least one endpoint in `IP:Port` format or multiple endpoints in `IP:Port,IP:Port,...` format.\nFor example `10.0.0.5:8080` or `[2600:4040:5204::1574:24ae]:80`.\nThe IPv6 address is enclosed in square brackets."
 
 ## obj spec.oidc.provider.backendSettings.loadBalancer.slowStart
 
@@ -4526,6 +5953,42 @@ withWindow(window)
 ```
 
 "Window defines the duration of the warm up period for newly added host.\nDuring slow start window, traffic sent to the newly added hosts will gradually increase.\nCurrently only supports linear growth of traffic. For additional details,\nsee https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster-slowstartconfig"
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware
+
+"ZoneAware defines the configuration related to the distribution of requests between locality zones."
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal
+
+"PreferLocalZone configures zone-aware routing to prefer sending traffic to the local locality zone."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal.withMinEndpointsThreshold
+
+```ts
+withMinEndpointsThreshold(minEndpointsThreshold)
+```
+
+"MinEndpointsThreshold is the minimum number of total upstream endpoints across all zones required to enable zone-aware routing."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal.withPercentageEnabled
+
+```ts
+withPercentageEnabled(percentageEnabled)
+```
+
+"Configures percentage of requests that will be considered for zone aware routing if zone aware routing is configured. If not specified, Envoy defaults to 100%."
+
+## obj spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force
+
+"ForceLocalZone defines override configuration for forcing all traffic to stay within the local zone instead of the default behavior\nwhich maintains equal distribution among upstream endpoints while sending as much traffic as possible locally."
+
+### fn spec.oidc.provider.backendSettings.loadBalancer.zoneAware.preferLocal.force.withMinEndpointsInZoneThreshold
+
+```ts
+withMinEndpointsInZoneThreshold(minEndpointsInZoneThreshold)
+```
+
+"MinEndpointsInZoneThreshold is the minimum number of upstream endpoints in the local zone required to honor the forceLocalZone\noverride. This is useful for protecting zones with fewer endpoints."
 
 ## obj spec.oidc.provider.backendSettings.proxyProtocol
 
@@ -4542,6 +6005,14 @@ withVersion(version)
 ## obj spec.oidc.provider.backendSettings.retry
 
 "Retry provides more advanced usage, allowing users to customize the number of retries, retry fallback strategy, and retry triggering conditions.\nIf not set, retry will be disabled."
+
+### fn spec.oidc.provider.backendSettings.retry.withNumAttemptsPerPriority
+
+```ts
+withNumAttemptsPerPriority(numAttemptsPerPriority)
+```
+
+"NumAttemptsPerPriority defines the number of requests (initial attempt + retries)\nthat should be sent to the same priority before switching to a different one.\nIf not specified or set to 0, all requests are sent to the highest priority that is healthy."
 
 ### fn spec.oidc.provider.backendSettings.retry.withNumRetries
 
@@ -4675,6 +6146,14 @@ withMaxConnectionDuration(maxConnectionDuration)
 
 "The maximum duration of an HTTP connection.\nDefault: unlimited."
 
+### fn spec.oidc.provider.backendSettings.timeout.http.withMaxStreamDuration
+
+```ts
+withMaxStreamDuration(maxStreamDuration)
+```
+
+"MaxStreamDuration is the maximum duration for a stream to complete. This timeout measures the time\nfrom when the request is sent until the response stream is fully consumed and does not apply to\nnon-streaming requests.\nWhen set to \"0s\", no max duration is applied and streams can run indefinitely."
+
 ### fn spec.oidc.provider.backendSettings.timeout.http.withRequestTimeout
 
 ```ts
@@ -4787,6 +6266,24 @@ withKind(kind)
 
 "Kind is the resource kind that this selector targets."
 
+### fn spec.targetSelectors.withMatchExpressions
+
+```ts
+withMatchExpressions(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.withMatchExpressionsMixin
+
+```ts
+withMatchExpressionsMixin(matchExpressions)
+```
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+**Note:** This function appends passed data to existing values
+
 ### fn spec.targetSelectors.withMatchLabels
 
 ```ts
@@ -4802,5 +6299,43 @@ withMatchLabelsMixin(matchLabels)
 ```
 
 "MatchLabels are the set of label selectors for identifying the targeted resource"
+
+**Note:** This function appends passed data to existing values
+
+## obj spec.targetSelectors.matchExpressions
+
+"MatchExpressions is a list of label selector requirements. The requirements are ANDed."
+
+### fn spec.targetSelectors.matchExpressions.withKey
+
+```ts
+withKey(key)
+```
+
+"key is the label key that the selector applies to."
+
+### fn spec.targetSelectors.matchExpressions.withOperator
+
+```ts
+withOperator(operator)
+```
+
+"operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+
+### fn spec.targetSelectors.matchExpressions.withValues
+
+```ts
+withValues(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
+
+### fn spec.targetSelectors.matchExpressions.withValuesMixin
+
+```ts
+withValuesMixin(values)
+```
+
+"values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch."
 
 **Note:** This function appends passed data to existing values

@@ -1,5 +1,5 @@
 ---
-permalink: /v1.3.0/gateway/v1alpha1/
+permalink: /v1.7.0/gateway/v1alpha1/
 ---
 
 # gateway.v1alpha1
