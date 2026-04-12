@@ -2,182 +2,138 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/backend/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/backend/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/backendTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/backendTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/clientTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/clientTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/envoyExtensionPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/envoyExtensionPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/envoyPatchPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/envoyPatchPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/envoyProxy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/envoyProxy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/httpRouteFilter/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/httpRouteFilter/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.4.0/gateway/v1alpha1/securityPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.9/gateway/v1alpha1/securityPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/backend/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/backend/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/backendTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/backendTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/clientTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/clientTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/envoyExtensionPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/envoyExtensionPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/envoyPatchPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/envoyPatchPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/envoyProxy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/envoyProxy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/httpRouteFilter/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/httpRouteFilter/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.5.0/gateway/v1alpha1/securityPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.5/gateway/v1alpha1/securityPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/backend/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/backend/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/backendTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/backendTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/clientTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/clientTrafficPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/envoyExtensionPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/envoyExtensionPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/envoyPatchPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/envoyPatchPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/envoyProxy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/envoyProxy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/httpRouteFilter/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/httpRouteFilter/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
     <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.6.0/gateway/v1alpha1/securityPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/backend/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/backendTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/clientTrafficPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/envoyExtensionPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/envoyPatchPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/envoyProxy/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/httpRouteFilter/</loc>
-         <lastmod>2026-02-25</lastmod>
-    </url>
-    <url>
-         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.0/gateway/v1alpha1/securityPolicy/</loc>
-         <lastmod>2026-02-25</lastmod>
+         <loc>https://jsonnet-libs.github.io/envoy-gateway-libsonnet/v1.7.1/gateway/v1alpha1/securityPolicy/</loc>
+         <lastmod>2026-04-12</lastmod>
     </url>
 </urlset>
